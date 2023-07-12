@@ -1,0 +1,117 @@
+
+
+ 
+ .main-container .select-time{
+    width:var(--main_width);
+    height: 12vh;
+    margin-top: 1vh;
+    border: 1px solid;
+    border-color: rgb(249, 245, 245);
+    margin-left: 1vw;
+    margin-right: 2vw;
+    background-color: var(--box-color)
+    
+ }
+ .rmdp-shadow{
+   box-shadow: none !important;
+ }
+ .rmdp-header-values {
+   color: #3b3b3b !important; 
+}
+.rmdp-input{
+    width: 6rem;
+   background-color: transparent;
+   color: #1d4ed8;
+   border: none !important;
+   cursor: pointer;
+   text-align: center;
+ }
+ .rmdp-input:focus{
+   border: none !important;
+   outline: none !important;
+ }
+ .main-container .select-time .time1{
+    width:20vw;
+    height: 12vh;
+    margin-right: 2vw;
+    float:right;
+    border: none !important;
+    margin-left: 1vw;
+    color: rgb(9, 10, 10);
+    display: flex;
+    flex-wrap: wrap;
+    position:relative;
+ }
+ .main-container .select-time .label{
+    font-size: 1vw;
+    color: rgb(8, 8, 8);
+    margin-left: 2vw;
+ }
+ 
+ 
+ .main-container .select-time .buttons{
+    width:13vw;
+    height: 12vh;
+    float:right;
+    border: none !important;
+    margin-left: 1vw;
+    color: rgb(9, 10, 10);
+    display: flex;
+    flex-wrap: wrap;
+    position:relative;
+    padding-left: 3vw;
+ }
+ .main-container .select-time .buttons .comapre-time{
+    width:8vw;
+    height: 3vh;
+    float:right;
+    margin-left: 1vw;
+    color: rgb(9, 10, 10);
+    margin-top: 0.5vh;
+    font-size: 1vw;
+ 
+ }
+ .main-container .select-time .buttons .submit-times{
+    width:5vw;
+    height: 5vh;
+    float:right;
+    border: 1px solid;
+    border-color: rgb(136, 133, 133);
+    background-color: rgb(6, 6, 6);
+    margin-left: 1vw;
+    color: rgb(236, 243, 243);
+    margin-top: 0.5vh;
+    text-align: center;
+    font-size: 1vw;
+    padding-top: 0.5vh;
+ 
+ }
+ 
+ .main-container .select-time .time2{
+    width:20vw;
+    height: 11vh;
+    float:right;
+    border: 1px solid;
+    border-color: rgb(136, 133, 133);
+    margin-left: 1vw;
+    color: rgb(9, 10, 10);
+    display: flex;
+    flex-wrap: wrap;
+    position:relative;
+    pointer-events: none;
+    background-color: gray;
+ }
+ .main-container .select-time .help{
+    width:7vw;
+    height: 12vh;
+    padding-top: 3vh;
+    margin-left: 1vw;
+    color:  rebeccapurple;;
+    display: flex;
+    flex-wrap: wrap;
+    float: left;
+    text-align: center;
+    font-size: 1vw;
+ }
+ 
+ 

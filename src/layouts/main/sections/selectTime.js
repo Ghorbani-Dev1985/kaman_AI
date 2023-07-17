@@ -96,38 +96,30 @@ function Disabled_Date_Picker(v, setter) {
   );
 }
 
-function CustomCalendar(v, setter) {
-  return (
-    <Calendar
-      value={v}
-      onChange={setter}
-      multipleRange
-      multiple
-      dateSeparator=" تا "
-      range
-      rangeHover
-      eachDaysInRange
-      numberOfMonths={2}
-      showOtherDays
-     
-      calendar={persian}
-      locale={persian_fa}
-      formattingIgnoreList={["Date", "Time"]}
-    />
-  );
-}
 
 function SelectTime({ setResponse, setchartresponse }) {
   const [values, setValues] = useState([
-    [new DateObject().set({ day: 1 }), new DateObject().set({ day: 3 })],
-    [new DateObject().set({ day: 6 }), new DateObject().set({ day: 12 })],
-    [new DateObject().set({ day: 23 }), new DateObject().set({ day: 27 })],
+    [new DateObject().set({ day: 1 }), new DateObject().set({ day: 7 })],
+    [new DateObject().set({ day: 20 }), new DateObject().set({ day: 27 })],
   ]);
-  const [valuesSecond, setValuesSecond] = useState([
-    [new DateObject().set({ day: 1 }), new DateObject().set({ day: 3 })],
-    [new DateObject().set({ day: 6 }), new DateObject().set({ day: 12 })],
-    [new DateObject().set({ day: 23 }), new DateObject().set({ day: 27 })],
-  ]);
+  function CustomCalendar() {
+    return (
+      <Calendar
+      className="custom-calendar"
+        value={values}
+        onChange={setValues}
+        dateSeparator=" "
+        multiple
+        range
+        rangeHover
+        numberOfMonths={2}   
+        calendar={persian}
+        locale={persian_fa}
+       
+      />
+    );
+  }
+
   const [start_time1, setStart_time1] = useState(new DateObject());
   const [end_time1, setEnd_time1] = useState(new DateObject());
   const [start_time2, setStart_time2] = useState(new DateObject());
@@ -210,73 +202,72 @@ function SelectTime({ setResponse, setchartresponse }) {
 
   return (
     <>
-      <div className="w-full relative bg-white flex flex-col md:flex-row justify-center md:justify-between items-center rounded-md px-2 py-0">
+      <div className="relative flex w-full flex-col items-center justify-center rounded-md bg-white px-2 md:flex-row md:justify-between">
         <div className="inline-flex h-full">
           <button
             onClick={() => setShowDateBox(!showDateBox)}
-            className="inline-flex items-center justify-center relative outline-0 border-0 m-0 cursor-pointer select-none align-middle appearance-none text-sm leading-6 min-w-[65px] px-2 transition ease-in-out rounded-md hover:bg-blue-100 focus:bg-blue-100 duration-700 h-full"
+            className="relative m-0 inline-flex h-full min-w-[65px] cursor-pointer my-4 select-none appearance-none items-center justify-center rounded-md border-0 px-2 align-middle text-sm leading-6 outline-0 transition duration-700 ease-in-out hover:bg-navy-100 focus:bg-navy-100"
           >
             <span className="inline-flex flex-col text-right">
-              <span className="inline-flex tracking-normal">
-                <BiCalendar className="text-blue-800" />
+              <span className="inline-flex tracking-normal mb-2">
+                <BiCalendar className="text-navy-500" />
                 <span className="inline-block text-xs font-normal">
                   <span className="inline-block text-xs font-normal">
                     {Disabled_Date_Picker(values[0], setValues[0])}
                   </span>
-                  <span className="mx-2">تا</span>
-                  <span className="inline-block text-xs font-normal">
+                  {/* <span className="inline-block text-xs font-normal">
                     {Disabled_Date_Picker(values[1], setValues[1])}
-                  </span>
+                  </span> */}
                 </span>
               </span>
               <span className="inline-block text-xs">
-                <span className="m-0 text-xs font-normal leading-4 uppercase tracking-normal">
+                <span className="m-0 text-xs font-normal uppercase leading-4 tracking-normal">
                   مقایسه با
                 </span>
                 <span className="inline-block text-xs font-normal">
-                <span className="inline-block text-xs font-normal">
-                    {Disabled_Date_Picker(values[2], setValues[2])}
+                  <span className="inline-block text-xs font-normal">
+                  {Disabled_Date_Picker(values[1], setValues[1])}
                   </span>
-                  <span className="mx-2">تا</span>
+                  {/* <span className="mx-2">تا</span>
                   <span className="inline-block text-xs font-normal">
                     {Disabled_Date_Picker(valuesSecond[1], setValuesSecond[1])}
-                  </span>
+                  </span> */}
                 </span>
               </span>
             </span>
-            <span className="overflow-hidden pointer-events-none absolute z-0 inset-0 rounded-none"></span>
+            <span className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-none"></span>
           </button>
-          <hr className="m-0 px-1 flex-shrink-0 border-t-0 border-l-[1px] border-slate-300 border-solid h-auto self-stretch" />
+          <hr className="border-slate-300 m-0 h-auto flex-shrink-0 self-stretch border-t-0 border-l-[1px] border-solid px-1" />
         </div>
 
         <div
           className={`${
             showDateBox ? "flex" : "hidden"
-          } absolute inset-y-0 inset-x-auto m-0 translate-x-[7px] translate-y-[78px] z-40`}
+          } absolute inset-y-0 inset-x-auto z-40 m-0 translate-x-[7px] translate-y-[90px]`}
         >
           <div className="min-w-[187px]">
-            <div className="bg-white text-slate-600 rounded-md shadow-xl">
+            <div className="text-slate-600 overflow-hidden rounded-md bg-white shadow-xl">
               <div className="flex">
                 <div className="w-80">
-                  <div className="border-r-4 border-l-[1px] border-l-slate-300 border-r-blue-600 border-solid py-4 px-3">
-                    <div className="flex flex-wrap -mt-4 w-[calc(100%+ 16px)] -mr-4">
-                      <div className="pr-4 pt-2 m-0 basis-full grow-0 max-w-full">
+                  <div className="border-l-slate-300 border-r-4 border-l-[1px] border-solid border-r-navy-500 py-4 px-3">
+                    <div className="w-[calc(100%+ 16px)] -mt-4 -mr-4 flex flex-wrap">
+                      <div className="m-0 max-w-full grow-0 basis-full pr-4 pt-2">
                         <p className="m-0 text-base font-normal leading-7">
                           انتخاب بازه زمانی
                         </p>
                       </div>
-                      <div className="pr-4 pt-4 m-0 basis-full grow-0 max-w-full">
-                        <div className="fixed top-16 w-72 z-50">
+                      <div className="m-0 max-w-full grow-0 basis-full pr-4 pt-4">
+                        <div className="fixed top-16 z-50 w-72">
                           <Listbox value={selected} onChange={setSelected}>
                             <div className="relative mt-1">
-                              <Listbox.Button className="relative w-full cursor-default rounded-lg border border-slate-300 border-solid bg-white py-2 pl-3 pr-10 text-right focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-                                <div className="w-full flex justify-between items-center p-2">
-                                  <span className="block truncate absolute right-0 px-1">
+                              <Listbox.Button className="border-slate-300 relative w-full cursor-default rounded-lg border border-solid bg-white py-2 pl-3 pr-10 text-right focus:outline-none focus-visible:border-navy-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                                <div className="flex w-full items-center justify-between p-2">
+                                  <span className="absolute right-0 block truncate px-1">
                                     {selected.name}
                                   </span>
                                   <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pr-2">
                                     <BiChevronDown
-                                      className="h-5 w-5 text-blue-800 hover:text-violet-100 mr-1 md:mr-2"
+                                      className="hover:text-violet-100 mr-1 h-5 w-5 text-navy-500 md:mr-2"
                                       aria-hidden="true"
                                     />
                                   </span>
@@ -288,16 +279,16 @@ function SelectTime({ setResponse, setchartresponse }) {
                                 leaveFrom="opacity-100"
                                 leaveTo="opacity-0"
                               >
-                                <Listbox.Options className="absolute mt-1 pl-0 h-auto w-full rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                <Listbox.Options className="ring-black absolute mt-1 h-auto w-full rounded-md bg-white py-1 pl-0 text-base shadow-lg ring-1 ring-opacity-5 focus:outline-none sm:text-sm">
                                   {dateSegmentDropDown.map(
                                     (person, personIdx) => (
                                       <Listbox.Option
                                         key={personIdx}
                                         className={({ active }) =>
-                                          `relative cursor-pointer select-none py-2 pr-4 rounded-md ${
+                                          `relative cursor-pointer select-none rounded-md py-2 pr-4 ${
                                             active
-                                              ? "bg-blue-100 text-blue-900"
-                                              : "text-gray-900"
+                                              ? "bg-navy-100 text-navy-500"
+                                              : "text-navy-500"
                                           }`
                                         }
                                         value={person}
@@ -328,21 +319,17 @@ function SelectTime({ setResponse, setchartresponse }) {
                         </div>
                       </div>
 
-                      <div className="w-full flex justify-between items-center mt-16 px-3">
-                        <div className="border border-slate-300 p-2 rounded-md border-solid hover:border-blue-800 focus:border-blue-800">
+                      <div className="mt-16 flex w-full items-center justify-center px-3">
+                        <div className="border-slate-300 rounded-md border border-solid p-2 hover:border-navy-500 focus:border-navy-500">
                           {Disabled_Date_Picker(values[0], setValues[0])}
-                        </div>
-                        <div className="mx-7">تا</div>
-                        <div className="border border-slate-300 p-2 rounded-md border-solid hover:border-blue-800 focus:border-blue-800">
-                          {Disabled_Date_Picker(values[1], setValues[1])}
                         </div>
                       </div>
                     </div>
                   </div>
-                  <p className="bg-slate-300 w-full h-px m-0"></p>
-                  <div className="m-0 border-r-4 border-l-[1px] border-l-slate-300 border-blue-400 border-solid py-4 px-3">
-                    <div className="flex flex-wrap -mt-4 w-[calc(100%+ 16px)] -mr-4">
-                      <div className="pr-4 pt-2 m-0 basis-full grow-0 max-w-full">
+                  <p className="bg-slate-300 m-0 h-px w-full"></p>
+                  <div className="border-l-slate-300 m-0 border-r-4 border-l-[1px] border-solid border-navy-200 py-4 px-3">
+                    <div className="w-[calc(100%+ 16px)] -mt-4 -mr-4 flex flex-wrap">
+                      <div className="m-0 max-w-full grow-0 basis-full pr-4 pt-2">
                         <input
                           type="checkbox"
                           className="my-5"
@@ -354,17 +341,17 @@ function SelectTime({ setResponse, setchartresponse }) {
                           مقایسه با ...
                         </label>
                       </div>
-                      <div className="pr-4 pt-2 m-0 basis-full grow-0 max-w-full">
+                      <div className="m-0 max-w-full grow-0 basis-full pr-4 pt-2">
                         <Listbox value={selected} onChange={setSelected}>
                           <div className="relative mt-1">
-                            <Listbox.Button className="relative w-full cursor-default rounded-lg border border-slate-300 border-solid bg-white py-2 pl-3 pr-10 text-right focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-                              <div className="w-full flex justify-between items-center p-2">
-                                <span className="block truncate absolute right-0 px-1">
+                            <Listbox.Button className="border-slate-300 relative w-full cursor-default rounded-lg border border-solid bg-white py-2 pl-3 pr-10 text-right focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                              <div className="flex w-full items-center justify-between p-2">
+                                <span className="absolute right-0 block truncate px-1">
                                   {selected.name}
                                 </span>
                                 <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pr-2">
                                   <BiChevronDown
-                                    className="h-5 w-5 text-blue-800 hover:text-violet-100 mr-1 md:mr-2"
+                                    className="hover:text-violet-100 mr-1 h-5 w-5 text-navy-500 md:mr-2"
                                     aria-hidden="true"
                                   />
                                 </span>
@@ -376,15 +363,15 @@ function SelectTime({ setResponse, setchartresponse }) {
                               leaveFrom="opacity-100"
                               leaveTo="opacity-0"
                             >
-                              <Listbox.Options className="absolute mt-1 pl-0 h-auto w-full rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                              <Listbox.Options className="ring-black absolute mt-1 h-auto w-full rounded-md bg-white py-1 pl-0 text-base shadow-lg ring-1 ring-opacity-5 focus:outline-none sm:text-sm">
                                 {dateSecondSegmentDropDown.map(
                                   (person, personIdx) => (
                                     <Listbox.Option
                                       key={personIdx}
                                       className={({ active }) =>
-                                        `relative cursor-pointer select-none py-2 pr-4 rounded-md ${
+                                        `relative cursor-pointer select-none rounded-md py-2 pr-4 ${
                                           active
-                                            ? "bg-blue-100 text-blue-900"
+                                            ? "bg-navy-100 text-navy-900"
                                             : "text-gray-900"
                                         }`
                                       }
@@ -414,35 +401,24 @@ function SelectTime({ setResponse, setchartresponse }) {
                           </div>
                         </Listbox>
                       </div>
-                      <div className="inline-flex">
-                        <div className="pr-4 pt-4 m-0 basis-full grow-0 max-w-full">
-                          <div className="inline-flex flex-col absolute min-w-0 p-0 mt-4 mr-0 mb-2 ml-0 border-0 align-top w-full ">
-                            <div className="text-base font-normal leading-6 text-slate-400 cursor-text inline-flex justify-center items-center w-full relative rounded-md pl-4"></div>
-                          </div>
-                        </div>
-                        <div className="pr-4 pt-4 m-0 basis-[8.33333%] grow-0 max-w-[8.33333%]">
-                          <span className="inline-block pt-5">تا</span>
-                        </div>
-                        <div className="pr-4 pt-4 m-0 basis-full grow-0 max-w-full">
-                          <div className="inline-flex flex-col absolute min-w-0 p-0 mt-4 mr-0 mb-2 ml-0 border-0 align-top w-full ">
-                            <div className="text-base font-normal leading-6 text-slate-400 cursor-text inline-flex justify-center items-center w-full relative rounded-md pl-4"></div>
-                          </div>
+                      <div className="mt-4 flex w-full items-center justify-center px-3">
+                        <div className="border-slate-300 rounded-md border border-solid p-2 hover:border-navy-500 focus:border-navy-500">
+                          {Disabled_Date_Picker(values[1], setValues[1])}
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="overflow-hidden min-w-[320px] px-4 py-2 flex flex-col bg-white">
+                <div className="flex min-w-[320px] flex-col overflow-hidden bg-white px-4 py-2">
                   <div className="flex">
                     {CustomCalendar(values, setValues)}
-                   
                   </div>
                 </div>
               </div>
-              <div className="flex flex-row-reverse p-4 border-t border-slate-300 border-solid">
+              <div className="border-slate-300 flex flex-row-reverse border-t border-solid p-4">
                 <button
                   type="button"
-                  className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                  className="border-transparent inline-flex justify-center rounded-md border bg-navy-100 px-4 py-2 text-sm font-medium text-navy-900 hover:bg-navy-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-navy-500 focus-visible:ring-offset-2"
                   onClick={handleGetInfo}
                 >
                   اعمال
@@ -453,8 +429,8 @@ function SelectTime({ setResponse, setchartresponse }) {
         </div>
 
         <div className="flex flex-col items-center">
-          <p className="text-blue-800">راهنمایی</p>
-          <BiHelpCircle className="text-blue-500 text-lg" />
+          <p className="text-navy-500">راهنمایی</p>
+          <BiHelpCircle className="text-lg text-navy-500" />
         </div>
       </div>
     </>

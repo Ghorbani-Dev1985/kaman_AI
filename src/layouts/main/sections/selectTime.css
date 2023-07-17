@@ -15,13 +15,15 @@
  .rmdp-shadow{
    box-shadow: none !important;
  }
+ .rmdp-range {
+   background-color: #2851A2 !important;
+}
  .rmdp-header-values {
    color: #3b3b3b !important; 
 }
 .rmdp-input{
-    width: 6rem;
    background-color: transparent;
-   color: #1d4ed8;
+   color: #2851A2;
    border: none !important;
    cursor: pointer;
    text-align: center;

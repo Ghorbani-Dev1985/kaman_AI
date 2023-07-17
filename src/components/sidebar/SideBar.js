@@ -58,44 +58,42 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
       </div>
       <div className="mt-[58px] mb-7 h-px bg-gray-300 dark:bg-white/30" />
       {/* Nav item */}
-      <div className="flex h-screen flex-col justify-evenly">
+      <div className="flex h-screen flex-col justify-between">
         <nav className="w-full" aria-label="Sidebar">
           <div className="overflow-y-auto overflow-x-hidden px-3 py-4">
             <ul className="space-y-2">
-              <li>
-                <NavLink
+              <li className="flex items-center justify-center">
+                <NavLink onClick={importMainHandler}
                   to="/main"
-                  // activeClassName="text-navy-500 bg-gray-100"
-                  className="flex items-center justify-between rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  className={({isActive}) => (isActive ? "w-full flex rounded-lg p-2 text-base dark:text-white dark:hover:bg-gray-700 text-navy-500 bg-gray-100 font-bold" : "w-full flex rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700")}
                 >
-                  <p className="flex items-center justify-center">
-                    <MdLayers className="ml-2 text-lg" />
-                    <span
+            
+                    <p
                       className={`${
-                        showSubMenu.allMenu ? "inline-flex" : "hidden"
+                        showSubMenu.allMenu ? "w-full inline-flex" : "hidden"
                       } ml-3`}
                     >
-                      نمای کلی
-                    </span>
-                  </p>
+                      <MdLayers className="ml-2 text-lg" />
+                    نمای کلی
+                    </p>
+                 
+               
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  to=""
-                  // activeClassName="text-navy-500 bg-gray-100"
-                  className="flex items-center justify-between rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  to="/"
+                  className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-white dark:hover:bg-gray-700"
                 >
-                  <p className="flex items-center justify-center">
-                    <MdOutlineTimeline className="ml-2 text-lg" />
-                    <span
+                    <p
                       className={`${
-                        showSubMenu.allMenu ? "inline-flex" : "hidden"
+                        showSubMenu.allMenu ? "w-full inline-flex" : "hidden"
                       } ml-3`}
                     >
+                      <MdOutlineTimeline className="ml-2 text-lg" />
                       روندها
-                    </span>
-                  </p>
+                    </p>
+
                 </NavLink>
               </li>
               <li>
@@ -123,7 +121,7 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                       مشتریان
                     </span>
                   </p>
-                  <p>
+                  <p className={`${showSubMenu.allMenu ? "block" : "hidden"}`}>
                     {showSubMenu.dropDownOne ? <BiCaretUp /> : <BiCaretDown />}
                   </p>
                 </button>
@@ -136,7 +134,7 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                   <li>
                     <NavLink
                       to=""
-                      // activeClassName="text-navy-500 bg-gray-100"
+    
                       className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-white dark:hover:bg-gray-700"
                     >
                       بخش بندی مشتریان{" "}
@@ -145,7 +143,7 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                   <li>
                     <NavLink
                       to=""
-                      // activeClassName="text-navy-500 bg-gray-100"
+    
                       className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-white dark:hover:bg-gray-700"
                     >
                       {" "}
@@ -155,7 +153,7 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                   <li>
                     <NavLink
                       to=""
-                      // activeClassName="text-navy-500 bg-gray-100"
+    
                       className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-white dark:hover:bg-gray-700"
                     >
                       نرخ بازگشت مشتریان{" "}
@@ -164,7 +162,7 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                   <li>
                     <NavLink
                       to=""
-                      // activeClassName="text-navy-500 bg-gray-100"
+    
                       className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-white dark:hover:bg-gray-700"
                     >
                       طول عمر مشتریان{" "}
@@ -173,7 +171,7 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                   <li>
                     <NavLink
                       to=""
-                      // activeClassName="text-navy-500 bg-gray-100"
+    
                       className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-white dark:hover:bg-gray-700"
                     >
                       سهم سبد مشتریان{" "}
@@ -182,7 +180,7 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                   <li>
                     <NavLink
                       to=""
-                      // activeClassName="text-navy-500 bg-gray-100"
+    
                       className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-white dark:hover:bg-gray-700"
                     >
                       فاصله خرید مشتریان{" "}
@@ -191,7 +189,7 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                   <li>
                     <NavLink
                       to=""
-                      // activeClassName="text-navy-500 bg-gray-100"
+    
                       className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-white dark:hover:bg-gray-700"
                     >
                       گروه مشتریان{" "}
@@ -224,7 +222,7 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                       محصولات
                     </span>
                   </p>
-                  <p>
+                  <p className={`${showSubMenu.allMenu ? "block" : "hidden"}`}>
                     {showSubMenu.dropDownTwo ? <BiCaretUp /> : <BiCaretDown />}
                   </p>
                 </button>
@@ -237,7 +235,7 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                   <li>
                     <NavLink
                       to=""
-                      // activeClassName="text-navy-500 bg-gray-100"
+    
                       className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-white dark:hover:bg-gray-700"
                     >
                       {" "}
@@ -247,7 +245,7 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                   <li>
                     <NavLink
                       to=""
-                      // activeClassName="text-navy-500 bg-gray-100"
+    
                       className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-white dark:hover:bg-gray-700"
                     >
                       {" "}
@@ -259,7 +257,7 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
               <li>
                 <NavLink
                   to="/main"
-                  // activeClassName="text-navy-500 bg-gray-100"
+
                   className="flex items-center justify-between rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 >
                   <p className="flex items-center justify-center">
@@ -299,7 +297,7 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                       تنظیمات
                     </span>
                   </p>
-                  <p>
+                  <p className={`${showSubMenu.allMenu ? "block" : "hidden"}`}>
                     {showSubMenu.dropDownThree ? (
                       <BiCaretUp />
                     ) : (
@@ -314,29 +312,25 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                   } my-[0.63rem] w-full flex-col rounded-md bg-gray-100 p-2`}
                 >
                   <li>
-                    <NavLink
-                      to=""
-                      // activeClassName="text-navy-500 bg-gray-100"
-                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-white dark:hover:bg-gray-700"
+                    <NavLink onClick={analyseDataHandler}
+                      to="/analyse"
+                      className={({isActive}) => (isActive ? "w-full flex rounded-lg p-2 text-base dark:text-white dark:hover:bg-gray-700 text-navy-500 bg-white font-bold" : "w-full flex rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700")}
                     >
-                      {" "}
-                      تحلیل داده{" "}
+                      تحلیل داده
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink onClick={importDataHandler}
+                      to="/importData"
+                      className={({isActive}) => (isActive ? "w-full flex rounded-lg p-2 text-base dark:text-white dark:hover:bg-gray-700 text-navy-500 bg-white font-bold" : "w-full flex rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700")}
+                    >
+                      ورود داده
                     </NavLink>
                   </li>
                   <li>
                     <NavLink
                       to=""
-                      // activeClassName="text-navy-500 bg-gray-100"
-                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-white dark:hover:bg-gray-700"
-                    >
-                      {" "}
-                      ورود داده{" "}
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to=""
-                      // activeClassName="text-navy-500 bg-gray-100"
+    
                       className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-white dark:hover:bg-gray-700"
                     >
                       سامانه پیامک{" "}
@@ -347,6 +341,7 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
             </ul>
           </div>
         </nav>
+        <section>
         <div className="text-slate-500 border-t-stone-200 flex w-full items-center justify-center border-t border-solid pt-2 text-navy-500">
           v0.0.1
         </div>
@@ -365,6 +360,7 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
             <HiChevronDoubleLeft className="ml-1" />
           )}
         </div>
+        </section>
       </div>
       {/* Nav item end */}
     </div>

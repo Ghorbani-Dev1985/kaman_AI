@@ -68,13 +68,12 @@ function SignIn() {
       ></div>
       <div className="flex h-screen items-center justify-center">
         <main className="z-10 mr-auto ml-auto box-border block w-full max-w-md p-2">
-          <div className="flex flex-col items-center rounded-md bg-white p-10">
+          <div className="flex flex-col items-center rounded-md bg-white dark:bg-navy-700 dark:text-white p-10">
             <img src={logo} alt="کمان" className="w-56 object-fill" />
-            <h4 className="my-4 text-lg font-medium text-navy-500">
+            <h4 className="my-4 text-lg font-medium text-navy-500 dark:text-white">
               ورود به حساب کاربری
             </h4>
             <Input
-              ref={userName}
               id="name"
               name="user_name"
               inputType="text"

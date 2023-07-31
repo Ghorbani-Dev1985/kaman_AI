@@ -108,7 +108,6 @@ module.exports = {
       },
       fontFamily: {
         IRANSansFaNum: ["IRANSansFaNum", "Tahome"],
-        dm: ["DM Sans", "sans-serif"],
       },
       boxShadow: {
         "3xl": "14px 17px 40px 4px",

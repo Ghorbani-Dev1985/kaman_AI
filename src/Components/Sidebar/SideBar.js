@@ -15,6 +15,8 @@ import {
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
 
+
+
 const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -23,25 +25,104 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
     e.preventDefault();
     console.log(location.state.userinfo);
     navigate("/main", { state: { userinfo: location.state.userinfo } });
+    if(window.innerWidth <500) onClose();
   };
-
-  const importDataHandler = (e) => {
+  const usersHandler = (e) => {
+    e.preventDefault();
+    console.log(location.state.userinfo);
+    navigate('/users', {state:{userinfo:location.state.userinfo}});
+ if(window.innerWidth <500) onClose();
+}
+const CostomersSubMenu = [
+  {
+    id: 1,
+    to: "",
+    manuTitle: " بخش بندی مشتریان "
+},
+  {
+    id: 2,
+    to: "",
+    manuTitle: "جابجایی مشتریان"
+},
+{
+  id: 3,
+  to: "",
+  manuTitle: " نرخ بازگشت مشتریان "
+},
+{
+  id: 4,
+  to: "",
+  manuTitle: "طول عمر مشتریان"
+},
+{
+  id: 5,
+  to: "",
+  manuTitle: "  سهم سبد مشتریان "
+},
+{
+  id: 6,
+  to: "",
+  manuTitle: "  فاصله خرید مشتریان"
+},
+{
+  id: 7,
+  to: "",
+  manuTitle: " گروه مشتریان"
+},
+];
+const ProductsSubMenu = [
+  {
+    id: 1,
+    to: "",
+    manuTitle: " عملکرد محصولات"
+  },
+  {
+    id: 2,
+    to: "",
+    manuTitle: " تحلیل سبد مشتریان"
+  },
+ ]
+const SettingsSubMenu = [
+  {
+    id: 1,
+    handler: (e) => {
+      e.preventDefault();
+      console.log(location.state.userinfo);
+      navigate("/analyse", { state: { userinfo: location.state.userinfo } });
+   if(window.innerWidth <500) onClose();
+    },
+    to: "/analyse",
+    manuTitle: " تحلیل داده"
+},
+{
+  id: 2,
+  handler: (e) => {
     e.preventDefault();
     console.log(location.state.userinfo);
     navigate("/importData", { state: { userinfo: location.state.userinfo } });
-  };
-
-  const analyseDataHandler = (e) => {
+ if(window.innerWidth <500) onClose();
+  },
+  to: "/importData",
+  manuTitle: " ورود داده"
+},
+{
+  id: 3,
+  handler: (e) => {
     e.preventDefault();
     console.log(location.state.userinfo);
-    navigate("/analyse", { state: { userinfo: location.state.userinfo } });
-  };
-
+    navigate("/smsPanel", {state:{userinfo:location.state.userinfo}});
+ if(window.innerWidth <500) onClose();
+},
+  to: "/smsPanel",
+  manuTitle: "سامانه پیامک"
+}
+]
+console.log(SettingsSubMenu);
   return (
     <div
-      className={`sm:none linear absolute !z-50 flex h-full min-h-full flex-col bg-white w-80p shadow-2xl shadow-white/5 transition-all duration-700 ease-linear dark:!bg-navy-800 dark:text-white md:!z-50 lg:!z-50 xl:!z-0 ${
+      className={`sm:none linear !z-50 flex h-full min-h-full flex-col fixed md:static bg-white w-85p col-span-3 shadow-2xl shadow-white/5 transition-all duration-700 ease-linear dark:!bg-navy-800 dark:text-white md:!z-50 lg:!z-50 xl:!z-0 ${
         open ? "-translate-x-0" : "translate-x-96"
-      }  ${showSubMenu.allMenu ? "md:w-20p inline-flex" : "w-4p overflow-x-hidden"}
+      }  ${showSubMenu.allMenu ? "md:w-full inline-flex" : "w-80p col-span-1 overflow-x-hidden"}
    `}
     >
       <span
@@ -67,13 +148,14 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                   className={({isActive}) => (isActive ? "w-full flex rounded-lg p-2 text-base dark:text-navy-500 dark:hover:bg-gray-500 text-navy-500 bg-gray-100 font-bold" : "w-full flex rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700")}
                 >
             
-                    <p
-                      className={`${
-                        showSubMenu.allMenu ? "w-full inline-flex" : "hidden"
-                      } ml-3`}
-                    >
+                    <p className="flex" >
                       <MdLayers className="ml-2 text-lg" />
+                      <span className={`${
+                        showSubMenu.allMenu ? "inline-flex" : "hidden"
+                      } ml-3 whitespace-nowrap`}
+                      sidebar-toggle-item="true">
                     نمای کلی
+                      </span>
                     </p>
                  
                
@@ -84,13 +166,14 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                   to="/"
                   className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-white dark:hover:bg-gray-700"
                 >
-                    <p
-                      className={`${
-                        showSubMenu.allMenu ? "w-full inline-flex" : "hidden"
-                      } ml-3`}
-                    >
-                      <MdOutlineTimeline className="ml-2 text-lg" />
+                    <p className="flex">
+                  <MdOutlineTimeline className="ml-2 text-lg" />
+                      <span  className={`${
+                        showSubMenu.allMenu ? "inline-flex" : "hidden"
+                      } ml-3 whitespace-nowrap`}
+                      sidebar-toggle-item="true"> 
                       روندها
+                      </span>
                     </p>
 
                 </NavLink>
@@ -130,70 +213,22 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                     showSubMenu.dropDownOne ? "inline-flex" : "hidden"
                   } my-[0.63rem] w-full flex-col rounded-md bg-gray-100 p-2`}
                 >
-                  <li>
+                  {
+                    CostomersSubMenu.map((CostomerSubMenu) => {
+                      return (
+                  <li key={CostomerSubMenu.id}>
                     <NavLink
-                      to=""
+                      to={CostomerSubMenu.to}
     
                       className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
                     >
-                      بخش بندی مشتریان{" "}
+                      {CostomerSubMenu.manuTitle}
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink
-                      to=""
-    
-                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
-                    >
-                      {" "}
-                      جابجایی مشتریان{" "}
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to=""
-    
-                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
-                    >
-                      نرخ بازگشت مشتریان{" "}
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to=""
-    
-                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
-                    >
-                      طول عمر مشتریان{" "}
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to=""
-    
-                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
-                    >
-                      سهم سبد مشتریان{" "}
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to=""
-    
-                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
-                    >
-                      فاصله خرید مشتریان{" "}
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to=""
-    
-                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
-                    >
-                      گروه مشتریان{" "}
-                    </NavLink>
-                  </li>
+
+                      )
+                    })
+                  }
                 </ul>
               </li>
               <li>
@@ -231,33 +266,28 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                     showSubMenu.dropDownTwo ? "inline-flex" : "hidden"
                   } my-[0.63rem] w-full flex-col rounded-md bg-gray-100 p-2`}
                 >
-                  <li>
+                   {
+                    ProductsSubMenu.map((ProductSubMenu) => {
+                      return (
+                  <li key={ProductSubMenu.id}>
                     <NavLink
-                      to=""
+                      to={ProductSubMenu.to}
     
                       className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
                     >
-                      {" "}
-                      عملکرد محصولات{" "}
+                      {ProductSubMenu.manuTitle}
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink
-                      to=""
-    
-                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
-                    >
-                      {" "}
-                      تحلیل سبد مشتریان{" "}
-                    </NavLink>
-                  </li>
+                      )
+                    })
+                   }
                 </ul>
               </li>
               <li>
                 <NavLink
-                  to="/main"
-
-                  className="flex items-center justify-between rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                onClick={usersHandler}
+                  to="/users"
+                  className={({isActive}) => (isActive ? "w-full flex rounded-lg p-2 text-base dark:text-navy-500 dark:hover:bg-gray-500 text-navy-500 bg-gray-100 font-bold" : "w-full flex rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700")}
                 >
                   <p className="flex items-center justify-center">
                     <MdGroups className="ml-2 text-lg" />
@@ -310,31 +340,21 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
                     showSubMenu.dropDownThree ? "inline-flex" : "hidden"
                   } my-[0.63rem] w-full flex-col rounded-md bg-gray-100 p-2`}
                 >
-                  <li>
-                    <NavLink onClick={analyseDataHandler}
-                      to="/analyse"
+                  {
+                    SettingsSubMenu.map((SettingSubMenu) => {
+                      return (
+                        <li key={SettingSubMenu.id}>
+                  
+                    <NavLink onClick={SettingSubMenu.handler}
+                      to={SettingSubMenu.to}
                       className={({isActive}) => (isActive ? "w-full flex rounded-lg p-2 text-base dark:text-navy-500 dark:bg-navy-200 dark:hover:bg-gray-500 text-navy-500 bg-gray-300 font-bold" : "w-full flex rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-navy-500 dark:hover:bg-gray-500")}
                     >
-                      تحلیل داده
+                      {SettingSubMenu.manuTitle}
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink onClick={importDataHandler}
-                      to="/importData"
-                      className={({isActive}) => (isActive ? "w-full flex rounded-lg p-2 text-base dark:text-navy-500 dark:bg-navy-200 dark:hover:bg-gray-500 text-navy-500 bg-gray-300 font-bold" : "w-full flex rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-navy-500 dark:hover:bg-gray-500")}
-                    >
-                      ورود داده
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to=""
-    
-                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
-                    >
-                      سامانه پیامک{" "}
-                    </NavLink>
-                  </li>
+                      )
+                    })
+                  }
                 </ul>
               </li>
             </ul>

@@ -32,8 +32,8 @@ function SignIn() {
       })
       .then((response) => {
         console.log(response.data);
-        if (response.data.isSuccess !== true) {
-          toast.error("رمز عبور یا نام کاربری اشتباه است");
+         if (response.data.isSuccess !== true) {
+           toast.error("رمز عبور یا نام کاربری اشتباه است");
         } else {
           navigate("/main", { state: { userinfo: response.data } });
           toast.success("ورود با موفقیت انجام شد");
@@ -52,13 +52,6 @@ function SignIn() {
     dark: "bg-white-600 font-gray-300",
   };
 
-  const handleUsername = (event) => {
-    setUsername(event.target.value);
-  };
-
-  const handlePassword = (event) => {
-    setPassword(event.target.value);
-  };
 
   return (
     <>
@@ -73,26 +66,28 @@ function SignIn() {
             <h4 className="my-4 text-lg font-medium text-navy-500 dark:text-white">
               ورود به حساب کاربری
             </h4>
+            <form className="w-full" >
             <Input
               id="name"
               name="user_name"
               inputType="text"
               Label=" * نام کاربری"
               value={username}
-              onChange={handleUsername}
-            />
+              onChange={(event) => setUsername(event.target.value)}
+              />
             <Input
               id="password"
               name="user_password"
               inputType="password"
               Label="* کلمه عبور"
               value={password}
-              onChange={handlePassword}
-            />
+              onChange={(event) => setPassword(event.target.value)}
+              />
             <button className="btns" type="submit" onClick={handleSubmit}>
               ورود
             </button>
 
+              </form>
             <p className="text-slate-500 mt-5 font-[IRANSans] text-gray-700">
               © کپی رایت کمان {1900 + new Date().getYear()}
             </p>

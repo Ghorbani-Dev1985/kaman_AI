@@ -9,7 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 import SignIn from "./views/auth/SignIn";
 import AnalyseData from "Components/config/Analyse";
 import ImportData from "Components/config/Import_data";
+import SmsPanel from "Components/config/SmsPanel";
 import Layout from "Layouts/Layout";
+import Users from "Components/Users/Users";
 
 const App = () => {
   return (
@@ -28,8 +30,10 @@ const App = () => {
         <Route path="/" element={<SignIn />} />
           <Route element={<Layout />} >
           <Route path="main/*" element={<Main />} />
+          <Route path="/users" element={<Users />} />
           <Route path="/analyse" element={<AnalyseData />} />
           <Route path="/importData" element={<ImportData />} />
+          <Route path="/smsPanel" element={<SmsPanel />} />
           <Route path="admin/*" element={<AdminLayout />} />
           </Route>
       </Routes>

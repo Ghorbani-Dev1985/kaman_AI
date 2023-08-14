@@ -302,7 +302,7 @@ function ImportData(props) {
                       </tr>
                     </thead>
 
-                    <tbody className="[&>*:nth-child(even)]:bg-slate-50 [&>*:nth-child(odd)]:bg-slate-200">
+                    {/* <tbody className="[&>*:nth-child(even)]:bg-slate-50 [&>*:nth-child(odd)]:bg-slate-200">
                       {Object.keys(imports_list).map((key, index) => (
                         <tr key={index} className="border-b bg-gray-100">
                           <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
@@ -331,7 +331,7 @@ function ImportData(props) {
                           </td>
                         </tr>
                       ))}
-                    </tbody>
+                    </tbody> */}
                   </table>
                 </div>
               </div>

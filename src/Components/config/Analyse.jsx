@@ -481,8 +481,7 @@ function AnalyseData(props) {
           className="btns flex w-full items-center justify-center md:w-auto"
           onClick={handleUpdateData}
         >
-          {" "}
-          <BiSave className="text-lg" />{" "}
+          <BiSave className="text-2xl" />
           <span className="mr-2">ذخیره تغیرات </span>
         </button>
       </div>

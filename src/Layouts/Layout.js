@@ -7,7 +7,7 @@ import { Outlet } from "react-router-dom";
 
 const Layout = ( props) => {
     const { ...rest } = props;
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [currentRoute, setCurrentRoute] = useState("کمان");
     const [chartresponse, setChartResponse] = useState({});
     
@@ -17,13 +17,12 @@ const Layout = ( props) => {
       dropDownTwo: false,
       dropDownThree: false,
     });
+    // if(window.innerWidth < 768) setOpen(false);
     useEffect(() => {
-      window.addEventListener("resize", () =>
-        window.innerWidth < 768 ? setOpen(true) : setOpen(false)
-      );
+      if(window.innerWidth >= 768) setOpen(true);
     }, []);
     return ( 
-        <div className="flex h-auto w-full">
+        <div className="w-full grid grid-cols-12 gap-3 dark:gap-0 dark:bg-navy-800">
         <Sidebar
           open={open}
           onClose={() => setOpen(false)}
@@ -31,15 +30,14 @@ const Layout = ( props) => {
           setShowSubMenu={setShowSubMenu}
         />
         {/* Navbar & Main Content */}
-        <div className="flex h-auto w-full flex-col items-end dark:bg-navy-700">
+        <div className={`w-full col-span-12 dark:bg-navy-700 ${
+              !showSubMenu.allMenu ? "md:col-span-11" : "md:col-span-9"
+            }`}>
           {/* Main Content */}
           <main
-            className={`mx-[12px] mt-4 h-full w-93p md:w-78p flex-none transition-all duration-700 ease-linear md:pe-2 ${
-              !showSubMenu.allMenu && "w-96p"
-            } `}
+            className={`mt-4 w-full flex-none transition-all duration-700 ease-linear md:pe-2 `}
           >
             {/* Routes */}
-            <div className="h-full">
               <Navbar
                 onOpenSidenav={() => setOpen(true)}
                 brandText={currentRoute}
@@ -50,7 +48,7 @@ const Layout = ( props) => {
                <Outlet />
               </div>   
                 <Footer />
-            </div>
+          
           </main>
         </div>
       </div>

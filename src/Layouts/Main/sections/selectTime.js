@@ -23,6 +23,7 @@ import { BiHelpCircle } from "react-icons/bi";
 
 import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
+import TopFilter from "Common/TopFilter";
 // import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 
 const dateSegmentDropDown = [
@@ -222,8 +223,9 @@ const handleSetStart_time1 = (e) => {
 
   return (
     <>
-      <div className="relative flex w-full flex-col items-center justify-center rounded-md bg-white dark:bg-navy-700 dark:text-white px-2 md:flex-row md:justify-between">
-        <div className="inline-flex h-full">
+
+          <TopFilter>
+          <div className="inline-flex">
           <button
             onClick={() => setShowDateBox(!showDateBox)}
             className="relative m-0 inline-flex h-full min-w-[65px] cursor-pointer my-4 select-none appearance-none items-center justify-center rounded-md border-0 px-2 align-middle text-sm leading-6 outline-0 transition duration-700 ease-in-out hover:bg-navy-100 focus:bg-navy-100"
@@ -447,12 +449,8 @@ const handleSetStart_time1 = (e) => {
             </div>
           </div>
         </div>
+          </TopFilter>
 
-        <div className="flex flex-col items-center">
-          <p className="text-navy-500">راهنمایی</p>
-          <BiHelpCircle className="text-lg text-navy-500" />
-        </div>
-      </div>
     </>
   );
 }

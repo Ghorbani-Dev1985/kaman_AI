@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { Children, useEffect, useState } from "react";
 import Sidebar from "Components/Sidebar/SideBar";
 import Navbar from "Components/Navbar/Navbar";
 import Footer from "../Components/Footer/Footer";
 import { Outlet } from "react-router-dom";
 
 
-const Layout = ( props) => {
+const LayoutWithoutFilter = ( props) => {
     const { ...rest } = props;
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
     const [currentRoute, setCurrentRoute] = useState("کمان");
     const [chartresponse, setChartResponse] = useState({});
     
@@ -19,7 +19,7 @@ const Layout = ( props) => {
     });
     // if(window.innerWidth < 768) setOpen(false);
     useEffect(() => {
-      if(window.innerWidth >= 768) setOpen(true);
+      if(window.innerWidth < 500) setOpen(false);
     }, []);
     return ( 
         <div className="w-full grid grid-cols-12 gap-3 dark:gap-0 dark:bg-navy-800">
@@ -55,4 +55,4 @@ const Layout = ( props) => {
      );
 }
  
-export default Layout;
+export default LayoutWithoutFilter;

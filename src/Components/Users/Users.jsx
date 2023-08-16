@@ -201,8 +201,7 @@ function Users() {
             {agents_list.length > 0 ? (
               <div className="max-w-[18rem] mx-auto overflow-x-auto p-2 md:max-w-full">
                 <div className="inline-block w-full py-2">
-                  <div className="rounded-lg">
-                    <table className="min-w-full table-auto rounded-md">
+                    <table className="min-w-full table-auto rounded-lg md:overflow-hidden">
                       <thead className="border-b border-white bg-blue-200 text-blue-600">
                         <tr>
                           <th
@@ -231,9 +230,9 @@ function Users() {
                           </th>
                         </tr>
                       </thead>
-                      <tbody className="[&>*:nth-child(even)]:bg-slate-50 [&>*:nth-child(odd)]:bg-slate-200">
+                      <tbody className="[&>*:nth-child(even)]:bg-gray-50 [&>*:nth-child(odd)]:bg-gray-200">
                         {agents_list.map((agent_list, index) => (
-                          <tr key={index} className="border-b bg-gray-100">
+                          <tr key={index} className="border-b">
                             <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
                               {agent_list["title"]}
                             </td>
@@ -255,7 +254,6 @@ function Users() {
                         ))}
                       </tbody>
                     </table>
-                  </div>
                 </div>
               </div>
             ) : (
@@ -312,8 +310,7 @@ function Users() {
           {users_list.length > 0 ? (
             <div className="overflow-x-auto p-2 max-w-[18rem] mx-auto md:max-w-full">
               <div className="inline-block w-full py-2">
-                <div className="rounded-lg">
-                  <table className="min-w-full table-auto rounded-md">
+                  <table className="min-w-full table-auto rounded-lg md:overflow-hidden">
                     <thead className="border-b border-white bg-blue-200 text-blue-600">
                       <tr>
                         <th
@@ -342,9 +339,9 @@ function Users() {
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="[&>*:nth-child(even)]:bg-slate-50 [&>*:nth-child(odd)]:bg-slate-200">
+                    <tbody className="[&>*:nth-child(even)]:bg-gray-50 [&>*:nth-child(odd)]:bg-gray-200">
                       {users_list.map((user_list, index) => (
-                        <tr key={index} className="border-b bg-gray-100">
+                        <tr key={index} className="border-b">
                           <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
                             {user_list["username"]}
                           </td>
@@ -366,7 +363,6 @@ function Users() {
                       ))}
                     </tbody>
                   </table>
-                </div>
               </div>
             </div>
           ) : (

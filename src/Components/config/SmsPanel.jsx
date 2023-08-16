@@ -4,6 +4,7 @@ import { BiSave } from "react-icons/bi";
 import { useLocation } from "react-router-dom";
 import Input from "Common/Input";
 import { HiChatAlt2 } from "react-icons/hi";
+import Button from "Common/Button";
 
 function SMS() {
   const location = useLocation();
@@ -24,13 +25,9 @@ function SMS() {
               onChange={(event) => setSmsPanelToken(event.target.value)}
               />
           </div>
-            <div className="flex w-full items-center justify-center md:justify-end">
-        <button
-          className="btns flex w-full items-center justify-center md:w-auto">
-          <BiSave className="text-2xl" />
-          <span className="mr-2">ذخیره تغیرات </span>
-        </button>
-      </div>
+      <Button ButtonText="ذخیره تغییرات ">
+      <BiSave className="text-2xl" />
+      </Button>
       </fieldset>
 
           </div>

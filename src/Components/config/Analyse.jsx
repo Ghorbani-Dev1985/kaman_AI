@@ -5,6 +5,7 @@ import axios from "axios";
 import InitObject from "../../Utils/globalvariables";
 import { BiChevronsLeft, BiSave } from "react-icons/bi";
 import { toast } from "react-toastify";
+import Button from "Common/Button";
 
 function AnalyseData(props) {
   const location = useLocation();
@@ -476,15 +477,9 @@ function AnalyseData(props) {
           </div>
         </div>
       </div>
-      <div className="flex w-full items-center justify-center md:justify-end">
-        <button
-          className="btns flex w-full items-center justify-center md:w-auto"
-          onClick={handleUpdateData}
-        >
-          <BiSave className="text-2xl" />
-          <span className="mr-2">ذخیره تغیرات </span>
-        </button>
-      </div>
+      <Button ButtonText="ذخیره تغییرات" onClick={handleUpdateData}>
+        <BiSave className="text-2xl" />
+      </Button>
     </>
   );
 }

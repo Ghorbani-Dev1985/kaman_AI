@@ -10,8 +10,10 @@ import SignIn from "./views/auth/SignIn";
 import AnalyseData from "Components/config/Analyse";
 import ImportData from "Components/config/Import_data";
 import SmsPanel from "Components/config/SmsPanel";
-import Layout from "Layouts/Layout";
 import Users from "Components/Users/Users";
+import Segment from "Components/Customers/Segment";
+import Layout from "Layouts/Layout";
+
 
 const App = () => {
   return (
@@ -30,6 +32,7 @@ const App = () => {
         <Route path="/" element={<SignIn />} />
           <Route element={<Layout />} >
           <Route path="main/*" element={<Main />} />
+          <Route path="/customerSegment" element={<Segment />} />
           <Route path="/users" element={<Users />} />
           <Route path="/analyse" element={<AnalyseData />} />
           <Route path="/importData" element={<ImportData />} />

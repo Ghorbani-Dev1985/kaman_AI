@@ -260,7 +260,7 @@ function ImportData(props) {
             <div className="max-w-xs overflow-x-auto p-2 md:max-w-full">
               <div className="inline-block w-full py-2">
                 <div className="overflow-hidden rounded-lg">
-                  <table className="min-w-full table-auto rounded-md">
+                  <table className="min-w-full table-auto rounded-lg md:overflow-hidden">
                     <thead className="border-b border-white bg-blue-200 text-blue-600">
                       <tr>
                         <th
@@ -302,9 +302,9 @@ function ImportData(props) {
                       </tr>
                     </thead>
 
-                    {/* <tbody className="[&>*:nth-child(even)]:bg-slate-50 [&>*:nth-child(odd)]:bg-slate-200">
+                    {/* <tbody className="[&>*:nth-child(even)]:bg-gray-50 [&>*:nth-child(odd)]:bg-gray-200">
                       {Object.keys(imports_list).map((key, index) => (
-                        <tr key={index} className="border-b bg-gray-100">
+                        <tr key={index} className="border-b">
                           <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
                             df
                           </td>

@@ -36,7 +36,13 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
 const CostomersSubMenu = [
   {
     id: 1,
-    to: "",
+    handler: (e) => {
+      e.preventDefault();
+      console.log(location.state.userinfo);
+      navigate("/customerSegment", { state: { userinfo: location.state.userinfo } });
+   if(window.innerWidth <500) onClose();
+    },
+    to: "/customerSegment",
     manuTitle: " بخش بندی مشتریان "
 },
   {
@@ -218,9 +224,9 @@ console.log(SettingsSubMenu);
                       return (
                   <li key={CostomerSubMenu.id}>
                     <NavLink
+                      onClick={CostomerSubMenu.handler}
                       to={CostomerSubMenu.to}
-    
-                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
+                      className={({isActive}) => (isActive ? "w-full flex rounded-lg p-2 text-base dark:text-navy-500 dark:bg-navy-200 dark:hover:bg-gray-500 text-navy-500 bg-gray-300 font-bold" : "w-full flex rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-navy-500 dark:hover:bg-gray-500")}
                     >
                       {CostomerSubMenu.manuTitle}
                     </NavLink>

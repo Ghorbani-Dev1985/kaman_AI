@@ -22,6 +22,7 @@
    color: #3b3b3b !important; 
 }
 .rmdp-input{
+   width: 6rem;
    background-color: transparent;
    color: #2851A2;
    border: none !important;
@@ -29,8 +30,10 @@
    text-align: center;
  }
  .rmdp-input:focus{
+   width: 6rem;
    border: none !important;
    outline: none !important;
+   box-shadow: none !important;
  }
  .main-container .select-time .time1{
     width:20vw;

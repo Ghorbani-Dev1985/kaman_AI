@@ -47,12 +47,24 @@ const CostomersSubMenu = [
 },
   {
     id: 2,
-    to: "",
+    handler: (e) => {
+      e.preventDefault();
+      console.log(location.state.userinfo);
+      navigate("/transition", { state: { userinfo: location.state.userinfo } });
+   if(window.innerWidth <500) onClose();
+    },
+    to: "/transition",
     manuTitle: "جابجایی مشتریان"
 },
 {
   id: 3,
-  to: "",
+  handler: (e) => {
+    e.preventDefault();
+    console.log(location.state.userinfo);
+    navigate("/retention", { state: { userinfo: location.state.userinfo } });
+ if(window.innerWidth <500) onClose();
+  },
+  to: "/retention",
   manuTitle: " نرخ بازگشت مشتریان "
 },
 {

@@ -13,6 +13,8 @@ import SmsPanel from "Components/config/SmsPanel";
 import Users from "Components/Users/Users";
 import Segment from "Components/Customers/Segment";
 import Layout from "Layouts/Layout";
+import Transition from "Components/Customers/Transition";
+import Retention from "Components/Customers/Retention";
 
 
 const App = () => {
@@ -33,6 +35,8 @@ const App = () => {
           <Route element={<Layout />} >
           <Route path="main/*" element={<Main />} />
           <Route path="/customerSegment" element={<Segment />} />
+          <Route path="/transition" element={<Transition />} />
+          <Route path="/retention" element={<Retention />} />
           <Route path="/users" element={<Users />} />
           <Route path="/analyse" element={<AnalyseData />} />
           <Route path="/importData" element={<ImportData />} />

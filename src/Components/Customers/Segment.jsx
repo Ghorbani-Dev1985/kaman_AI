@@ -330,7 +330,7 @@ function Segment() {
         <div className="mr-3 flex items-center gap-4">
           <button
             type="button"
-            class="btns flex items-center justify-center text-lg"
+            className="btns flex items-center justify-center text-lg"
           >
             <BiFilterAlt className="ml-2 text-2xl" /> فیلتر{" "}
           </button>

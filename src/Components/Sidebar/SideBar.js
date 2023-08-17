@@ -69,7 +69,13 @@ const CostomersSubMenu = [
 },
 {
   id: 4,
-  to: "",
+  handler: (e) => {
+    e.preventDefault();
+    console.log(location.state.userinfo);
+    navigate("/lifeTime", { state: { userinfo: location.state.userinfo } });
+ if(window.innerWidth <500) onClose();
+  },
+  to: "/lifeTime",
   manuTitle: "طول عمر مشتریان"
 },
 {

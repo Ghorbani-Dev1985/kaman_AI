@@ -17,7 +17,6 @@ const Layout = (props) => {
     dropDownTwo: false,
     dropDownThree: false,
   });
-  // if(window.innerWidth < 768) setOpen(false);
   useEffect(() => {
     if (window.innerWidth < 500) setOpen(false);
   }, []);

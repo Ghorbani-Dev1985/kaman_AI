@@ -10,6 +10,7 @@
     "@chakra-ui/system": "^2.3.5",
     "@chakra-ui/tooltip": "^2.2.6",
     "@headlessui/react": "^1.7.16",
+    "@material-tailwind/react": "^2.1.0",
     "@mui/material": "^5.14.5",
     "@mui/styled-engine-sc": "^5.12.0",
     "@testing-library/jest-dom": "^5.16.5",

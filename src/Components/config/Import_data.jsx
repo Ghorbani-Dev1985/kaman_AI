@@ -6,7 +6,7 @@ import InitObject from "../../Utils/globalvariables";
 import { BiCloudUpload, BiError, BiTrash } from "react-icons/bi";
 import { BiCloudDownload } from "react-icons/bi";
 import Line from "../../Common/Line";
-
+import { Card, Typography } from "@material-tailwind/react";
 function ImportData(props) {
   const location = useLocation();
   const inputDataRef = useRef(null);
@@ -208,6 +208,7 @@ function ImportData(props) {
     // console.log(fileObj.name);
   };
   console.log(Object.keys(imports_list));
+  const ImportListTableHead = ["شناسه", "تعداد" , "تاریخ و زمان" , "حذف" , "دانلود"]
   return (
     <>
       <div className="mb-4 rounded-md bg-white p-4 dark:bg-navy-700 dark:text-white">
@@ -257,85 +258,87 @@ function ImportData(props) {
           </div>
           <Line />
           {Object.keys(imports_list).length > 0 ? (
-            <div className="max-w-xs overflow-x-auto p-2 md:max-w-full">
-              <div className="inline-block w-full py-2">
-                <div className="overflow-hidden rounded-lg">
-                  <table className="min-w-full table-auto rounded-lg md:overflow-hidden">
-                    <thead className="border-b border-white bg-blue-200 text-blue-600">
-                      <tr>
-                        <th
-                          scope="col"
-                          className="border-slate-500 border px-2 py-4 text-center text-sm font-medium"
+              <Card className="mx-auto h-full max-w-[16rem] overflow-x-auto md:max-w-lg lg:max-w-2xl xl:max-w-4xl 2xl:max-w-full">
+              <table className="w-full min-w-max table-auto text-center">
+                <thead>
+                  <tr>
+                    {ImportListTableHead.map((head) => (
+                      <th key={head} className="border-b border-navy-500 bg-navy-100 p-4 text-base text-navy-900">
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="text-center font-bold leading-none opacity-70"
                         >
-                          تاریخ و زمان آپلود
-                        </th>
-                        <th
-                          scope="col"
-                          className="border-slate-500 border px-6 py-4 text-center text-sm font-medium"
-                        >
-                          نام فایل
-                        </th>
-                        <th
-                          scope="col"
-                          className="border-slate-500 border px-6 py-4 text-center text-sm font-medium"
-                        >
-                          نوع
-                        </th>
-                        <th
-                          scope="col"
-                          className="border-slate-500 border px-6 py-4 text-center text-sm font-medium"
-                        >
-                          تعداد رکورد
-                        </th>
-                        <th
-                          scope="col"
-                          className="border-slate-500 border px-2 py-4 text-center text-sm font-medium"
-                        >
-                          حذف
-                        </th>
-                        <th
-                          scope="col"
-                          className="border-slate-500 border px-2 py-4 text-center text-sm font-medium"
-                        >
-                          دانلود
-                        </th>
-                      </tr>
-                    </thead>
-
-                    {/* <tbody className="[&>*:nth-child(even)]:bg-gray-50 [&>*:nth-child(odd)]:bg-gray-200">
-                      {Object.keys(imports_list).map((key, index) => (
-                        <tr key={index} className="border-b">
-                          <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
-                            df
-                          </td>
-                          <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
-                            {key}
-                          </td>
-                          <td className="text-slate-700 px-6  py-4 text-center text-sm font-medium">
-                            ffd
-                          </td>
-                          <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
-                            {imports_list[key]}{" "}
-                          </td>
-                          <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
-                            <BiTrash
-                              onClick={(e) => handleRemoveAllFile(e, key)}
-                              className="text-rose-500 cursor-pointer text-xl"
+                          {head}
+                        </Typography>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                {Object.keys(imports_list).map((importList) => {
+                    return (
+                      <tr
+                        key={importList}
+                        className="odd:bg-gray-50 even:bg-gray-100"
+                      >
+                        <td className="p-4">
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="text-center font-normal"
+                          >
+                            {importList}
+                          </Typography>
+                        </td>
+                        <td className="p-4">
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="text-center font-normal"
+                          >
+                           {imports_list[importList]["count"]}
+                          </Typography>
+                        </td>  
+                          <td className="p-4">
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="text-center font-normal"
+                          >
+                          {imports_list[importList]["time"]}
+                          </Typography>
+                        </td>
+                        <td className="p-4">
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="flex items-center justify-center text-center font-normal"
+                          >
+                          <BiTrash
+                              onClick={(e) => handleRemoveAllFile(e, importList)}
+                              className="text-red-500 cursor-pointer text-xl"
                             />
-                          </td>
-                          <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
-                            <BiCloudDownload
-                              onClick={(e) => handleDownloadFile(e, key)}
+                          </Typography>
+                        </td> 
+                          <td className="p-4">
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="flex items-center justify-center text-center font-normal"
+                          >
+                           <BiCloudDownload
+                              onClick={(e) => handleDownloadFile(e, importList)}
                               className="cursor-pointer text-xl text-blue-500"
                             />
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody> */}
-                  </table>
-                </div>
-              </div>
-            </div>
+                          </Typography>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </Card>
           ) : (
             <div className="bg-rose-100 my-44 flex items-center justify-center rounded-md p-3">
               <BiError className="ml-2 text-4xl text-amber-500" /> اطلاعاتی برای

@@ -11,7 +11,7 @@ import TimePicker from "react-multi-date-picker/plugins/analog_time_picker";
 // import DatePanel from "react-multi-date-picker/plugins/date_panel";
 import DatePickerHeader from "react-multi-date-picker/plugins/date_picker_header";
 import Toolbar from "react-multi-date-picker/plugins/toolbar";
-
+import { Card, Typography } from "@material-tailwind/react";
 import { Chart } from "react-chartjs-2";
 import { Line } from "react-chartjs-2";
 import {
@@ -185,42 +185,46 @@ function Retention() {
     console.log(graph_data);
     return (
       <>
-          <div className="mx-auto max-w-[18rem] overflow-x-auto p-2 md:max-w-2xl">
-          <div className="inline-block w-full py-2">
-            <table className="min-w-full table-auto rounded-lg">
-              <thead className="border-b border-white bg-blue-200 text-blue-600">
-                <tr>
-                  {["","مشتریان"].concat(graph_data["labels"]).map(function (data) {
+        <Card className="h-full max-w-[16rem] md:max-w-lg lg:max-w-2xl xl:max-w-4xl 2xl:max-w-full mx-auto overflow-x-auto">
+      <table className="w-full min-w-max table-auto text-center">
+        <thead>
+          <tr>
+             {["","مشتریان"].concat(graph_data["labels"]).map(function (data) {
                       return (
                           <th
-                          scope="col"
-                          className="border-slate-500 border px-6 py-4 text-center text-sm font-medium"
+                          key={data} className="border-b border-navy-500 bg-navy-100 text-navy-900 text-base p-4"
                         >
-                          {data}
+                           <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="font-bold text-center leading-none opacity-70"
+                >
+                  {data}
+                </Typography>
                         </th>
                       );
                     })}
-                </tr>
-              </thead>
-              <tbody className="[&>*:nth-child(even)]:bg-gray-50 [&>*:nth-child(odd)]:bg-gray-200">
-              {graph_data["table"].map(function (data , index) {
+          </tr>
+        </thead>
+        <tbody>                          
+               {graph_data["table"].map(function (data , index) {
                 return (
-                   <tr key={index} className="border-b">
+                   <tr key={data} className="even:bg-gray-100 odd:bg-gray-50">
                      {data.map(function (value) {
                      return (
-                      <td className="text-slate-700 flex items-center justify-center px-6 py-4 text-center text-sm font-medium">
+                      <td className="p-4">
+                        <Typography variant="small" color="blue-gray" className="font-normal text-center">
                      {value}
+                        </Typography>
                    </td>
                      ) 
                      })}       
                   </tr>
                 );
               })}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div></div>
+        </tbody>
+      </table>
+    </Card>
       </>
     );
   }
@@ -247,7 +251,7 @@ function Retention() {
   return (
     <>
       <TopFilter>
-        <div className="mr-3 flex items-center">
+        <div className="mr-3 flex flex-col lg:flex-row items-center">
           <div className="ml-2 border-l">
             <div className="flex justify-center">
               <BiCalendarAlt className="text-xl" />
@@ -262,20 +266,21 @@ function Retention() {
           >
             <BiFilterAlt className="ml-2 text-2xl" /> فیلتر
           </button>
-          <div className="ml-2">
-            <Select
-              defaultValue={seperationSelect}
-              onChange={setseperationSelect}
-              options={SeperationData}
-              placeholder="انتخاب ..."
-            />
-          </div>
+          <div className="ml-2 mb-4 lg:mb-0">
+        
           <Select
             defaultValue={dataGraphSegment}
             onChange={setdataGraphSegment}
             options={DataGraphSegment}
-            placeholder="انتخاب..."
+            placeholder="انتخاب"
           />
+          </div>  
+            <Select
+              defaultValue={seperationSelect}
+              onChange={setseperationSelect}
+              options={SeperationData}
+              placeholder="انتخاب"
+            />
           <button
             onClick={do_action}
             className="btns mr-2 flex w-full items-center justify-center md:w-auto"

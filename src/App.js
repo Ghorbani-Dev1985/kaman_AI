@@ -16,6 +16,9 @@ import Layout from "Layouts/Layout";
 import Transition from "Components/Customers/Transition";
 import Retention from "Components/Customers/Retention";
 import LifeTime from "Components/Customers/LifeTime";
+import ShareShoping from "Components/Customers/ShareShopping";
+import PurchaseInterval from "Components/Customers/PurchaseInterval";
+import Groups from "Components/Customers/Groups";
 
 
 const App = () => {
@@ -39,6 +42,9 @@ const App = () => {
           <Route path="/transition" element={<Transition />} />
           <Route path="/retention" element={<Retention />} />
           <Route path="/lifeTime" element={<LifeTime />} />
+          <Route path="/shareShopping" element={<ShareShoping />} />
+          <Route path="/purchaseInterval" element={<PurchaseInterval />} />
+          <Route path="/groups" element={<Groups />} />
           <Route path="/users" element={<Users />} />
           <Route path="/analyse" element={<AnalyseData />} />
           <Route path="/importData" element={<ImportData />} />

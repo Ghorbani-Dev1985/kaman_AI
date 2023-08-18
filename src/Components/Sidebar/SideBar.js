@@ -15,9 +15,7 @@ import {
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
 
-
-
-const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
+const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -25,128 +23,164 @@ const Sidebar = ({ open, onClose , showSubMenu , setShowSubMenu }) => {
     e.preventDefault();
     console.log(location.state.userinfo);
     navigate("/main", { state: { userinfo: location.state.userinfo } });
-    if(window.innerWidth <500) onClose();
+    if (window.innerWidth < 500) onClose();
   };
   const usersHandler = (e) => {
     e.preventDefault();
     console.log(location.state.userinfo);
-    navigate('/users', {state:{userinfo:location.state.userinfo}});
- if(window.innerWidth <500) onClose();
-}
-const CostomersSubMenu = [
-  {
-    id: 1,
-    handler: (e) => {
-      e.preventDefault();
-      console.log(location.state.userinfo);
-      navigate("/customerSegment", { state: { userinfo: location.state.userinfo } });
-   if(window.innerWidth <500) onClose();
+    navigate("/users", { state: { userinfo: location.state.userinfo } });
+    if (window.innerWidth < 500) onClose();
+  };
+  const CostomersSubMenu = [
+    {
+      id: 1,
+      handler: (e) => {
+        e.preventDefault();
+        console.log(location.state.userinfo);
+        navigate("/customerSegment", {
+          state: { userinfo: location.state.userinfo },
+        });
+        if (window.innerWidth < 500) onClose();
+      },
+      to: "/customerSegment",
+      manuTitle: " بخش بندی مشتریان ",
     },
-    to: "/customerSegment",
-    manuTitle: " بخش بندی مشتریان "
-},
-  {
-    id: 2,
-    handler: (e) => {
-      e.preventDefault();
-      console.log(location.state.userinfo);
-      navigate("/transition", { state: { userinfo: location.state.userinfo } });
-   if(window.innerWidth <500) onClose();
+    {
+      id: 2,
+      handler: (e) => {
+        e.preventDefault();
+        console.log(location.state.userinfo);
+        navigate("/transition", {
+          state: { userinfo: location.state.userinfo },
+        });
+        if (window.innerWidth < 500) onClose();
+      },
+      to: "/transition",
+      manuTitle: "جابجایی مشتریان",
     },
-    to: "/transition",
-    manuTitle: "جابجایی مشتریان"
-},
-{
-  id: 3,
-  handler: (e) => {
-    e.preventDefault();
-    console.log(location.state.userinfo);
-    navigate("/retention", { state: { userinfo: location.state.userinfo } });
- if(window.innerWidth <500) onClose();
-  },
-  to: "/retention",
-  manuTitle: " نرخ بازگشت مشتریان "
-},
-{
-  id: 4,
-  handler: (e) => {
-    e.preventDefault();
-    console.log(location.state.userinfo);
-    navigate("/lifeTime", { state: { userinfo: location.state.userinfo } });
- if(window.innerWidth <500) onClose();
-  },
-  to: "/lifeTime",
-  manuTitle: "طول عمر مشتریان"
-},
-{
-  id: 5,
-  to: "",
-  manuTitle: "  سهم سبد مشتریان "
-},
-{
-  id: 6,
-  to: "",
-  manuTitle: "  فاصله خرید مشتریان"
-},
-{
-  id: 7,
-  to: "",
-  manuTitle: " گروه مشتریان"
-},
-];
-const ProductsSubMenu = [
-  {
-    id: 1,
-    to: "",
-    manuTitle: " عملکرد محصولات"
-  },
-  {
-    id: 2,
-    to: "",
-    manuTitle: " تحلیل سبد مشتریان"
-  },
- ]
-const SettingsSubMenu = [
-  {
-    id: 1,
-    handler: (e) => {
-      e.preventDefault();
-      console.log(location.state.userinfo);
-      navigate("/analyse", { state: { userinfo: location.state.userinfo } });
-   if(window.innerWidth <500) onClose();
+    {
+      id: 3,
+      handler: (e) => {
+        e.preventDefault();
+        console.log(location.state.userinfo);
+        navigate("/retention", {
+          state: { userinfo: location.state.userinfo },
+        });
+        if (window.innerWidth < 500) onClose();
+      },
+      to: "/retention",
+      manuTitle: " نرخ بازگشت مشتریان ",
     },
-    to: "/analyse",
-    manuTitle: " تحلیل داده"
-},
-{
-  id: 2,
-  handler: (e) => {
-    e.preventDefault();
-    console.log(location.state.userinfo);
-    navigate("/importData", { state: { userinfo: location.state.userinfo } });
- if(window.innerWidth <500) onClose();
-  },
-  to: "/importData",
-  manuTitle: " ورود داده"
-},
-{
-  id: 3,
-  handler: (e) => {
-    e.preventDefault();
-    console.log(location.state.userinfo);
-    navigate("/smsPanel", {state:{userinfo:location.state.userinfo}});
- if(window.innerWidth <500) onClose();
-},
-  to: "/smsPanel",
-  manuTitle: "سامانه پیامک"
-}
-]
-console.log(SettingsSubMenu);
+    {
+      id: 4,
+      handler: (e) => {
+        e.preventDefault();
+        console.log(location.state.userinfo);
+        navigate("/lifeTime", { state: { userinfo: location.state.userinfo } });
+        if (window.innerWidth < 500) onClose();
+      },
+      to: "/lifeTime",
+      manuTitle: "طول عمر مشتریان",
+    },
+    {
+      id: 5,
+      handler: (e) => {
+        e.preventDefault();
+        console.log(location.state.userinfo);
+        navigate("/shareShopping", {
+          state: { userinfo: location.state.userinfo },
+        });
+        if (window.innerWidth < 500) onClose();
+      },
+      to: "/shareShopping",
+      manuTitle: "  سهم سبد مشتریان ",
+    },
+    {
+      id: 6,
+      handler: (e) => {
+        e.preventDefault();
+        console.log(location.state.userinfo);
+        navigate("/purchaseInterval", {
+          state: { userinfo: location.state.userinfo },
+        });
+        if (window.innerWidth < 500) onClose();
+      },
+      to: "/purchaseInterval",
+      manuTitle: "  فاصله خرید مشتریان",
+    },
+    {
+      id: 7,
+      handler: (e) => {
+        e.preventDefault();
+        console.log(location.state.userinfo);
+        navigate("/groups", {
+          state: { userinfo: location.state.userinfo },
+        });
+        if (window.innerWidth < 500) onClose();
+      },
+      to: "/groups",
+      manuTitle: " گروه مشتریان",
+    },
+  ];
+  const ProductsSubMenu = [
+    {
+      id: 1,
+      to: "",
+      manuTitle: " عملکرد محصولات",
+    },
+    {
+      id: 2,
+      to: "",
+      manuTitle: " تحلیل سبد مشتریان",
+    },
+  ];
+  const SettingsSubMenu = [
+    {
+      id: 1,
+      handler: (e) => {
+        e.preventDefault();
+        console.log(location.state.userinfo);
+        navigate("/analyse", { state: { userinfo: location.state.userinfo } });
+        if (window.innerWidth < 500) onClose();
+      },
+      to: "/analyse",
+      manuTitle: " تحلیل داده",
+    },
+    {
+      id: 2,
+      handler: (e) => {
+        e.preventDefault();
+        console.log(location.state.userinfo);
+        navigate("/importData", {
+          state: { userinfo: location.state.userinfo },
+        });
+        if (window.innerWidth < 500) onClose();
+      },
+      to: "/importData",
+      manuTitle: " ورود داده",
+    },
+    {
+      id: 3,
+      handler: (e) => {
+        e.preventDefault();
+        console.log(location.state.userinfo);
+        navigate("/smsPanel", { state: { userinfo: location.state.userinfo } });
+        if (window.innerWidth < 500) onClose();
+      },
+      to: "/smsPanel",
+      manuTitle: "سامانه پیامک",
+    },
+  ];
+  console.log(SettingsSubMenu);
   return (
     <div
-      className={`sm:none linear !z-50 flex h-full min-h-full flex-col fixed md:static bg-white w-85p col-span-3 shadow-2xl shadow-white/5 transition-all duration-700 ease-linear dark:!bg-navy-800 dark:text-white md:!z-50 lg:!z-50 xl:!z-0 ${
+      className={`sm:none linear fixed !z-50 col-span-3 flex h-full min-h-full w-85p flex-col bg-white shadow-2xl shadow-white/5 transition-all duration-700 ease-linear dark:!bg-navy-800 dark:text-white md:static md:!z-50 lg:!z-50 xl:!z-0 ${
         open ? "-translate-x-0" : "translate-x-96"
-      }  ${showSubMenu.allMenu ? "md:w-full inline-flex" : "w-80p col-span-1 overflow-x-hidden"}
+      }  ${
+        showSubMenu.allMenu
+          ? "inline-flex md:w-full"
+          : "col-span-1 w-80p overflow-x-hidden"
+      }
    `}
     >
       <span
@@ -167,22 +201,26 @@ console.log(SettingsSubMenu);
           <div className="overflow-y-auto overflow-x-hidden px-3 py-4">
             <ul className="space-y-2">
               <li className="flex items-center justify-center">
-                <NavLink onClick={importMainHandler}
+                <NavLink
+                  onClick={importMainHandler}
                   to="/main"
-                  className={({isActive}) => (isActive ? "w-full flex rounded-lg p-2 text-base dark:text-navy-500 dark:hover:bg-gray-500 text-navy-500 bg-gray-100 font-bold" : "w-full flex rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700")}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "flex w-full rounded-lg bg-gray-100 p-2 text-base font-bold text-navy-500 dark:text-navy-500 dark:hover:bg-gray-500"
+                      : "flex w-full rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  }
                 >
-            
-                    <p className="flex" >
-                      <MdLayers className="ml-2 text-lg" />
-                      <span className={`${
+                  <p className="flex">
+                    <MdLayers className="ml-2 text-lg" />
+                    <span
+                      className={`${
                         showSubMenu.allMenu ? "inline-flex" : "hidden"
                       } ml-3 whitespace-nowrap`}
-                      sidebar-toggle-item="true">
-                    نمای کلی
-                      </span>
-                    </p>
-                 
-               
+                      sidebar-toggle-item="true"
+                    >
+                      نمای کلی
+                    </span>
+                  </p>
                 </NavLink>
               </li>
               <li>
@@ -190,16 +228,17 @@ console.log(SettingsSubMenu);
                   to="/"
                   className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-white dark:hover:bg-gray-700"
                 >
-                    <p className="flex">
-                  <MdOutlineTimeline className="ml-2 text-lg" />
-                      <span  className={`${
+                  <p className="flex">
+                    <MdOutlineTimeline className="ml-2 text-lg" />
+                    <span
+                      className={`${
                         showSubMenu.allMenu ? "inline-flex" : "hidden"
                       } ml-3 whitespace-nowrap`}
-                      sidebar-toggle-item="true"> 
+                      sidebar-toggle-item="true"
+                    >
                       روندها
-                      </span>
-                    </p>
-
+                    </span>
+                  </p>
                 </NavLink>
               </li>
               <li>
@@ -237,22 +276,23 @@ console.log(SettingsSubMenu);
                     showSubMenu.dropDownOne ? "inline-flex" : "hidden"
                   } my-[0.63rem] w-full flex-col rounded-md bg-gray-100 p-2`}
                 >
-                  {
-                    CostomersSubMenu.map((CostomerSubMenu) => {
-                      return (
-                  <li key={CostomerSubMenu.id}>
-                    <NavLink
-                      onClick={CostomerSubMenu.handler}
-                      to={CostomerSubMenu.to}
-                      className={({isActive}) => (isActive ? "w-full flex rounded-lg p-2 text-base dark:text-navy-500 dark:bg-navy-200 dark:hover:bg-gray-500 text-navy-500 bg-gray-300 font-bold" : "w-full flex rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-navy-500 dark:hover:bg-gray-500")}
-                    >
-                      {CostomerSubMenu.manuTitle}
-                    </NavLink>
-                  </li>
-
-                      )
-                    })
-                  }
+                  {CostomersSubMenu.map((CostomerSubMenu) => {
+                    return (
+                      <li key={CostomerSubMenu.id}>
+                        <NavLink
+                          onClick={CostomerSubMenu.handler}
+                          to={CostomerSubMenu.to}
+                          className={({ isActive }) =>
+                            isActive
+                              ? "flex w-full rounded-lg bg-gray-300 p-2 text-base font-bold text-navy-500 dark:bg-navy-200 dark:text-navy-500 dark:hover:bg-gray-500"
+                              : "flex w-full rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-navy-500 dark:hover:bg-gray-500"
+                          }
+                        >
+                          {CostomerSubMenu.manuTitle}
+                        </NavLink>
+                      </li>
+                    );
+                  })}
                 </ul>
               </li>
               <li>
@@ -290,28 +330,29 @@ console.log(SettingsSubMenu);
                     showSubMenu.dropDownTwo ? "inline-flex" : "hidden"
                   } my-[0.63rem] w-full flex-col rounded-md bg-gray-100 p-2`}
                 >
-                   {
-                    ProductsSubMenu.map((ProductSubMenu) => {
-                      return (
-                  <li key={ProductSubMenu.id}>
-                    <NavLink
-                      to={ProductSubMenu.to}
-    
-                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
-                    >
-                      {ProductSubMenu.manuTitle}
-                    </NavLink>
-                  </li>
-                      )
-                    })
-                   }
+                  {ProductsSubMenu.map((ProductSubMenu) => {
+                    return (
+                      <li key={ProductSubMenu.id}>
+                        <NavLink
+                          to={ProductSubMenu.to}
+                          className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
+                        >
+                          {ProductSubMenu.manuTitle}
+                        </NavLink>
+                      </li>
+                    );
+                  })}
                 </ul>
               </li>
               <li>
                 <NavLink
-                onClick={usersHandler}
+                  onClick={usersHandler}
                   to="/users"
-                  className={({isActive}) => (isActive ? "w-full flex rounded-lg p-2 text-base dark:text-navy-500 dark:hover:bg-gray-500 text-navy-500 bg-gray-100 font-bold" : "w-full flex rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700")}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "flex w-full rounded-lg bg-gray-100 p-2 text-base font-bold text-navy-500 dark:text-navy-500 dark:hover:bg-gray-500"
+                      : "flex w-full rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  }
                 >
                   <p className="flex items-center justify-center">
                     <MdGroups className="ml-2 text-lg" />
@@ -364,45 +405,47 @@ console.log(SettingsSubMenu);
                     showSubMenu.dropDownThree ? "inline-flex" : "hidden"
                   } my-[0.63rem] w-full flex-col rounded-md bg-gray-100 p-2`}
                 >
-                  {
-                    SettingsSubMenu.map((SettingSubMenu) => {
-                      return (
-                        <li key={SettingSubMenu.id}>
-                  
-                    <NavLink onClick={SettingSubMenu.handler}
-                      to={SettingSubMenu.to}
-                      className={({isActive}) => (isActive ? "w-full flex rounded-lg p-2 text-base dark:text-navy-500 dark:bg-navy-200 dark:hover:bg-gray-500 text-navy-500 bg-gray-300 font-bold" : "w-full flex rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-navy-500 dark:hover:bg-gray-500")}
-                    >
-                      {SettingSubMenu.manuTitle}
-                    </NavLink>
-                  </li>
-                      )
-                    })
-                  }
+                  {SettingsSubMenu.map((SettingSubMenu) => {
+                    return (
+                      <li key={SettingSubMenu.id}>
+                        <NavLink
+                          onClick={SettingSubMenu.handler}
+                          to={SettingSubMenu.to}
+                          className={({ isActive }) =>
+                            isActive
+                              ? "flex w-full rounded-lg bg-gray-300 p-2 text-base font-bold text-navy-500 dark:bg-navy-200 dark:text-navy-500 dark:hover:bg-gray-500"
+                              : "flex w-full rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-navy-500 dark:hover:bg-gray-500"
+                          }
+                        >
+                          {SettingSubMenu.manuTitle}
+                        </NavLink>
+                      </li>
+                    );
+                  })}
                 </ul>
               </li>
             </ul>
           </div>
         </nav>
         <section>
-        <div className="text-slate-500 border-t-stone-200 flex w-full items-center justify-center border-t border-solid pt-2 text-navy-500">
-          v0.0.1
-        </div>
-        <div
-          onClick={() =>
-            setShowSubMenu({ ...showSubMenu, allMenu: !showSubMenu.allMenu })
-          }
-          className="my-4 hidden w-full cursor-pointer items-center justify-center text-navy-500 lg:inline-flex"
-        >
-          {showSubMenu.allMenu ? (
-            <>
-              <HiChevronDoubleRight className="ml-1" />
-              <span>مخفی کردن منو</span>
-            </>
-          ) : (
-            <HiChevronDoubleLeft className="ml-1" />
-          )}
-        </div>
+          <div className="text-slate-500 border-t-stone-200 flex w-full items-center justify-center border-t border-solid pt-2 text-navy-500">
+            v0.0.1
+          </div>
+          <div
+            onClick={() =>
+              setShowSubMenu({ ...showSubMenu, allMenu: !showSubMenu.allMenu })
+            }
+            className="my-4 hidden w-full cursor-pointer items-center justify-center text-navy-500 lg:inline-flex"
+          >
+            {showSubMenu.allMenu ? (
+              <>
+                <HiChevronDoubleRight className="ml-1" />
+                <span>مخفی کردن منو</span>
+              </>
+            ) : (
+              <HiChevronDoubleLeft className="ml-1" />
+            )}
+          </div>
         </section>
       </div>
       {/* Nav item end */}

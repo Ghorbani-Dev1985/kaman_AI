@@ -19,8 +19,8 @@ import {
 import { Bar } from "react-chartjs-2";
 import { Chart } from "react-chartjs-2";
 import TopFilter from "Common/TopFilter";
-import { BiCloudDownload, BiFilterAlt, BiTimeFive } from "react-icons/bi";
-import Button from "Common/Button";
+import {  BiFilterAlt, BiTimeFive } from "react-icons/bi";
+import DownloadBtn from "Common/DownloadBtn";
 
 ChartJS.register(
   CategoryScale,
@@ -203,15 +203,7 @@ const LifeTime = () => {
           <div className="my-10 max-w-xs overflow-x-auto md:max-w-xl lg:max-w-full">
             <DrawChart graph_data={graph_data} />
           </div>
-          <section className="my-5 rounded-lg border border-gray-300 p-4">
-            <Button
-              ButtonText="دانلود"
-              onClick={(e) => handleDownloadFile(e, { table_data })}
-              class="btn btn-primary btn-sm button"
-            >
-              <BiCloudDownload className="text-2xl" />
-            </Button>
-          </section>
+       <DownloadBtn />
           <div className="table1">
             <DrawTable graph_data={table_data} />
           </div>

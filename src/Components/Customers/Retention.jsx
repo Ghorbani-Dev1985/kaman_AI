@@ -34,9 +34,9 @@ import {
   BiLayer,
   BiLineChart,
 } from "react-icons/bi";
-import { Listbox, Transition } from "@headlessui/react";
-import Select from "react-select";
-import Button from "Common/Button";
+import DataGraphSelect from "Common/DataGraphSelect";
+import SeperationDataSelect from "Common/SeperationDataSelect";
+
 
 ChartJS.register(
   CategoryScale,
@@ -232,22 +232,6 @@ function Retention() {
   function do_action() {
     get_graph_data(location, setGraph_data);
   }
-  const DataGraphSegment = [
-    { label: "ماهانه", value: 30 },
-    { label: "فصلی", value: 90 },
-    { label: "سالیانه", value: 360 },
-    { label: "روزانه", value: 1 },
-    { label: "هفتگی", value: 7 },
-  ];
-  const [dataGraphSegment, setdataGraphSegment] = useState(null);
-  const SeperationData = [
-    { label: "هیچکدام", value: "None" },
-    { label: "برند", value: "brand" },
-    { label: "کانال جذب", value: "sales_channel" },
-    { label: "منطقه جغرافیایی", value: "city" },
-    { label: "دسته بندی محصولات", value: "product_name" },
-  ];
-  const [seperationSelect, setseperationSelect] = useState(null);
   return (
     <>
       <TopFilter>
@@ -266,21 +250,11 @@ function Retention() {
           >
             <BiFilterAlt className="ml-2 text-2xl" /> فیلتر
           </button>
-          <div className="ml-2 mb-4 lg:mb-0">
-        
-          <Select
-            defaultValue={dataGraphSegment}
-            onChange={setdataGraphSegment}
-            options={DataGraphSegment}
-            placeholder="انتخاب"
-          />
-          </div>  
-            <Select
-              defaultValue={seperationSelect}
-              onChange={setseperationSelect}
-              options={SeperationData}
-              placeholder="انتخاب"
-            />
+          <div className="ml-2 mb-4 lg:mb-0 w-28">
+          <DataGraphSelect />
+         </div>  
+            <SeperationDataSelect />
+            
           <button
             onClick={do_action}
             className="btns mr-2 flex w-full items-center justify-center md:w-auto"

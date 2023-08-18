@@ -31,10 +31,15 @@ import {
   BiMessageRoundedDots,
 } from "react-icons/bi";
 import TopFilter from "Common/TopFilter";
-import Button from "Common/Button";
-import { Menu, MenuItem } from "@mui/material";
-import styled from "styled-components";
 import { HiOutlineUsers, HiUserGroup } from "react-icons/hi";
+import {
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Button,
+} from "@material-tailwind/react";
+import DownloadBtn from "Common/DownloadBtn";
 
 ChartJS.register(
   CategoryScale,
@@ -115,7 +120,7 @@ function DrawChart({ data }) {
 
   return (
     <>
-        <Chart type="treemap" data={config.data} options={options} />
+      <Chart type="treemap" data={config.data} options={options} />
     </>
   );
 }
@@ -177,14 +182,6 @@ function Segment() {
   };
 
   function DrawTable({ graph_data, summery_data, summeryData }) {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
     const DownloadDropdownItems = [
       {
         id: 1,
@@ -216,103 +213,95 @@ function Segment() {
       <>
         <div className="mx-auto max-w-[18rem] overflow-x-auto p-2 md:max-w-full">
           <div className="inline-block w-full py-2">
-              <table className="min-w-full table-auto rounded-lg md:overflow-hidden">
-                <thead className="border-b border-white bg-blue-200 text-blue-600">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="border-slate-500 border px-6 py-4 text-center text-sm font-medium"
-                    >
-                      بخش
-                    </th>
-                    <th
-                      scope="col"
-                      className="border-slate-500 border px-6 py-4 text-center text-sm font-medium"
-                    >
-                      کل مشتریان
-                    </th>
-                    <th
-                      scope="col"
-                      className="border-slate-500 border px-2 py-4 text-center text-sm font-medium"
-                    >
-                      شاخص تازگی خرید
-                    </th>
-                    <th
-                      scope="col"
-                      className="border-slate-500 border px-2 py-4 text-center text-sm font-medium"
-                    >
-                      شاخص تعداد خرید
-                    </th>
-                    <th
-                      scope="col"
-                      className="border-slate-500 border px-2 py-4 text-center text-sm font-medium"
-                    >
-                      شاخص مبلغ خرید
-                    </th>
-                    <th
-                      scope="col"
-                      className="border-slate-500 border px-2 py-4 text-center text-sm font-medium"
-                    >
-                      دانلود
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="[&>*:nth-child(even)]:bg-gray-50 [&>*:nth-child(odd)]:bg-gray-200">
-                  {summery_data.concat(graph_data).map((summeryData, index) => (
-                    <tr key={index} className="border-b">
-                      <td className="text-slate-700 flex items-center justify-center px-6 py-4 text-center text-sm font-medium">
-                        {summeryData.label}
-                      </td>
-                      <td className="text-slate-700 px-6  py-4 text-center text-sm font-medium">
-                        {summeryData.user_count}
-                      </td>
-                      <td className="text-slate-700 px-6  py-4 text-center text-sm font-medium">
-                        {summeryData.user_count}
-                      </td>
-                      <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
-                        {summeryData.factor_count}
-                      </td>
-                      <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
-                        {summeryData.income}
-                      </td>
-                      <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
-                        <button
-                          id="basic-button"
-                          aria-controls={open ? "basic-menu" : undefined}
-                          aria-haspopup="true"
-                          aria-expanded={open ? "true" : undefined}
-                          onClick={handleClick}
-                          className="transparentBtns flex items-center justify-center"
-                        >
-                          <IoDownloadOutline className="text-xl" />
-                        </button>
-                        <Menu
-                          id="basic-menu"
-                          anchorEl={anchorEl}
-                          open={open}
-                          onClose={handleClose}
-                          MenuListProps={{
-                            "aria-labelledby": "basic-button",
-                          }}
-                        >
+            <table className="min-w-full table-auto rounded-lg md:overflow-hidden">
+              <thead className="border-b border-white bg-blue-200 text-blue-600">
+                <tr>
+                  <th
+                    scope="col"
+                    className="border-slate-500 border px-6 py-4 text-center text-sm font-medium"
+                  >
+                    بخش
+                  </th>
+                  <th
+                    scope="col"
+                    className="border-slate-500 border px-6 py-4 text-center text-sm font-medium"
+                  >
+                    کل مشتریان
+                  </th>
+                  <th
+                    scope="col"
+                    className="border-slate-500 border px-2 py-4 text-center text-sm font-medium"
+                  >
+                    شاخص تازگی خرید
+                  </th>
+                  <th
+                    scope="col"
+                    className="border-slate-500 border px-2 py-4 text-center text-sm font-medium"
+                  >
+                    شاخص تعداد خرید
+                  </th>
+                  <th
+                    scope="col"
+                    className="border-slate-500 border px-2 py-4 text-center text-sm font-medium"
+                  >
+                    شاخص مبلغ خرید
+                  </th>
+                  <th
+                    scope="col"
+                    className="border-slate-500 border px-2 py-4 text-center text-sm font-medium"
+                  >
+                    دانلود
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="[&>*:nth-child(even)]:bg-gray-50 [&>*:nth-child(odd)]:bg-gray-200">
+                {summery_data.concat(graph_data).map((summeryData, index) => (
+                  <tr key={index} className="border-b">
+                    <td className="text-slate-700 flex items-center justify-center px-6 py-4 text-center text-sm font-medium">
+                      {summeryData.label}
+                    </td>
+                    <td className="text-slate-700 px-6  py-4 text-center text-sm font-medium">
+                      {summeryData.user_count}
+                    </td>
+                    <td className="text-slate-700 px-6  py-4 text-center text-sm font-medium">
+                      {summeryData.user_count}
+                    </td>
+                    <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
+                      {summeryData.factor_count}
+                    </td>
+                    <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
+                      {summeryData.income}
+                    </td>
+                    <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
+                      <Menu
+                        animate={{
+                          mount: { y: 0 , x: 80},
+                          unmount: { y: 25 , x: 80 },
+                        }}
+                      >
+                        <MenuHandler>
+                          <Button className="transparentBtns"> <IoDownloadOutline className="text-xl" /></Button>
+                        </MenuHandler>
+                        <MenuList>
                           {DownloadDropdownItems.map((DownloadDropdownItem) => {
                             return (
                               <MenuItem
                                 key={DownloadDropdownItem.id}
-                                className="flex items-center justify-center p-2 !text-navy-500"
-                                onClick={handleClose}
+                                className="flex items-center justify-center p-2 text-navy-500 hover:outline-none hover:bg-gray-200"
+                               
                               >
-                                {DownloadDropdownItem.icon}{" "}
+                                {DownloadDropdownItem.icon}
                                 {DownloadDropdownItem.title}
                               </MenuItem>
                             );
                           })}
-                        </Menu>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                        </MenuList>
+                      </Menu>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
         <div></div>
@@ -364,15 +353,8 @@ function Segment() {
             <DrawChart data={graph_data} />
           </div>
 
-          <section className="my-5 rounded-lg border border-gray-300 p-4">
-            <Button
-              ButtonText="دانلود"
-              onClick={(e) => handleDownloadFile(e, "table")}
-            >
-              <BiCloudDownload className="text-2xl" />
-            </Button>
-          </section>
-            <DrawTable graph_data={graph_data} summery_data={summery_data} />
+          <DownloadBtn />
+          <DrawTable graph_data={graph_data} summery_data={summery_data} />
         </fieldset>
       </div>
     </>

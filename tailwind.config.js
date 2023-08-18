@@ -325,6 +325,5 @@ module.exports = {
       },
     }),
   },
-  plugins: [require("tailwindcss-rtl"),
-  require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms')],
 };

@@ -13,7 +13,7 @@
 	}
   }
   .inputStyles {
-	@apply w-full bg-gray-100 text-gray-600 dark:text-navy-500 rounded-lg p-3 pr-8 border-2 hover:border-navy-500 focus:border-navy-500 focus:outline-none transition dark:bg-gray-300;
+	@apply w-full bg-gray-100 text-gray-600 dark:text-navy-500 rounded-lg px-3 py-2 border-2 hover:border-navy-500 focus:border-navy-500 focus:outline-none transition dark:bg-gray-300 text-center;
   }
 .btns {
 	  @apply bg-navy-500 text-gray-100 border border-navy-500 border-solid hover:bg-navy-200 font-extrabold py-2 px-3 hover:text-navy-800 rounded-lg transition dark:bg-navy-800 dark:hover:bg-navy-900 dark:text-gray-100 my-2 md:my-0;

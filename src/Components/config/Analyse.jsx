@@ -5,9 +5,9 @@ import axios from "axios";
 import InitObject from "../../Utils/globalvariables";
 import { BiChevronsLeft, BiSave } from "react-icons/bi";
 import { toast } from "react-toastify";
-import Button from "Common/Button";
+import { Button } from "@material-tailwind/react";
 
-function AnalyseData(props) {
+function AnalyseData({children}) {
   const location = useLocation();
   const [currentRoute, setCurrentRoute] = useState("تحلیل داده ");
 
@@ -477,9 +477,13 @@ function AnalyseData(props) {
           </div>
         </div>
       </div>
-      <Button ButtonText="ذخیره تغییرات" onClick={handleUpdateData}>
-        <BiSave className="text-2xl" />
+      <div className="w-full flex justify-end items-center gap-4">
+       {children}
+      <Button className="btns flex justify-center items-center" onClick={handleUpdateData}>
+        <BiSave className="text-2xl ml-2" />
+        ذخیره تغییرات
       </Button>
+      </div>
     </>
   );
 }

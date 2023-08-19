@@ -22,18 +22,15 @@
    color: #3b3b3b !important; 
 }
 .rmdp-input{
-   width: 6rem;
+   width: 8rem;
    background-color: transparent;
    color: #2851A2;
-   border: none !important;
    cursor: pointer;
    text-align: center;
- }
- .rmdp-input:focus{
-   width: 6rem;
-   border: none !important;
-   outline: none !important;
-   box-shadow: none !important;
+   border : 1px solid #e7e7e7;
+   border-radius: 10px;
+   padding: 20px 20px !important;
+   margin: 0 20px !important;
  }
  .main-container .select-time .time1{
     width:20vw;

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { SelectTime } from "./sections/selectTime";
 import { BestSel } from "./sections/bestSel";
 import { Proceed } from "./sections/proceed";
-import { ShowInfo } from "./sections/showInfo";
+import { ShowInfo } from "./sections/showInfo.jsx";
 
 const Main = () => {
   const [response, setResponse] = useState({

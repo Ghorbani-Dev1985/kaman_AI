@@ -5,6 +5,7 @@ import axios from "axios";
 import InitObject from "../../Utils/globalvariables";
 import { IoDownloadOutline } from "react-icons/io5";
 import { FaSms } from "react-icons/fa";
+import FilterDrawer from "../../Common/FilterDrawer"
 // import Dropdown from 'react-bootstrap/Dropdown';
 
 // import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -317,12 +318,13 @@ function Segment() {
     <>
       <TopFilter>
         <div className="mr-3 flex items-center gap-4">
-          <button
+          <FilterDrawer />
+          {/* <button
             type="button"
             className="btns flex items-center justify-center text-lg"
           >
             <BiFilterAlt className="ml-2 text-2xl" /> فیلتر{" "}
-          </button>
+          </button> */}
           <button
             type="button"
             onClick={(e) => handleDownloadFile(e, "data")}

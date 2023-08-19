@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import InitObject from "../../Utils/globalvariables";
@@ -15,7 +15,10 @@ function SignIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginmessage, setLoginMessage] = useState("");
-
+  const [isLoading, setIsLoading] = React.useState(true);
+  const handleLoading = () => {
+    setIsLoading(false);
+    }
   const userName = useAutoFocus();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,7 +54,10 @@ function SignIn() {
     default: "bg-indigo-600",
     dark: "bg-white-600 font-gray-300",
   };
-
+  useEffect(()=>{
+window.addEventListener("load",handleLoading);
+return () => window.removeEventListener("load",handleLoading);
+},[])
 
   return (
     <>

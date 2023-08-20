@@ -21,6 +21,7 @@ import { Chart } from "react-chartjs-2";
 import TopFilter from "Common/TopFilter";
 import {  BiFilterAlt, BiTimeFive } from "react-icons/bi";
 import DownloadBtn from "Common/DownloadBtn";
+import FilterDrawer from "Common/FilterDrawer";
 
 ChartJS.register(
   CategoryScale,
@@ -186,12 +187,7 @@ const LifeTime = () => {
   return (
     <>
       <TopFilter>
-        <button
-          type="button"
-          className="btns ml-2 mr-4 flex items-center justify-center text-lg"
-        >
-          <BiFilterAlt className="ml-2 text-2xl" /> فیلتر
-        </button>
+       <FilterDrawer />
       </TopFilter>
       <div className="mb-4 rounded-md bg-white p-4 dark:bg-navy-700 dark:text-white">
         <fieldset className="rounded-md border border-solid border-gray-300 p-3">

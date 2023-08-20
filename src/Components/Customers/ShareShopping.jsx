@@ -26,6 +26,7 @@ import TopFilter from "Common/TopFilter";
 import { BiCalendarAlt, BiCheckDouble, BiFilterAlt } from "react-icons/bi";
 import DataGraphSelect from "Common/DataGraphSelect";
 import DownloadBtn from "Common/DownloadBtn";
+import FilterDrawer from "Common/FilterDrawer";
 
 ChartJS.register(
   CategoryScale,
@@ -287,12 +288,7 @@ function ShareShoping() {
               {Date_Picker(end_time1, setEnd_time1)}
             </div>
           </div>
-          <button
-            type="button"
-            className="btns ml-2 flex items-center justify-center text-lg"
-          >
-            <BiFilterAlt className="ml-2 text-2xl" /> فیلتر
-          </button>
+         <FilterDrawer />
           <div className="ml-2 mb-4 lg:mb-0 flex">
            <DataGraphSelect />
           <button

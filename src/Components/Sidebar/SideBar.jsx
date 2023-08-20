@@ -174,7 +174,7 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
   console.log(SettingsSubMenu);
   return (
     <div
-      className={`sm:none linear fixed !z-50 col-span-3 flex h-full min-h-full w-85p flex-col bg-white shadow-2xl shadow-white/5 transition-all duration-700 ease-linear dark:!bg-navy-800 dark:text-white md:static md:!z-50 lg:!z-50 xl:!z-0 ${
+      className={`sm:none linear fixed !z-50 col-span-3 flex h-full min-h-max w-85p flex-col bg-white shadow-2xl shadow-white/5 transition-all duration-700 ease-linear dark:!bg-navy-800 dark:text-white md:static md:!z-50 lg:!z-50 xl:!z-0 ${
         open ? "-translate-x-0" : "translate-x-96"
       }  ${
         showSubMenu.allMenu
@@ -260,7 +260,7 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
                     <span
                       className={`${
                         showSubMenu.allMenu ? "inline-flex" : "hidden"
-                      } ml-3 whitespace-nowrap`}
+                      }`}
                       sidebar-toggle-item="true"
                     >
                       مشتریان
@@ -270,6 +270,9 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
                     {showSubMenu.dropDownOne ? <BiCaretUp /> : <BiCaretDown />}
                   </p>
                 </button>
+                <div className={`${
+                        showSubMenu.allMenu ? "inline-flex w-full" : "hidden"
+                      }`}>
                 <ul
                   id="kamanSubmenu"
                   className={`${
@@ -278,14 +281,14 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
                 >
                   {CostomersSubMenu.map((CostomerSubMenu) => {
                     return (
-                      <li key={CostomerSubMenu.id}>
+                      <li key={CostomerSubMenu.id} >
                         <NavLink
                           onClick={CostomerSubMenu.handler}
                           to={CostomerSubMenu.to}
                           className={({ isActive }) =>
                             isActive
-                              ? "flex w-full rounded-lg bg-gray-300 p-2 text-base font-bold text-navy-500 dark:bg-navy-200 dark:text-navy-500 dark:hover:bg-gray-500"
-                              : "flex w-full rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-navy-500 dark:hover:bg-gray-500"
+                            ? "flex w-full rounded-lg bg-gray-300 p-2 text-base font-bold text-navy-500 dark:bg-navy-200 dark:text-navy-500 dark:hover:bg-gray-500"
+                            : "flex w-full rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-navy-500 dark:hover:bg-gray-500"
                           }
                         >
                           {CostomerSubMenu.manuTitle}
@@ -294,6 +297,7 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
                     );
                   })}
                 </ul>
+             </div>
               </li>
               <li>
                 <button
@@ -324,25 +328,30 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
                     {showSubMenu.dropDownTwo ? <BiCaretUp /> : <BiCaretDown />}
                   </p>
                 </button>
+                <div className={`${
+                        showSubMenu.allMenu ? "inline-flex w-full" : "hidden"
+                      }`}>
+
                 <ul
                   id="kamanSubmenu"
                   className={`${
                     showSubMenu.dropDownTwo ? "inline-flex" : "hidden"
                   } my-[0.63rem] w-full flex-col rounded-md bg-gray-100 p-2`}
-                >
+                  >
                   {ProductsSubMenu.map((ProductSubMenu) => {
                     return (
                       <li key={ProductSubMenu.id}>
                         <NavLink
                           to={ProductSubMenu.to}
                           className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
-                        >
+                          >
                           {ProductSubMenu.manuTitle}
                         </NavLink>
                       </li>
                     );
                   })}
                 </ul>
+                </div>
               </li>
               <li>
                 <NavLink
@@ -399,6 +408,9 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
                     )}
                   </p>
                 </button>
+                <div className={`${
+                        showSubMenu.allMenu ? "inline-flex w-full" : "hidden"
+                      }`}>
                 <ul
                   id="kamanSubmenu"
                   className={`${
@@ -413,7 +425,7 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
                           to={SettingSubMenu.to}
                           className={({ isActive }) =>
                             isActive
-                              ? "flex w-full rounded-lg bg-gray-300 p-2 text-base font-bold text-navy-500 dark:bg-navy-200 dark:text-navy-500 dark:hover:bg-gray-500"
+                            ? "flex w-full rounded-lg bg-gray-300 p-2 text-base font-bold text-navy-500 dark:bg-navy-200 dark:text-navy-500 dark:hover:bg-gray-500"
                               : "flex w-full rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-navy-500 dark:hover:bg-gray-500"
                           }
                         >
@@ -423,6 +435,7 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
                     );
                   })}
                 </ul>
+                </div>
               </li>
             </ul>
           </div>

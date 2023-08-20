@@ -37,6 +37,3 @@ p{
 	  .transparentBtns {
 		@apply text-navy-500 border bg-transparent border-navy-500 border-solid font-extrabold py-2 px-3 hover:text-navy-800 rounded-lg transition dark:text-gray-100 my-2 md:my-0 mx-0 md:mx-2;
 	  }
-	  .css-13cymwt-control{
-		padding: 5px;
-	  }

@@ -258,22 +258,22 @@ function Segment() {
               <tbody className="[&>*:nth-child(even)]:bg-gray-50 [&>*:nth-child(odd)]:bg-gray-200">
                 {summery_data.concat(graph_data).map((summeryData, index) => (
                   <tr key={index} className="border-b">
-                    <td className="text-slate-700 flex items-center justify-center px-6 py-4 text-center text-sm font-medium">
+                    <td className="dark:text-navy-500 flex items-center justify-center px-6 py-4 text-center text-sm font-medium">
                       {summeryData.label}
                     </td>
-                    <td className="text-slate-700 px-6  py-4 text-center text-sm font-medium">
+                    <td className="dark:text-navy-500 px-6  py-4 text-center text-sm font-medium">
                       {summeryData.user_count}
                     </td>
-                    <td className="text-slate-700 px-6  py-4 text-center text-sm font-medium">
+                    <td className="dark:text-navy-500 px-6  py-4 text-center text-sm font-medium">
                       {summeryData.user_count}
                     </td>
-                    <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
+                    <td className="dark:text-navy-500 px-6 py-4 text-center text-sm font-medium">
                       {summeryData.factor_count}
                     </td>
-                    <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
+                    <td className="dark:text-navy-500 px-6 py-4 text-center text-sm font-medium">
                       {summeryData.income}
                     </td>
-                    <td className="text-slate-700 px-6 py-4 text-center text-sm font-medium">
+                    <td className="dark:text-navy-500 px-6 py-4 text-center text-sm font-medium">
                       <Menu
                         animate={{
                           mount: { y: 0 , x: 80},
@@ -281,7 +281,7 @@ function Segment() {
                         }}
                       >
                         <MenuHandler>
-                          <Button className="transparentBtns"> <IoDownloadOutline className="text-xl" /></Button>
+                          <Button className="transparentBtns"> <IoDownloadOutline className="text-xl dark:text-navy-500" /></Button>
                         </MenuHandler>
                         <MenuList>
                           {DownloadDropdownItems.map((DownloadDropdownItem) => {
@@ -319,18 +319,12 @@ function Segment() {
       <TopFilter>
         <div className="mr-3 flex items-center gap-4">
           <FilterDrawer />
-          {/* <button
-            type="button"
-            className="btns flex items-center justify-center text-lg"
-          >
-            <BiFilterAlt className="ml-2 text-2xl" /> فیلتر{" "}
-          </button> */}
           <button
             type="button"
             onClick={(e) => handleDownloadFile(e, "data")}
             class="btns flex items-center justify-center text-lg"
           >
-            <BiCloudDownload className="ml-2 text-2xl" /> دانلود{" "}
+            <BiCloudDownload className="ml-2 text-2xl" /> دانلود
           </button>
         </div>
       </TopFilter>
@@ -339,7 +333,7 @@ function Segment() {
           <legend className="float-none w-auto px-2 text-sm">
             <p className="flex items-center text-lg font-bold">
               <BiLayer className="ml-2 text-3xl" /> بخش بندی مشتریان
-            </p>{" "}
+            </p>
           </legend>
           <div className="my-8 flex w-full items-center justify-between">
             <div className="text">

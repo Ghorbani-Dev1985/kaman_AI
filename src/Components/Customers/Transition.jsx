@@ -19,6 +19,7 @@ import {
   import {SankeyController, Flow} from 'chartjs-chart-sankey';
 import TopFilter from "Common/TopFilter";
 import { BiCloudDownload, BiCustomize, BiFilterAlt } from "react-icons/bi";
+import FilterDrawer from "Common/FilterDrawer";
 
 ChartJS.register(
   CategoryScale,
@@ -126,12 +127,7 @@ function Transition(){
         <>
       <TopFilter>
         <div className="mr-3 flex items-center gap-4">
-          <button
-            type="button"
-            class="btns flex items-center justify-center text-lg"
-          >
-            <BiFilterAlt className="ml-2 text-2xl" /> فیلتر{" "}
-          </button>
+          <FilterDrawer />
           <button
             type="button"
             onClick={(e) => handleDownloadFile(e, "data")}

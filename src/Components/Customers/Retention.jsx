@@ -36,6 +36,7 @@ import {
 } from "react-icons/bi";
 import DataGraphSelect from "Common/DataGraphSelect";
 import SeperationDataSelect from "Common/SeperationDataSelect";
+import FilterDrawer from "Common/FilterDrawer";
 
 
 ChartJS.register(
@@ -237,23 +238,18 @@ function Retention() {
       <TopFilter>
         <div className="mr-3 flex flex-col lg:flex-row items-center">
           <div className="ml-2 border-l">
-            <div className="flex justify-center">
+            <div className="flex justify-center items-center">
               <BiCalendarAlt className="text-xl" />
               {Date_Picker(start_time1, handleSetStart_time1)}
               <span>تا</span>
               {Date_Picker(end_time1, setEnd_time1)}
             </div>
           </div>
-          <button
-            type="button"
-            className="btns ml-2 flex items-center justify-center text-lg"
-          >
-            <BiFilterAlt className="ml-2 text-2xl" /> فیلتر
-          </button>
+        <FilterDrawer />
           <div className="ml-2 mb-4 lg:mb-0 w-28">
-          <DataGraphSelect />
+          <DataGraphSelect className="z-0"/>
          </div>  
-            <SeperationDataSelect />
+            <SeperationDataSelect className="z-0"/>
             
           <button
             onClick={do_action}

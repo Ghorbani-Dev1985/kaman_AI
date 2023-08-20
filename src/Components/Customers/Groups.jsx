@@ -7,6 +7,7 @@ import InitObject from '../../Utils/globalvariables';
 import { BiFilterAlt } from "react-icons/bi";
 import TopFilter from "Common/TopFilter";
 import { HiUserGroup } from "react-icons/hi";
+import FilterDrawer from "Common/FilterDrawer";
 
 
 function Groups(){
@@ -46,12 +47,8 @@ function Groups(){
     return(
         <>
              <TopFilter>
-        <button
-            type="button"
-            className="btns ml-2 flex items-center justify-center text-lg"
-          >
-            <BiFilterAlt className="ml-2 text-2xl" /> فیلتر
-          </button>
+     <FilterDrawer />
+     
         </TopFilter>
            <div className="mb-4 rounded-md bg-white p-4 dark:bg-navy-700 dark:text-white">
         <fieldset className="rounded-md border border-solid border-gray-300 p-3">

@@ -80,7 +80,7 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
         if (window.innerWidth < 500) onClose();
       },
       to: "/lifeTime",
-      manuTitle: "طول عمر مشتریان",
+      manuTitle: "ارزش طول عمر مشتریان",
     },
     {
       id: 5,
@@ -106,7 +106,7 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
         if (window.innerWidth < 500) onClose();
       },
       to: "/purchaseInterval",
-      manuTitle: "  فاصله خرید مشتریان",
+      manuTitle: "  خوشه بندی خرید مشتریان",
     },
     {
       id: 7,
@@ -119,19 +119,60 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
         if (window.innerWidth < 500) onClose();
       },
       to: "/groups",
-      manuTitle: " گروه مشتریان",
+      manuTitle: " گروه مشتریان مشتریان",
     },
   ];
   const ProductsSubMenu = [
     {
       id: 1,
       to: "",
-      manuTitle: " عملکرد محصولات",
+      manuTitle: "تحلیل عملکرد محصولات",
     },
     {
       id: 2,
       to: "",
       manuTitle: " تحلیل سبد مشتریان",
+    },
+  ];
+  const PredictionSubMenu = [
+    {
+      id: 1,
+      handler: (e) => {
+        e.preventDefault();
+        console.log(location.state.userinfo);
+        navigate("/main", {
+          state: { userinfo: location.state.userinfo },
+        });
+        if (window.innerWidth < 500) onClose();
+      },
+      to: "/main",
+      manuTitle: "پیش بینی ریزش مشتری ",
+    },
+    {
+      id: 2,
+      handler: (e) => {
+        e.preventDefault();
+        console.log(location.state.userinfo);
+        navigate("/main", {
+          state: { userinfo: location.state.userinfo },
+        });
+        if (window.innerWidth < 500) onClose();
+      },
+      to: "/main",
+      manuTitle: " تحلیل فاصله بین هر خرید",
+    },
+    {
+      id: 3,
+      handler: (e) => {
+        e.preventDefault();
+        console.log(location.state.userinfo);
+        navigate("/main", {
+          state: { userinfo: location.state.userinfo },
+        });
+        if (window.innerWidth < 500) onClose();
+      },
+      to: "/main",
+      manuTitle: " دسته کردن محصولات",
     },
   ];
   const SettingsSubMenu = [
@@ -169,6 +210,17 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
       },
       to: "/smsPanel",
       manuTitle: "سامانه پیامک",
+    },
+    {
+      id: 4,
+      handler: (e) => {
+        e.preventDefault();
+        console.log(location.state.userinfo);
+        navigate("/main", { state: { userinfo: location.state.userinfo } });
+        if (window.innerWidth < 500) onClose();
+      },
+      to: "/main",
+      manuTitle: "وب سرویس",
     },
   ];
   console.log(SettingsSubMenu);
@@ -263,7 +315,7 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
                       }`}
                       sidebar-toggle-item="true"
                     >
-                      مشتریان
+                      تحلیل رفتار مشتریان
                     </span>
                   </p>
                   <p className={`${showSubMenu.allMenu ? "block" : "hidden"}`}>
@@ -304,7 +356,7 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
                   onClick={() =>
                     setShowSubMenu({
                       ...showSubMenu,
-                      dropDownTwo: !showSubMenu.dropDownTwo,
+                      dropDownThree: !showSubMenu.dropDownTwo,
                     })
                   }
                   type="button"
@@ -321,7 +373,7 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
                       } ml-3 whitespace-nowrap`}
                       sidebar-toggle-item="true"
                     >
-                      محصولات
+                      تحلیل فروش محصولات
                     </span>
                   </p>
                   <p className={`${showSubMenu.allMenu ? "block" : "hidden"}`}>
@@ -346,6 +398,60 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
                           className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
                           >
                           {ProductSubMenu.manuTitle}
+                        </NavLink>
+                      </li>
+                    );
+                  })}
+                </ul>
+                </div>
+              </li>
+              <li>
+                <button
+                  onClick={() =>
+                    setShowSubMenu({
+                      ...showSubMenu,
+                      dropDownThree: !showSubMenu.dropDownThree,
+                    })
+                  }
+                  type="button"
+                  data-dropdown-toggle="kamanSubmenu"
+                  aria-controls="kamanSubmenu"
+                  aria-expanded="false"
+                  className="group flex w-full items-center justify-between rounded-lg p-2 text-base font-normal text-gray-700 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                >
+                  <p className="flex items-center justify-center">
+                    <MdOutlineShoppingCart className="ml-2 text-lg" />
+                    <span
+                      className={`${
+                        showSubMenu.allMenu ? "inline-flex" : "hidden"
+                      } ml-3 whitespace-nowrap`}
+                      sidebar-toggle-item="true"
+                    >
+                     تحلیل‌های پیش‌بینی‌ کننده
+                    </span>
+                  </p>
+                  <p className={`${showSubMenu.allMenu ? "block" : "hidden"}`}>
+                    {showSubMenu.dropDownThree ? <BiCaretUp /> : <BiCaretDown />}
+                  </p>
+                </button>
+                <div className={`${
+                        showSubMenu.allMenu ? "inline-flex w-full" : "hidden"
+                      }`}>
+
+                <ul
+                  id="kamanSubmenu"
+                  className={`${
+                    showSubMenu.dropDownThree ? "inline-flex" : "hidden"
+                  } my-[0.63rem] w-full flex-col rounded-md bg-gray-100 p-2`}
+                  >
+                  {PredictionSubMenu.map(({id , to , manuTitle}) => {
+                    return (
+                      <li key={id}>
+                        <NavLink
+                          to={to}
+                          className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
+                          >
+                          {manuTitle}
                         </NavLink>
                       </li>
                     );
@@ -380,7 +486,7 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
                   onClick={() =>
                     setShowSubMenu({
                       ...showSubMenu,
-                      dropDownThree: !showSubMenu.dropDownThree,
+                      dropDownFour: !showSubMenu.dropDownFour,
                     })
                   }
                   type="button"
@@ -397,11 +503,11 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
                       } ml-3 whitespace-nowrap`}
                       sidebar-toggle-item="true"
                     >
-                      تنظیمات
+                      تنظیمات سامانه
                     </span>
                   </p>
                   <p className={`${showSubMenu.allMenu ? "block" : "hidden"}`}>
-                    {showSubMenu.dropDownThree ? (
+                    {showSubMenu.dropDownFour ? (
                       <BiCaretUp />
                     ) : (
                       <BiCaretDown />
@@ -414,7 +520,7 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
                 <ul
                   id="kamanSubmenu"
                   className={`${
-                    showSubMenu.dropDownThree ? "inline-flex" : "hidden"
+                    showSubMenu.dropDownFour ? "inline-flex" : "hidden"
                   } my-[0.63rem] w-full flex-col rounded-md bg-gray-100 p-2`}
                 >
                   {SettingsSubMenu.map((SettingSubMenu) => {

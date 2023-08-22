@@ -26,7 +26,7 @@ import TopFilter from "Common/TopFilter";
 import { BiCalendarAlt, BiCheckDouble, BiFilterAlt } from "react-icons/bi";
 import DataGraphSelect from "Common/DataGraphSelect";
 import DownloadBtn from "Common/DownloadBtn";
-import FilterDrawer from "Common/FilterDrawer";
+import FilterDrawer from "Common/FilterDrawer/FilterDrawer";
 
 ChartJS.register(
   CategoryScale,

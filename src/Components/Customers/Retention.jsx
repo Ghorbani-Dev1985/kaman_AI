@@ -36,7 +36,7 @@ import {
 } from "react-icons/bi";
 import DataGraphSelect from "Common/DataGraphSelect";
 import SeperationDataSelect from "Common/SeperationDataSelect";
-import FilterDrawer from "Common/FilterDrawer";
+import FilterDrawer from "Common/FilterDrawer/FilterDrawer";
 
 
 ChartJS.register(

@@ -5,7 +5,7 @@ import axios from "axios";
 import InitObject from "../../Utils/globalvariables";
 import { IoDownloadOutline } from "react-icons/io5";
 import { FaSms } from "react-icons/fa";
-import FilterDrawer from "../../Common/FilterDrawer"
+import FilterDrawer from "Common/FilterDrawer/FilterDrawer";
 // import Dropdown from 'react-bootstrap/Dropdown';
 
 // import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -258,38 +258,40 @@ function Segment() {
               <tbody className="[&>*:nth-child(even)]:bg-gray-50 [&>*:nth-child(odd)]:bg-gray-200">
                 {summery_data.concat(graph_data).map((summeryData, index) => (
                   <tr key={index} className="border-b">
-                    <td className="dark:text-navy-500 flex items-center justify-center px-6 py-4 text-center text-sm font-medium">
+                    <td className="flex items-center justify-center px-6 py-4 text-center text-sm font-medium dark:text-navy-500">
                       {summeryData.label}
                     </td>
-                    <td className="dark:text-navy-500 px-6  py-4 text-center text-sm font-medium">
+                    <td className="px-6 py-4  text-center text-sm font-medium dark:text-navy-500">
                       {summeryData.user_count}
                     </td>
-                    <td className="dark:text-navy-500 px-6  py-4 text-center text-sm font-medium">
+                    <td className="px-6 py-4  text-center text-sm font-medium dark:text-navy-500">
                       {summeryData.user_count}
                     </td>
-                    <td className="dark:text-navy-500 px-6 py-4 text-center text-sm font-medium">
+                    <td className="px-6 py-4 text-center text-sm font-medium dark:text-navy-500">
                       {summeryData.factor_count}
                     </td>
-                    <td className="dark:text-navy-500 px-6 py-4 text-center text-sm font-medium">
+                    <td className="px-6 py-4 text-center text-sm font-medium dark:text-navy-500">
                       {summeryData.income}
                     </td>
-                    <td className="dark:text-navy-500 px-6 py-4 text-center text-sm font-medium">
+                    <td className="px-6 py-4 text-center text-sm font-medium dark:text-navy-500">
                       <Menu
                         animate={{
-                          mount: { y: 0 , x: 80},
-                          unmount: { y: 25 , x: 80 },
+                          mount: { y: 0, x: 80 },
+                          unmount: { y: 25, x: 80 },
                         }}
                       >
                         <MenuHandler>
-                          <Button className="transparentBtns"> <IoDownloadOutline className="text-xl dark:text-navy-500" /></Button>
+                          <Button className="transparentBtns">
+                            {" "}
+                            <IoDownloadOutline className="text-xl dark:text-navy-500" />
+                          </Button>
                         </MenuHandler>
                         <MenuList>
                           {DownloadDropdownItems.map((DownloadDropdownItem) => {
                             return (
                               <MenuItem
                                 key={DownloadDropdownItem.id}
-                                className="flex items-center justify-center p-2 text-navy-500 hover:outline-none hover:bg-gray-200"
-                               
+                                className="flex items-center justify-center p-2 text-navy-500 hover:bg-gray-200 hover:outline-none"
                               >
                                 {DownloadDropdownItem.icon}
                                 {DownloadDropdownItem.title}

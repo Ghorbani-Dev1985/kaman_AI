@@ -21,7 +21,7 @@ import { Chart } from "react-chartjs-2";
 import TopFilter from "Common/TopFilter";
 import {  BiFilterAlt, BiTimeFive } from "react-icons/bi";
 import DownloadBtn from "Common/DownloadBtn";
-import FilterDrawer from "Common/FilterDrawer";
+import FilterDrawer from "Common/FilterDrawer/FilterDrawer";
 
 ChartJS.register(
   CategoryScale,

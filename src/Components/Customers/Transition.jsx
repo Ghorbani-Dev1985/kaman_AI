@@ -19,7 +19,7 @@ import {
   import {SankeyController, Flow} from 'chartjs-chart-sankey';
 import TopFilter from "Common/TopFilter";
 import { BiCloudDownload, BiCustomize, BiFilterAlt } from "react-icons/bi";
-import FilterDrawer from "Common/FilterDrawer";
+import FilterDrawer from "Common/FilterDrawer/FilterDrawer";
 
 ChartJS.register(
   CategoryScale,

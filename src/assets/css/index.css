@@ -16,7 +16,7 @@
 	@apply w-full bg-gray-100 text-gray-600 dark:text-navy-500 rounded-lg px-3 py-2 border-2 hover:border-navy-500 focus:border-navy-500 focus:outline-none transition dark:bg-gray-300 text-center;
   }
 .btns {
-	  @apply bg-navy-500 text-gray-100 border border-navy-500 border-solid hover:bg-navy-200 font-extrabold py-2 px-3 hover:text-navy-800 rounded-lg transition dark:bg-navy-800 dark:hover:bg-navy-900 dark:text-gray-100 my-2 md:my-0;
+	  @apply bg-navy-500 text-gray-100 border border-navy-500 border-solid hover:bg-navy-200 text-lg font-extrabold py-2 px-3 hover:text-navy-800 rounded-lg transition dark:bg-navy-800 dark:hover:bg-navy-900 dark:text-gray-100 my-2 md:my-0;
 	}
 
 p{
@@ -35,5 +35,5 @@ p{
 		@apply bg-amber-500 text-gray-100 border border-amber-500 border-solid hover:bg-amber-200 font-extrabold py-2 px-3 hover:text-amber-800 rounded-lg transition dark:bg-amber-800 dark:hover:bg-amber-900 dark:text-gray-100 my-2 md:my-0 mx-0 md:mx-2;
 	  }
 	  .transparentBtns {
-		@apply text-navy-500 border bg-transparent border-navy-500 border-solid font-extrabold py-2 px-3 hover:text-navy-800 rounded-lg transition dark:text-gray-100 my-2 md:my-0 mx-0 md:mx-2;
+		@apply text-navy-500 border bg-transparent border-navy-500 border-solid font-extrabold text-lg py-2 px-3 hover:text-navy-800 rounded-lg transition dark:text-gray-100 my-2 md:my-0 mx-0 md:mx-2;
 	  }

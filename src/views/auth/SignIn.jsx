@@ -57,8 +57,7 @@ function SignIn() {
   useEffect(()=>{
 window.addEventListener("load",handleLoading);
 return () => window.removeEventListener("load",handleLoading);
-},[])
-
+},[]);
   return (
     <>
       <div

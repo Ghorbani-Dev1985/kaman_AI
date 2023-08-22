@@ -7,7 +7,7 @@ import InitObject from '../../Utils/globalvariables';
 import { BiFilterAlt } from "react-icons/bi";
 import TopFilter from "Common/TopFilter";
 import { HiUserGroup } from "react-icons/hi";
-import FilterDrawer from "Common/FilterDrawer";
+import FilterDrawer from "Common/FilterDrawer/FilterDrawer";
 
 
 function Groups(){

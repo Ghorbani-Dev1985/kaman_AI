@@ -24,7 +24,7 @@ import {
 import { Card, Typography } from "@material-tailwind/react";
 
 import TopFilter from "Common/TopFilter";
-import FilterDrawer from "Common/FilterDrawer";
+import FilterDrawer from "Common/FilterDrawer/FilterDrawer";
 
 
 ChartJS.register(

@@ -282,7 +282,7 @@ function Segment() {
                       >
                         <MenuHandler>
                           <Button className="transparentBtns">
-                            {" "}
+                           
                             <IoDownloadOutline className="text-xl dark:text-navy-500" />
                           </Button>
                         </MenuHandler>

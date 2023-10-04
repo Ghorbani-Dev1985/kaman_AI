@@ -19,6 +19,7 @@ import LifeTime from "Components/Customers/LifeTime";
 import ShareShoping from "Components/Customers/ShareShopping";
 import PurchaseInterval from "Components/Customers/PurchaseInterval";
 import Groups from "Components/Customers/Groups";
+import Trends from "Components/Trends/Trends";
 
 
 const App = () => {
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/" element={<SignIn />} />
           <Route element={<Layout />} >
           <Route path="main/*" element={<Main />} />
+          <Route path="/trends" element={<Trends />} />
           <Route path="/customerSegment" element={<Segment />} />
           <Route path="/transition" element={<Transition />} />
           <Route path="/retention" element={<Retention />} />

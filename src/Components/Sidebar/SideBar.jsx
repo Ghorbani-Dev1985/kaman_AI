@@ -24,6 +24,12 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
     console.log(location.state.userinfo);
     navigate("/main", { state: { userinfo: location.state.userinfo } });
     if (window.innerWidth < 500) onClose();
+  }; 
+  const trendsHandler = (e) => {
+    e.preventDefault();
+    console.log(location.state.userinfo);
+    navigate("/trends", { state: { userinfo: location.state.userinfo } });
+    if (window.innerWidth < 500) onClose();
   };
   const usersHandler = (e) => {
     e.preventDefault();
@@ -219,7 +225,7 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
         navigate("/main", { state: { userinfo: location.state.userinfo } });
         if (window.innerWidth < 500) onClose();
       },
-      to: "/main",
+      to: "/#",
       manuTitle: "وب سرویس",
     },
   ];
@@ -277,8 +283,13 @@ const Sidebar = ({ open, onClose, showSubMenu, setShowSubMenu }) => {
               </li>
               <li>
                 <NavLink
-                  to="/"
-                  className="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-white dark:hover:bg-gray-700"
+                  onClick={trendsHandler}
+                  to="/trends"
+                  className={({ isActive }) =>
+                  isActive
+                    ? "flex w-full rounded-lg bg-gray-100 p-2 text-base font-bold text-navy-500 dark:text-navy-500 dark:hover:bg-gray-500"
+                    : "flex w-full rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                }
                 >
                   <p className="flex">
                     <MdOutlineTimeline className="ml-2 text-lg" />

@@ -531,7 +531,7 @@ function Trends() {
               open ? "flex" : "hidden"
             } absolute top-20 z-50 flex-col justify-start rounded-lg border border-navy-500 bg-white bg-cover bg-no-repeat p-5 shadow-xl dark:!bg-navy-700 dark:text-white dark:shadow-none`}
           >
-            <div className="flex items-center justify-center border-r-4 border-navy-500 px-2">
+            <div className="flex flex-col md:flex-row items-center justify-center border-r-4 border-navy-500 px-2">
               <span className="w-20"> زمان شروع :</span>
               <p className="py-2 hover:border-navy-500">
                 {Date_Picker(start_time1, handleSetStart_time1)}
@@ -552,7 +552,7 @@ function Trends() {
               <label htmlFor="handleCompare"> مقایسه با ...</label>
             </div>
 
-            <div className="flex items-center justify-center border-r-4 border-amber-500 px-2">
+            <div className="flex flex-col md:flex-row items-center justify-center border-r-4 border-amber-500 px-2">
               <span className="w-20"> زمان شروع :</span>
               <p className="py-2 hover:border-navy-500">
                 {Date_Picker(start_time2, setStart_time2)}
@@ -658,7 +658,7 @@ function Trends() {
               <span>اعمال</span>{" "}
             </button>
           </div>
-          <div className="chart">
+          <div className="overflow-scroll">
             <DrawChart
               graph_data={graph_data}
               selected_item_graph={selected_item_graph}

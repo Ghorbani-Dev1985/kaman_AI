@@ -39,12 +39,10 @@ import {
   Checkbox,
 } from "@material-tailwind/react";
 
-
-
 function Date_Picker(v, setter) {
   return (
     <>
-       <DatePicker
+      <DatePicker
         className="date-picker"
         format="YYYY/MM/DD"
         onChange={setter}
@@ -60,7 +58,6 @@ function Date_Picker(v, setter) {
 }
 function useOutsideAlerter(ref, setOpen) {
   useEffect(() => {
-
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
         setOpen(false);
@@ -76,8 +73,6 @@ function useOutsideAlerter(ref, setOpen) {
 }
 
 function SelectTime({ setResponse, setchartresponse }) {
-
-
   const [start_time1, setStart_time1] = useState(new DateObject());
   const [end_time1, setEnd_time1] = useState(new DateObject());
   const [start_time2, setStart_time2] = useState(new DateObject());
@@ -85,9 +80,9 @@ function SelectTime({ setResponse, setchartresponse }) {
   // const [response, setResponse] = useState([]);
 
   const [compare_time, setCompare_time] = useState(0);
-  const [open , setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const DateRef = useRef(null);
-  useOutsideAlerter(DateRef , setOpen);
+  useOutsideAlerter(DateRef, setOpen);
   const location = useLocation();
   useEffect(() => {
     if (localStorage.getItem("start_time1") !== null) {
@@ -174,68 +169,80 @@ function SelectTime({ setResponse, setchartresponse }) {
   return (
     <>
       <TopFilter>
-      <div ref={DateRef} className="relative mr-2 border-l border-gray-100 pl-2 h-full">
+        <div
+          ref={DateRef}
+          className="relative mr-2 h-full border-l border-gray-100 pl-2"
+        >
+          <button
+            onClick={() => setOpen(!open)}
+            className="flex h-full items-center justify-center text-base text-navy-500 transition-all duration-300 ease-in-out hover:bg-brand-50/20 "
+          >
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center">
+                <BiCalendarAlt className="ml-1 text-xl" />
+                <p>
+                  {start_time1.format()} تا {end_time1.format()}{" "}
+                </p>
+              </div>
+              <p className="text-sm">
+                مقایسه با {start_time2.format()} تا {end_time2.format()}{" "}
+              </p>
+            </div>
+          </button>
 
-<button  onClick={() => setOpen(!open)} className="text-navy-500 hover:bg-brand-50/20 transition-all ease-in-out duration-300 h-full flex justify-center items-center text-base ">
-<div className="flex flex-col gap-4">
-  <div className="flex items-center">
-<BiCalendarAlt className="ml-1 text-xl" />
-<p>{start_time1.format()} تا {end_time1.format()} </p>
-  </div>
-<p className="text-sm">مقایسه با {start_time2.format()} تا {end_time2.format()} </p>
-</div>
-</button>
+          <div
+            className={`${
+              open ? "flex" : "hidden"
+            } absolute top-20 z-50 flex-col justify-start rounded-lg border border-navy-500 bg-white bg-cover bg-no-repeat p-5 shadow-xl dark:!bg-navy-700 dark:text-white dark:shadow-none`}
+          >
+            <div className="flex flex-col md:flex-row items-center justify-center border-r-4 border-navy-500 px-2">
+              <span className="w-20"> زمان شروع :</span>
+              <p className="py-2 hover:border-navy-500">
+                {Date_Picker(start_time1, handleSetStart_time1)}
+              </p>
+              <span className="w-20">زمان پایان :</span>
+              <p className="py-2 hover:border-navy-500">
+                {Date_Picker(end_time1, setEnd_time1)}
+              </p>
+            </div>
 
+            <div className="my-7 flex w-full items-center justify-center">
+              <Checkbox
+                name="handleCompare"
+                color="indigo"
+                onClick={handleCompare_time}
+                value={compare_time}
+              />
+              <label htmlFor="handleCompare"> مقایسه با ...</label>
+            </div>
 
-<div className={`${open ? "flex" : "hidden"} z-50 absolute top-20 p-5 flex-col justify-start rounded-lg bg-white border border-navy-500 bg-cover bg-no-repeat shadow-xl dark:!bg-navy-700 dark:text-white dark:shadow-none`}>
+            <div className="flex flex-col md:flex-row items-center justify-center border-r-4 border-amber-500 px-2">
+              <span className="w-20"> زمان شروع :</span>
+              <p className="py-2 hover:border-navy-500">
+                {Date_Picker(start_time2, setStart_time2)}
+              </p>
+              <span className="w-20">زمان پایان :</span>
+              <p className="py-2 hover:border-navy-500">
+                {Date_Picker(end_time2, setEnd_time2)}
+              </p>
+            </div>
 
-
- 
-    <div className="flex items-center justify-center border-r-4 px-2 border-navy-500">
-      <span className="w-20"> زمان شروع :</span>
-      <p className="py-2 hover:border-navy-500">                
-        {Date_Picker(start_time1, handleSetStart_time1)}
-      </p>
-      <span className="w-20">زمان پایان :</span>
-      <p className="py-2 hover:border-navy-500">          
-        {Date_Picker(end_time1, setEnd_time1)}
-      </p>
-    </div>
- 
- <div className="w-full flex justify-center items-center my-7">
-    <Checkbox
-      name="handleCompare"
-      color="indigo"
-      onClick={handleCompare_time}
-      value={compare_time}
-    />
-    <label htmlFor="handleCompare"> مقایسه با ...</label>
- </div>
- 
- 
-    <div className="flex items-center justify-center border-r-4 px-2 border-amber-500">
-      <span className="w-20"> زمان شروع :</span>
-      <p className="py-2 hover:border-navy-500">
-        {Date_Picker(start_time2, setStart_time2)}
-      </p>
-      <span className="w-20">زمان پایان :</span>
-      <p className="py-2 hover:border-navy-500">
-        {Date_Picker(end_time2, setEnd_time2)}
-      </p>
-    </div>
-  
-    <div className="w-full flex justify-end items-center mt-4 py-5 border-t border-gray-300">
-    <button onClick={() => (setOpen(false))} className="transparentBtns">
-      انصراف
-    </button>
-    <button onClick={handleGetInfo} className="btns mr-2 flex w-full items-center justify-center md:w-auto">
-      
-      <BiCheckDouble className="ml-2 text-2xl" /> <span>اعمال</span>
-    </button>
-    </div>
-
-</div>
-</div>
+            <div className="mt-4 flex w-full items-center justify-end border-t border-gray-300 py-5">
+              <button
+                onClick={() => setOpen(false)}
+                className="transparentBtns"
+              >
+                انصراف
+              </button>
+              <button
+                onClick={handleGetInfo}
+                className="btns mr-2 flex w-full items-center justify-center md:w-auto"
+              >
+                <BiCheckDouble className="ml-2 text-2xl" /> <span>اعمال</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </TopFilter>
     </>
   );

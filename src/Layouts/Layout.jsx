@@ -7,7 +7,7 @@ import { BiHelpCircle } from "react-icons/bi";
 
 const Layout = (props) => {
   const { ...rest } = props;
-  const [open, setOpen] = useState(true);
+  const [openMenu, setOpenMenu] = useState(true);
   const [currentRoute, setCurrentRoute] = useState("کمان");
   const [chartresponse, setChartResponse] = useState({});
 
@@ -19,20 +19,20 @@ const Layout = (props) => {
     dropDownFour: false,
   });
   useEffect(() => {
-    if (window.innerWidth < 500) setOpen(false);
+    if (window.innerWidth < 500) setOpenMenu(false);
   }, []);
   return (
     <div className="grid w-full grid-cols-12 gap-3 dark:gap-0 dark:bg-navy-800">
       <Sidebar
-        open={open}
-        onClose={() => setOpen(false)}
+        openMenu={openMenu}
+        onClose={() => setOpenMenu(false)}
         showSubMenu={showSubMenu}
         setShowSubMenu={setShowSubMenu}
       />
       {/* Navbar & Main Content */}
       <div
         className={`col-span-12 w-full dark:bg-navy-700 ${
-          !showSubMenu.allMenu ? "md:col-span-10" : "md:col-span-10"
+          !showSubMenu.allMenu ? "md:col-span-11" : "md:col-span-9 lg:col-span-10"
         }`}
       >
         {/* Main Content */}
@@ -41,7 +41,7 @@ const Layout = (props) => {
         >
           {/* Routes */}
           <Navbar
-            onOpenSidenav={() => setOpen(true)}
+            onOpenSidenav={() => setOpenMenu(true)}
             brandText={currentRoute}
             {...rest}
             setChartResponse={setChartResponse}

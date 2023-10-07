@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "./selectTime.css";
 import DatePicker, { Calendar, DateObject } from "react-multi-date-picker";
 import transition from "react-element-popper/animations/transition";
@@ -44,22 +44,36 @@ import {
 function Date_Picker(v, setter) {
   return (
     <>
-      <DatePicker
-        className="select-time"
-        format="YYYY-MM-DD"
+       <DatePicker
+        className="date-picker"
+        format="YYYY/MM/DD"
         onChange={setter}
         calendar={persian}
         locale={persian_fa}
-        animations={[transition({ duration: 800, from: 35 })]}
         value={v}
-        formattingIgnoreList={["Date", "Time"]}
+        formattingIgnoreList={["Date"]}
         calendarPosition="bottom-center"
         plugins={[<Toolbar position="bottom" />]}
       />
     </>
   );
 }
+function useOutsideAlerter(ref, setOpen) {
+  useEffect(() => {
 
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setOpen(false);
+      }
+    }
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref, setOpen]);
+}
 
 function SelectTime({ setResponse, setchartresponse }) {
 
@@ -71,8 +85,9 @@ function SelectTime({ setResponse, setchartresponse }) {
   // const [response, setResponse] = useState([]);
 
   const [compare_time, setCompare_time] = useState(0);
-  const [showDateBox, setShowDateBox] = useState(false);
   const [open , setOpen] = useState(false);
+  const DateRef = useRef(null);
+  useOutsideAlerter(DateRef , setOpen);
   const location = useLocation();
   useEffect(() => {
     if (localStorage.getItem("start_time1") !== null) {
@@ -139,7 +154,7 @@ function SelectTime({ setResponse, setchartresponse }) {
     e.preventDefault();
     handleFactorInfo(e);
     handleProductInfo(e);
-    setOpen(true);
+    setOpen(false);
   };
 
   const handleCompare_time = (event) => {
@@ -159,60 +174,68 @@ function SelectTime({ setResponse, setchartresponse }) {
   return (
     <>
       <TopFilter>
-        <div className="mr-3 flex flex-col items-center lg:flex-row">
-          <Menu
-            placement="right-start"
-            offset={15}
-            dismiss={{
-              itemPress: false,
-            }}
-            animate={{
-              mount: { y: 50, x: 155 },
-              unmount: { y: 25 },
-            }}
-          >
-            <MenuHandler>
-              <Button className="btns flex items-center justify-center text-base">
-                <BiCalendarAlt className="ml-2 text-xl" />
-                <span>انتخاب تاریخ</span>
-              </Button>
-            </MenuHandler>
-            <MenuList className={`${open && "hidden"} border-r border-navy-500`}>
-              <MenuItem className="outline-none">
-                <div className="flex items-center justify-center">
-                  <span> زمان شروع :</span>
-                 <p className="py-2 hover:border-navy-500"> {Date_Picker(start_time1, handleSetStart_time1)}</p>
-                  <span>زمان پایان :</span>
-                  <p className="py-2 hover:border-navy-500"> {Date_Picker(end_time1, setEnd_time1)}</p>
-                </div>
-              </MenuItem>
-              <MenuItem className="my-5 flex items-center justify-center outline-none">
-                <Checkbox
-                  name="handleCompare"
-                  color="indigo"
-                  onClick={handleCompare_time}
-                  value={compare_time}
-                />
-                <label htmlFor="handleCompare"> مقایسه با</label>
-              </MenuItem>
-              <MenuItem className="outline-none">
-                <div className="flex items-center justify-center">
-                  <span> زمان شروع :</span>
-                  <p className="py-2 hover:border-navy-500">  {Date_Picker(start_time2, setStart_time2)}</p>
-                  <span>زمان پایان :</span>
-                  <p className="py-2 hover:border-navy-500"> {Date_Picker(end_time2, setEnd_time2)}</p>
-                </div>
-              </MenuItem>
-              <MenuItem className="my-6 flex justify-center items-center outline-none">
-              <button
-           onClick={handleGetInfo}
-            className="btns mr-2 flex w-full items-center justify-center md:w-auto">
-            <BiCheckDouble className="ml-2 text-2xl" /> <span>اعمال</span>
-          </button>
-              </MenuItem>
-            </MenuList>
-          </Menu>
-        </div>
+      <div ref={DateRef} className="relative mr-2 border-l border-gray-100 pl-2 h-full">
+
+<button  onClick={() => setOpen(!open)} className="text-navy-500 hover:bg-brand-50/20 transition-all ease-in-out duration-300 h-full flex justify-center items-center text-base ">
+<div className="flex flex-col gap-4">
+  <div className="flex items-center">
+<BiCalendarAlt className="ml-1 text-xl" />
+<p>{start_time1.format()} تا {end_time1.format()} </p>
+  </div>
+<p className="text-sm">مقایسه با {start_time2.format()} تا {end_time2.format()} </p>
+</div>
+</button>
+
+
+<div className={`${open ? "flex" : "hidden"} z-50 absolute top-20 p-5 flex-col justify-start rounded-lg bg-white border border-navy-500 bg-cover bg-no-repeat shadow-xl dark:!bg-navy-700 dark:text-white dark:shadow-none`}>
+
+
+ 
+    <div className="flex items-center justify-center border-r-4 px-2 border-navy-500">
+      <span className="w-20"> زمان شروع :</span>
+      <p className="py-2 hover:border-navy-500">                
+        {Date_Picker(start_time1, handleSetStart_time1)}
+      </p>
+      <span className="w-20">زمان پایان :</span>
+      <p className="py-2 hover:border-navy-500">          
+        {Date_Picker(end_time1, setEnd_time1)}
+      </p>
+    </div>
+ 
+ <div className="w-full flex justify-center items-center my-7">
+    <Checkbox
+      name="handleCompare"
+      color="indigo"
+      onClick={handleCompare_time}
+      value={compare_time}
+    />
+    <label htmlFor="handleCompare"> مقایسه با ...</label>
+ </div>
+ 
+ 
+    <div className="flex items-center justify-center border-r-4 px-2 border-amber-500">
+      <span className="w-20"> زمان شروع :</span>
+      <p className="py-2 hover:border-navy-500">
+        {Date_Picker(start_time2, setStart_time2)}
+      </p>
+      <span className="w-20">زمان پایان :</span>
+      <p className="py-2 hover:border-navy-500">
+        {Date_Picker(end_time2, setEnd_time2)}
+      </p>
+    </div>
+  
+    <div className="w-full flex justify-end items-center mt-4 py-5 border-t border-gray-300">
+    <button onClick={() => (setOpen(false))} className="transparentBtns">
+      انصراف
+    </button>
+    <button onClick={handleGetInfo} className="btns mr-2 flex w-full items-center justify-center md:w-auto">
+      
+      <BiCheckDouble className="ml-2 text-2xl" /> <span>اعمال</span>
+    </button>
+    </div>
+
+</div>
+</div>
       </TopFilter>
     </>
   );

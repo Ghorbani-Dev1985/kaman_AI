@@ -4,36 +4,40 @@
 @tailwind utilities;
 
 @layer base {
-	[type="checkbox"],
-	[type="radio"] {
-	  @apply rounded border-2 border-solid border-gray-300;
-	}
-	[type="submit"], [button] {
-	  @apply text-white bg-navy-800 hover:bg-white transition-all ease-in-out duration-700 hover:border hover:border-navy-800 hover:text-navy-800 font-medium rounded-lg text-sm w-full px-5 py-2 text-center dark:bg-navy-800 dark:hover:bg-navy-800 dark:focus:ring-navy-800;
-	}
-  }
-  .inputStyles {
-	@apply w-full bg-gray-100 text-gray-600 dark:text-navy-500 rounded-lg px-3 py-2 border-2 hover:border-navy-500 focus:border-navy-500 focus:outline-none transition dark:bg-gray-300 text-center;
-  }
-.btns {
-	  @apply bg-navy-500 text-gray-100 border border-navy-500 border-solid hover:bg-navy-200 text-base font-bold p-2 hover:text-navy-800 rounded-lg transition dark:bg-navy-800 dark:hover:bg-navy-900 dark:text-gray-100 my-2 md:my-0;
-	}
-
-p{
-	@apply text-justify;
+  p {
+    @apply text-justify;
   }
   html {
-	@apply dark:bg-navy-700 p-0 m-0;
+    @apply m-0 p-0 dark:bg-navy-700;
   }
   body {
-      @apply m-0 p-0 font-IRANSansFaNum overflow-x-hidden relative text-right text-navy-500 bg-lightPrimary dark:bg-navy-700;
-	}
-	a{
-	  text-decoration: none !important;
-	}
+    @apply relative m-0 overflow-x-hidden bg-lightPrimary p-0 text-right font-IRANSansFaNum text-navy-500 dark:bg-navy-700;
+  }
+  a {
+    text-decoration: none !important;
+  }
+
+  [type="checkbox"],
+  [type="radio"] {
+    @apply rounded border-2 border-solid border-gray-300;
+  }
+  [type="submit"],
+  [button] {
+    @apply w-full rounded-lg bg-navy-800 px-5 py-2 text-center text-sm font-medium text-white transition-all duration-700 ease-in-out hover:border hover:border-navy-800 hover:bg-white hover:text-navy-800 dark:bg-navy-800 dark:hover:bg-navy-800 dark:focus:ring-navy-800;
+  }
+}
+
+@layer components {
+  .inputStyles {
+    @apply w-full rounded-lg border-2 bg-gray-100 px-3 py-2 text-center text-gray-600 transition hover:border-navy-500 focus:border-navy-500 focus:outline-none dark:bg-gray-300 dark:text-navy-500;
+  }
+  .btns {
+    @apply my-2 rounded-lg border border-solid border-navy-500 bg-navy-500 p-2 text-base font-bold text-gray-100 transition hover:bg-navy-200 hover:text-navy-800 dark:bg-navy-800 dark:text-gray-100 dark:hover:bg-navy-900 md:my-0;
+  }
   .secondBtns {
-		@apply bg-amber-500 text-gray-100 border border-amber-500 border-solid hover:bg-amber-200 font-extrabold py-2 px-3 hover:text-amber-800 rounded-lg transition dark:bg-amber-800 dark:hover:bg-amber-900 dark:text-gray-100 my-2 md:my-0 mx-0 md:mx-2;
-	  }
-	  .transparentBtns {
-		@apply text-navy-500 border bg-transparent border-navy-500 border-solid font-extrabold text-lg py-2 px-3 hover:text-navy-800 rounded-lg transition dark:text-gray-100 my-2 md:my-0 mx-0 md:mx-2;
-	  }
+    @apply my-2 mx-0 rounded-lg border border-solid border-amber-500 bg-amber-500 py-2 px-3 font-extrabold text-gray-100 transition hover:bg-amber-200 hover:text-amber-800 dark:bg-amber-800 dark:text-gray-100 dark:hover:bg-amber-900 md:my-0 md:mx-2;
+  }
+  .transparentBtns {
+    @apply my-2 mx-0 rounded-lg border border-solid border-navy-500 bg-transparent py-2 px-3 text-base text-navy-500 transition hover:text-navy-800 dark:text-gray-100 md:my-0 md:mx-2;
+  }
+}

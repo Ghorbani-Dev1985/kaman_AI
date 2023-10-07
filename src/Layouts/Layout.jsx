@@ -32,7 +32,7 @@ const Layout = (props) => {
       {/* Navbar & Main Content */}
       <div
         className={`col-span-12 w-full dark:bg-navy-700 ${
-          !showSubMenu.allMenu ? "md:col-span-11" : "md:col-span-9"
+          !showSubMenu.allMenu ? "md:col-span-10" : "md:col-span-10"
         }`}
       >
         {/* Main Content */}

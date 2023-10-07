@@ -20,6 +20,7 @@ import ShareShoping from "Components/Customers/ShareShopping";
 import PurchaseInterval from "Components/Customers/PurchaseInterval";
 import Groups from "Components/Customers/Groups";
 import Trends from "Components/Trends/Trends";
+import Clustering from "Components/Customers/Clustering";
 
 
 const App = () => {
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/lifeTime" element={<LifeTime />} />
           <Route path="/shareShopping" element={<ShareShoping />} />
           <Route path="/purchaseInterval" element={<PurchaseInterval />} />
+          <Route path="/clustering" element={<Clustering />} />
           <Route path="/groups" element={<Groups />} />
           <Route path="/users" element={<Users />} />
           <Route path="/analyse" element={<AnalyseData />} />

@@ -7,7 +7,7 @@ import {
   Input,
   Textarea,
 } from "@material-tailwind/react";
-import { BiArrowBack, BiFilterAlt, BiMinusCircle } from "react-icons/bi";
+import { BiArrowBack, BiCheckDouble, BiFilterAlt, BiMinusCircle } from "react-icons/bi";
 import Select from "react-select";
 import 'react-select-search/style.css'
 import Analyse from "../../Components/config/Analyse";

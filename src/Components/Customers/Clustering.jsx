@@ -288,15 +288,14 @@ function Clustering() {
               <div>{select_features(setFeature8)}</div>
             </div>
             <div className="my-8 flex w-full items-center justify-center">
-              {" "}
+            
               <button
                 type="button"
                 class="btns flex items-center justify-center"
                 onClick={get_clustering}
               >
-                {" "}
                 <BiCheckDouble className="ml-2 text-2xl" />
-                <span>اعمال</span>{" "}
+                <span>اعمال</span>
               </button>
             </div>
 

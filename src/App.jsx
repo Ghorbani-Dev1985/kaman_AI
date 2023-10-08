@@ -23,6 +23,7 @@ import Trends from "Components/Trends/Trends";
 import Clustering from "Components/Customers/Clustering";
 import ShoppingCartAnalysis from "Components/Products/ShoppingCartAnalysis";
 import ProductPerformanceAnalysis from "Components/Products/ProductPerformanceAnalysis";
+import PredictingCustomerFall from "Components/PredictiveAnalytics/PredictingCustomerFall";
 
 
 const App = () => {
@@ -53,6 +54,7 @@ const App = () => {
           <Route path="/groups" element={<Groups />} /> 
           <Route path="/shoppingCartAnalysis" element={<ShoppingCartAnalysis />} />
           <Route path="/productPerformanceAnalysis" element={<ProductPerformanceAnalysis />} />
+          <Route path="/predictingCustomerFall" element={<PredictingCustomerFall />} />
           <Route path="/users" element={<Users />} />
           <Route path="/analyse" element={<AnalyseData />} />
           <Route path="/importData" element={<ImportData />} />

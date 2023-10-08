@@ -158,7 +158,7 @@ const Sidebar = ({ openMenu,  onClose, showSubMenu, setShowSubMenu }) => {
         if (window.innerWidth < 500) onClose();
       },
       to: "/groups",
-      manuTitle: " گروه مشتریان مشتریان",
+      manuTitle: " گروه مشتریان ",
     },
   ];
   const ProductsSubMenu = [

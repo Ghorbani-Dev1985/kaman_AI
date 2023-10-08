@@ -87,7 +87,7 @@ const FilterDrawer = () => {
     <>
       <Button
         onClick={openDrawer}
-        className="btns ml-2 flex items-center justify-center text-lg"
+        className="btns mx-2 flex items-center justify-center text-lg"
       >
         <BiFilterAlt className="ml-2 text-2xl" />
         فیلتر

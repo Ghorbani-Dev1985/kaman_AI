@@ -167,17 +167,25 @@ const Sidebar = ({ openMenu,  onClose, showSubMenu, setShowSubMenu }) => {
       handler: (e) => {
         e.preventDefault();
         console.log(location.state.userinfo);
-        navigate("/productsAnalyse", {
+        navigate("/productPerformanceAnalysis", {
           state: { userinfo: location.state.userinfo },
         });
         if (window.innerWidth < 500) onClose();
       },
-      to: "/productsAnalyse",
+      to: "/productPerformanceAnalysis",
       manuTitle: "تحلیل عملکرد محصولات",
     },
     {
       id: 2,
-      to: "",
+      handler: (e) => {
+        e.preventDefault();
+        console.log(location.state.userinfo);
+        navigate("/shoppingCartAnalysis", {
+          state: { userinfo: location.state.userinfo },
+        });
+        if (window.innerWidth < 500) onClose();
+      },
+      to: "/shoppingCartAnalysis",
       manuTitle: " تحلیل سبد مشتریان",
     },
   ];
@@ -416,7 +424,11 @@ const Sidebar = ({ openMenu,  onClose, showSubMenu, setShowSubMenu }) => {
                           <NavLink
                            onClick={ProductSubMenu.handler}
                             to={ProductSubMenu.to}
-                            className="group flex w-full items-center rounded-lg p-2 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
+                            className={({ isActive }) =>
+                            isActive
+                              ? "flex w-full rounded-lg bg-gray-300 p-2 text-base font-bold text-navy-500 dark:bg-navy-200 dark:text-navy-500 dark:hover:bg-gray-500"
+                              : "flex w-full rounded-lg p-2 text-base font-normal text-gray-700 hover:bg-gray-100 dark:text-navy-500 dark:hover:bg-gray-500"
+                          }
                           >
                             {ProductSubMenu.manuTitle}
                           </NavLink>

@@ -21,7 +21,9 @@ import PurchaseInterval from "Components/Customers/PurchaseInterval";
 import Groups from "Components/Customers/Groups";
 import Trends from "Components/Trends/Trends";
 import Clustering from "Components/Customers/Clustering";
-import ProductsAnalyse from "Components/Products/ProductsAnalyse";
+import ShoppingCartAnalysis from "Components/Products/ShoppingCartAnalysis";
+import ProductPerformanceAnalysis from "Components/Products/ProductPerformanceAnalysis";
+
 
 const App = () => {
   return (
@@ -49,7 +51,8 @@ const App = () => {
           <Route path="/purchaseInterval" element={<PurchaseInterval />} />
           <Route path="/clustering" element={<Clustering />} />
           <Route path="/groups" element={<Groups />} /> 
-          <Route path="/productsAnalyse" element={<ProductsAnalyse />} />
+          <Route path="/shoppingCartAnalysis" element={<ShoppingCartAnalysis />} />
+          <Route path="/productPerformanceAnalysis" element={<ProductPerformanceAnalysis />} />
           <Route path="/users" element={<Users />} />
           <Route path="/analyse" element={<AnalyseData />} />
           <Route path="/importData" element={<ImportData />} />

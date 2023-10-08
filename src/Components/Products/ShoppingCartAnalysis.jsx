@@ -84,7 +84,7 @@ function DrawChart({ graph_data, indicator }) {
       },
       title: {
         display: true,
-        text: "نمودار عملکرد محصولات",
+        text: "نمودار تحلیل سبد",
       },
     },
   };
@@ -167,7 +167,7 @@ function useOutsideAlerter(ref, setOpen) {
   }, [ref, setOpen]);
 }
 
-function Analyse() {
+function ShoppingCartAnalysis() {
   const location = useLocation();
   const [start_time1, setStart_time1] = useState(new DateObject());
   const [end_time1, setEnd_time1] = useState(new DateObject());
@@ -492,7 +492,7 @@ function Analyse() {
         <fieldset className="rounded-md border border-solid border-gray-300 p-3">
           <legend className="float-none w-auto px-2 text-sm">
             <p className="flex items-center text-lg font-bold">
-              <HiOutlineChartBar className="ml-2 text-3xl" /> تحلیل عملکرد
+              <HiOutlineChartBar className="ml-2 text-3xl" /> تحلیل سبد
               محصولات
             </p>
           </legend>
@@ -515,4 +515,4 @@ function Analyse() {
   );
 }
 
-export default Analyse;
+export default ShoppingCartAnalysis;

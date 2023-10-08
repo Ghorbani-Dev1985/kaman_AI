@@ -5,8 +5,6 @@ import InitObject from "../../Utils/globalvariables";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import DatePicker, { DateObject } from "react-multi-date-picker";
-import TimePicker from "react-multi-date-picker/plugins/analog_time_picker";
-import DatePickerHeader from "react-multi-date-picker/plugins/date_picker_header";
 import Toolbar from "react-multi-date-picker/plugins/toolbar";
 import Select from "react-select";
 import { Chart } from "react-chartjs-2";

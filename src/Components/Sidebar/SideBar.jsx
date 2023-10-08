@@ -164,7 +164,15 @@ const Sidebar = ({ openMenu,  onClose, showSubMenu, setShowSubMenu }) => {
   const ProductsSubMenu = [
     {
       id: 1,
-      to: "",
+      handler: (e) => {
+        e.preventDefault();
+        console.log(location.state.userinfo);
+        navigate("/productsAnalyse", {
+          state: { userinfo: location.state.userinfo },
+        });
+        if (window.innerWidth < 500) onClose();
+      },
+      to: "/productsAnalyse",
       manuTitle: "تحلیل عملکرد محصولات",
     },
     {
@@ -406,6 +414,7 @@ const Sidebar = ({ openMenu,  onClose, showSubMenu, setShowSubMenu }) => {
                       return (
                         <ListItem key={ProductSubMenu.id}>
                           <NavLink
+                           onClick={ProductSubMenu.handler}
                             to={ProductSubMenu.to}
                             className="group flex w-full items-center rounded-lg p-2 text-base font-normal text-gray-700 transition duration-75 hover:bg-navy-50 dark:text-navy-500 dark:hover:bg-gray-500"
                           >

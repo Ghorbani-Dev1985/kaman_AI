@@ -314,7 +314,7 @@ function ShareShoping() {
           <div className="my-16">
             <DrawChart1 graph_data={graph_data} />
           </div>
-            <DownloadBtn />
+            <DownloadBtn onClick={(e) => handleDownloadFile(e, {table_data})}/>
 
           <div className="table1">
             <DrawTable graph_data={table_data} />

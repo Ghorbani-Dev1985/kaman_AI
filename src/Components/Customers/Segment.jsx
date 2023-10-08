@@ -351,7 +351,7 @@ function Segment() {
             <DrawChart data={graph_data} />
           </div>
 
-          <DownloadBtn />
+          <DownloadBtn onClick={(e) => handleDownloadFile(e, 'table')} />
           <DrawTable graph_data={graph_data} summery_data={summery_data} />
         </fieldset>
       </div>

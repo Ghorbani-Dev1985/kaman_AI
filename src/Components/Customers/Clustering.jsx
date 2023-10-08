@@ -70,6 +70,8 @@ function Clustering() {
   const [feature7, setFeature7] = useState("product_name_count");
   const [feature8, setFeature8] = useState("product_name_count");
   const [clusters, setClusters] = useState({ labels: [], data: [] });
+  const [clusterSelect, setClusterSelect] = useState(null);
+ const [selectFeatures, setSelectFeatures] = useState(null);
 
   const get_clustering = (e) => {
     e.preventDefault();
@@ -244,7 +246,7 @@ function Clustering() {
   function select_features(setfeature) {
     return (
       <Select
-        onChange={(e) => setfeature(e.target.value)}
+        onChange={setSelectFeatures}
         options={SelectFeatures}
         placeholder="انتخاب"
         className="md:max-w-xs"
@@ -270,7 +272,7 @@ function Clustering() {
             <div className="grid w-full grid-cols-1 gap-y-4 md:grid-cols-3">
               <div>
                 <Select
-                  onChange={(e) => setNum_cluster(e.target.value)}
+                  onChange={setClusterSelect}
                   options={SetNumCluster}
                   placeholder="انتخاب"
                   className="md:max-w-xs"

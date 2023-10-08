@@ -199,7 +199,7 @@ const LifeTime = () => {
           <div className="my-10 max-w-xs overflow-x-auto md:max-w-xl lg:max-w-full">
             <DrawChart graph_data={graph_data} />
           </div>
-       <DownloadBtn />
+       <DownloadBtn onClick={(e) => handleDownloadFile(e, { table_data })}/>
           <div className="table1">
             <DrawTable graph_data={table_data} />
           </div>

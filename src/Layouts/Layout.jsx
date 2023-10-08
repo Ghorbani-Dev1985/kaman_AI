@@ -13,10 +13,6 @@ const Layout = (props) => {
 
   const [showSubMenu, setShowSubMenu] = useState({
     allMenu: true,
-    dropDownOne: false,
-    dropDownTwo: false,
-    dropDownThree: false,
-    dropDownFour: false,
   });
   useEffect(() => {
     if (window.innerWidth < 500) setOpenMenu(false);

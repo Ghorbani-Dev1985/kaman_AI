@@ -17,13 +17,13 @@ import Transition from "Components/Customers/Transition";
 import Retention from "Components/Customers/Retention";
 import LifeTime from "Components/Customers/LifeTime";
 import ShareShoping from "Components/Customers/ShareShopping";
-import PurchaseInterval from "Components/Customers/PurchaseInterval";
 import Groups from "Components/Customers/Groups";
 import Trends from "Components/Trends/Trends";
 import Clustering from "Components/Customers/Clustering";
 import ShoppingCartAnalysis from "Components/Products/ShoppingCartAnalysis";
 import ProductPerformanceAnalysis from "Components/Products/ProductPerformanceAnalysis";
 import PredictingCustomerFall from "Components/PredictiveAnalytics/PredictingCustomerFall";
+import PurchaseInterval from "Components/PredictiveAnalytics/PurchaseInterval";
 
 
 const App = () => {
@@ -49,12 +49,12 @@ const App = () => {
           <Route path="/retention" element={<Retention />} />
           <Route path="/lifeTime" element={<LifeTime />} />
           <Route path="/shareShopping" element={<ShareShoping />} />
-          <Route path="/purchaseInterval" element={<PurchaseInterval />} />
           <Route path="/clustering" element={<Clustering />} />
           <Route path="/groups" element={<Groups />} /> 
           <Route path="/shoppingCartAnalysis" element={<ShoppingCartAnalysis />} />
           <Route path="/productPerformanceAnalysis" element={<ProductPerformanceAnalysis />} />
           <Route path="/predictingCustomerFall" element={<PredictingCustomerFall />} />
+          <Route path="/purchaseInterval" element={<PurchaseInterval />} />
           <Route path="/users" element={<Users />} />
           <Route path="/analyse" element={<AnalyseData />} />
           <Route path="/importData" element={<ImportData />} />

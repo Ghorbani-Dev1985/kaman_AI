@@ -25,6 +25,7 @@ import { Card, Typography } from "@material-tailwind/react";
 
 import TopFilter from "Common/TopFilter";
 import FilterDrawer from "Common/FilterDrawer/FilterDrawer";
+import DownloadBtn from "Common/DownloadBtn";
 
 
 ChartJS.register(
@@ -250,7 +251,7 @@ function PurchaseInterval(){
         <fieldset className="rounded-md border border-solid border-gray-300 p-3">
           <legend className="float-none w-auto px-2 text-sm">
             <p className="flex items-center text-lg font-bold">
-              <BiShoppingBag className="ml-2 text-3xl" />  فاصله خرید مشتریان  
+              <BiShoppingBag className="ml-2 text-3xl" /> تحلیل فاصله بین خرید  
             </p>
           </legend>
     
@@ -261,11 +262,7 @@ function PurchaseInterval(){
                  <div className="my-16" >
                     <DrawChart1 graph_data={graph_data}/>
                 </div >
-{/* 
-                <div className="table-description">
-                    
-                    <button type="button" onClick={(e) => handleDownloadFile(e, {table_data})} class="btn btn-primary btn-sm button"  > دانلود </button> 
-                </div>  */}
+                <DownloadBtn onClick={(e) => handleDownloadFile(e, {table_data})}/> 
 
       </fieldset>
       </div>

@@ -205,12 +205,12 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       handler: (e) => {
         e.preventDefault();
         console.log(location.state.userinfo);
-        navigate("/main", {
+        navigate("/purchaseInterval", {
           state: { userinfo: location.state.userinfo },
         });
         if (window.innerWidth < 500) onClose();
       },
-      to: "/main",
+      to: "/purchaseInterval",
       manuTitle: " تحلیل فاصله بین هر خرید",
     },
     {

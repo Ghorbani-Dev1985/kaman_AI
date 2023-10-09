@@ -28,6 +28,10 @@ import SeperationDataSelect from "Common/SeperationDataSelect";
 import { Checkbox } from "@material-tailwind/react";
 import DownloadBtn from "Common/DownloadBtn";
 import DrawTable from "Common/DrawTable";
+import { useStart_time1 } from "Context/Start_time1Context";
+import { useEnd_time1 } from "Context/End_time1Context";
+import { useStart_time2 } from "Context/Start_time2Context";
+import { useEnd_time2 } from "Context/End_time2Context";
 
 ChartJS.register(
   CategoryScale,
@@ -122,10 +126,11 @@ function useOutsideAlerter(ref, setOpen) {
 
 function ProductPerformanceAnalysis() {
   const location = useLocation();
-  const [start_time1, setStart_time1] = useState(new DateObject());
-  const [end_time1, setEnd_time1] = useState(new DateObject());
-  const [start_time2, setStart_time2] = useState(new DateObject());
-  const [end_time2, setEnd_time2] = useState(new DateObject());
+  //Context
+  const {start_time1 , setStart_time1} = useStart_time1();
+  const {end_time1 , setEnd_time1} = useEnd_time1();
+  const {start_time2 , setStart_time2} = useStart_time2();
+  const {end_time2 , setEnd_time2} = useEnd_time2();
   const [compare_time, setCompare_time] = useState(0);
   const [seperator, setSeparator] = useState("product_category");
   const [open, setOpen] = useState(false);

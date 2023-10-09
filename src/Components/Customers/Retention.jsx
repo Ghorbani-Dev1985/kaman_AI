@@ -36,6 +36,8 @@ import {
 import DataGraphSelect from "Common/DataGraphSelect";
 import SeperationDataSelect from "Common/SeperationDataSelect";
 import FilterDrawer from "Common/FilterDrawer/FilterDrawer";
+import { useStart_time1 } from "Context/Start_time1Context";
+import { useEnd_time1 } from "Context/End_time1Context";
 
 
 ChartJS.register(
@@ -109,8 +111,9 @@ function Retention() {
     retntion: [],
     table: [],
   });
-  const [start_time1, setStart_time1] = useState(new DateObject());
-  const [end_time1, setEnd_time1] = useState(new DateObject());
+  //Context
+  const {start_time1 , setStart_time1} = useStart_time1();
+  const {end_time1 , setEnd_time1} = useEnd_time1();
   const [period, setPeriod] = useState("30");
   const [seperation, setSeperation] = useState("None");
 

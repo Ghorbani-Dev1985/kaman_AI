@@ -16,7 +16,7 @@ import Layout from "Layouts/Layout";
 import Transition from "Components/Customers/Transition";
 import Retention from "Components/Customers/Retention";
 import LifeTime from "Components/Customers/LifeTime";
-import ShareShoping from "Components/Customers/ShareShopping";
+import ShareShopping from "Components/Customers/ShareShopping";
 import Groups from "Components/Customers/Groups";
 import Trends from "Components/Trends/Trends";
 import Clustering from "Components/Customers/Clustering";
@@ -25,6 +25,7 @@ import ProductPerformanceAnalysis from "Components/Products/ProductPerformanceAn
 import PredictingCustomerFall from "Components/PredictiveAnalytics/PredictingCustomerFall";
 import PurchaseInterval from "Components/PredictiveAnalytics/PurchaseInterval";
 import Bundling from "Components/PredictiveAnalytics/Bundling";
+import MainProvider from './Components/MainProvider/MainProvider';
 
 const App = () => {
   return (
@@ -39,6 +40,7 @@ const App = () => {
         pauseOnHover
         theme="colored"
       />
+       <MainProvider>
       <Routes>
         <Route path="/" element={<SignIn />} />
           <Route element={<Layout />} >
@@ -48,7 +50,7 @@ const App = () => {
           <Route path="/transition" element={<Transition />} />
           <Route path="/retention" element={<Retention />} />
           <Route path="/lifeTime" element={<LifeTime />} />
-          <Route path="/shareShopping" element={<ShareShoping />} />
+          <Route path="/shareShopping" element={<ShareShopping />} />
           <Route path="/clustering" element={<Clustering />} />
           <Route path="/groups" element={<Groups />} /> 
           <Route path="/shoppingCartAnalysis" element={<ShoppingCartAnalysis />} />
@@ -63,6 +65,8 @@ const App = () => {
           <Route path="admin/*" element={<AdminLayout />} />
           </Route>
       </Routes>
+       </MainProvider>
+           
     </>
   );
 };

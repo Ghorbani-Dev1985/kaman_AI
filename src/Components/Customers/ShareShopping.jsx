@@ -27,6 +27,8 @@ import DataGraphSelect from "Common/DataGraphSelect";
 import DownloadBtn from "Common/DownloadBtn";
 import FilterDrawer from "Common/FilterDrawer/FilterDrawer";
 import DrawTable from "Common/DrawTable";
+import { useStart_time1 } from "Context/Start_time1Context";
+import { useEnd_time1 } from "Context/End_time1Context";
 
 ChartJS.register(
   CategoryScale,
@@ -147,8 +149,9 @@ function ShareShoping() {
 
   const [graph_data, setGraph_data] = useState({});
   const [table_data, setTable_data] = useState({ labels: [], data: [[]] });
-  const [start_time1, setStart_time1] = useState(new DateObject());
-  const [end_time1, setEnd_time1] = useState(new DateObject());
+  //Context
+  const {start_time1 , setStart_time1} = useStart_time1();
+  const {end_time1 , setEnd_time1} = useEnd_time1();
   const [period, setPeriod] = useState("30");
 
   function get_graph_data(location, setGraph_data, setTable_data) {

@@ -481,7 +481,7 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
                 <MdOutlineShoppingCart className="ml-2 text-lg" />
               </ListItemPrefix>
               <Typography
-                className={`ml-auto ${
+                className={`ml-auto text-right ${
                   showSubMenu.allMenu ? "inline-flex" : "hidden"
                 }`}
               >

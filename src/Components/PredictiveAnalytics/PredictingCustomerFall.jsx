@@ -123,7 +123,6 @@ function PredictingCustomerFall() {
           <p className="ml-2 text-navy-500">راهنما</p>
         </div>
       </section>
-      <div className="select-time"></div>
 
       <div className="mb-4 rounded-md bg-white p-4 dark:bg-navy-700 dark:text-white">
         <fieldset className="rounded-md border border-solid border-gray-300 p-3">

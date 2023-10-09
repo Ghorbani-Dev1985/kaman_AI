@@ -9,6 +9,7 @@ import { BiCheckDouble, BiSelection } from "react-icons/bi";
 import "react-select-search/style.css";
 import Select from "react-select";
 import DownloadBtn from "Common/DownloadBtn";
+import { IoBulbOutline } from "react-icons/io5";
 
 function Bundling() {
   const location = useLocation();
@@ -73,6 +74,12 @@ function Bundling() {
 
   return (
     <>
+      <section className="mb-4 flex w-full items-center justify-end rounded-lg bg-white lg:h-24">
+        <div className="flex flex-col items-center md:flex-row">
+          <IoBulbOutline className="text-lg text-navy-500" />
+          <p className="ml-2 text-navy-500">راهنما</p>
+        </div>
+      </section>
       <div className="mb-4 rounded-md bg-white p-4 dark:bg-navy-700 dark:text-white">
         <fieldset className="rounded-md border border-solid border-gray-300 p-3">
           <legend className="float-none w-auto px-2 text-sm">

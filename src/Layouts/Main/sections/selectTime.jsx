@@ -1,17 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import "./selectTime.css";
-import DatePicker, { Calendar, DateObject } from "react-multi-date-picker";
-import transition from "react-element-popper/animations/transition";
+import DatePicker, { DateObject } from "react-multi-date-picker";
 import { useState } from "react";
-// import { Calendar } from "react-multi-date-picker"
 import persian_fa from "react-date-object/locales/persian_fa";
 import persian from "react-date-object/calendars/persian";
 import Toolbar from "react-multi-date-picker/plugins/toolbar";
-// import gregorian from "react-date-object/calendars/gregorian"
-// import gregorian_en from "react-date-object/locales/gregorian_en"
-import TimePicker from "react-multi-date-picker/plugins/analog_time_picker";
-// import DatePanel from "react-multi-date-picker/plugins/date_panel";
-import DatePickerHeader from "react-multi-date-picker/plugins/date_picker_header";
 
 import { useLocation } from "react-router-dom";
 import axios from "axios";
@@ -22,22 +15,14 @@ import {
   BiCheckDouble,
   BiChevronDown,
 } from "react-icons/bi";
-import { BiHelpCircle } from "react-icons/bi";
 
-import { Fragment } from "react";
-import { Listbox, Transition } from "@headlessui/react";
 import TopFilter from "Common/TopFilter";
-import DataGraphSelect from "Common/DataGraphSelect";
-import {
-  Menu,
-  MenuHandler,
-  Button,
-  MenuList,
-  MenuItem,
-  Input,
-  Typography,
-  Checkbox,
-} from "@material-tailwind/react";
+
+import { Checkbox} from "@material-tailwind/react";
+import { useStart_time1 } from "Context/Start_time1Context";
+import { useEnd_time1 } from "Context/End_time1Context";
+import { useStart_time2 } from "Context/Start_time2Context";
+import { useEnd_time2 } from "Context/End_time2Context";
 
 function Date_Picker(v, setter) {
   return (
@@ -73,11 +58,11 @@ function useOutsideAlerter(ref, setOpen) {
 }
 
 function SelectTime({ setResponse, setchartresponse }) {
-  const [start_time1, setStart_time1] = useState(new DateObject());
-  const [end_time1, setEnd_time1] = useState(new DateObject());
-  const [start_time2, setStart_time2] = useState(new DateObject());
-  const [end_time2, setEnd_time2] = useState(new DateObject());
-  // const [response, setResponse] = useState([]);
+  //Context
+  const {start_time1 , setStart_time1} = useStart_time1();
+  const {end_time1 , setEnd_time1} = useEnd_time1();
+  const {start_time2 , setStart_time2} = useStart_time2();
+  const {end_time2 , setEnd_time2} = useEnd_time2();
 
   const [compare_time, setCompare_time] = useState(0);
   const [open, setOpen] = useState(false);

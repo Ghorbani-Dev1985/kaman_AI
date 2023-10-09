@@ -8,14 +8,7 @@ import DatePicker, { DateObject } from "react-multi-date-picker";
 import Toolbar from "react-multi-date-picker/plugins/toolbar";
 import Select from "react-select";
 import { Chart } from "react-chartjs-2";
-import {
-  Menu,
-  MenuHandler,
-  Button,
-  MenuList,
-  MenuItem,
-  Checkbox,
-} from "@material-tailwind/react";
+import {Checkbox} from "@material-tailwind/react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -35,6 +28,10 @@ import {
 import TopFilter from "Common/TopFilter";
 import DataGraphSelect from "Common/DataGraphSelect";
 import Dropdown from "Components/dropdown";
+import { useStart_time1 } from "Context/Start_time1Context";
+import { useEnd_time1 } from "Context/End_time1Context";
+import { useStart_time2 } from "Context/Start_time2Context";
+import { useEnd_time2 } from "Context/End_time2Context";
 
 ChartJS.register(
   CategoryScale,
@@ -211,10 +208,11 @@ function useOutsideAlerter(ref, setOpen) {
 }
 function Trends() {
   const location = useLocation();
-  const [start_time1, setStart_time1] = useState(new DateObject());
-  const [end_time1, setEnd_time1] = useState(new DateObject());
-  const [start_time2, setStart_time2] = useState(new DateObject());
-  const [end_time2, setEnd_time2] = useState(new DateObject());
+    //Context
+    const {start_time1 , setStart_time1} = useStart_time1();
+    const {end_time1 , setEnd_time1} = useEnd_time1();
+    const {start_time2 , setStart_time2} = useStart_time2();
+    const {end_time2 , setEnd_time2} = useEnd_time2();
   const [compare_time, setCompare_time] = useState(0);
   const [open, setOpen] = useState(false);
   const DateRef = useRef(null);

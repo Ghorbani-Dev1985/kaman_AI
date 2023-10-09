@@ -7,56 +7,8 @@ import { BiCheckDouble, BiCloudDownload, BiSitemap } from "react-icons/bi";
 import { Card, Typography } from "@material-tailwind/react";
 import Select from "react-select";
 import "react-select-search/style.css";
+import DrawTable from "Common/DrawTable";
 
-function DrawTable({ graph_data }) {
-  console.log(graph_data);
-  return (
-    <>
-      <Card className="my-10 mx-auto h-full max-w-[16rem] overflow-x-auto md:max-w-lg lg:max-w-2xl xl:max-w-4xl 2xl:max-w-full">
-        <table className="w-full min-w-max table-auto text-center">
-          <thead>
-            <tr>
-              {graph_data["labels"].map(function (data) {
-                return (
-                  <th className="border-b border-navy-500 bg-navy-100 p-4 text-base text-navy-900">
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="text-center font-bold leading-none opacity-70"
-                    >
-                      {data}
-                    </Typography>
-                  </th>
-                );
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            {graph_data["data"].map(function (data, index) {
-              return (
-                <tr key={index} className="odd:bg-gray-50 even:bg-gray-100">
-                  {data.map(function (value) {
-                    return (
-                      <td className="p-4">
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="text-center font-normal"
-                        >
-                          {value}
-                        </Typography>
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </Card>
-    </>
-  );
-}
 
 function Clustering() {
   const location = useLocation();

@@ -11,6 +11,9 @@ import Textarea from "Common/textArea";
 import Line from "Common/Line";
 import { Card, Typography } from "@material-tailwind/react";
 
+
+
+
 function get_list_of_users(location, setUsers_list) {
   let formData = new FormData();
   let api_address = InitObject.baseurl + "api/list_user/";
@@ -55,7 +58,6 @@ function Users() {
   const [agents_list, setAgents_lists] = useState([]);
   const [add_agent_visibility, setAdd_agent_visibility] = useState(false);
   const [add_user_visibility, setAdd_user_visibility] = useState(false);
-
   const [add_agent_title, setAdd_agent_title] = useState("");
   const [add_agent_description, setAdd_agent_description] = useState("");
 
@@ -496,18 +498,20 @@ function Users() {
                   {location.state.userinfo.results.agent === null && (
                     <>
                       <label for="lname"> نماینده </label>
-                      <br />
+                     
                       <select
+                      variant="outlined"
                         name="add_user_agent"
+                        className="form-select appearance-none w-52 mx-3 rounded-lg flex items-center justify-center"
                         id="add_user_agent"
                         onChange={(e) => setAdd_user_agent(e.target.value)}
                       >
-                        <option value="select">انتخاب</option>
+                        <option value="select" disabled>انتخاب</option>
                         {agents_list.map((item) => (
                           <option value={item["title"]}>{item["title"]}</option>
                         ))}
                       </select>
-                      <br />
+            
                     </>
                   )}
                   <div id="checkboxes">

@@ -218,12 +218,12 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       handler: (e) => {
         e.preventDefault();
         console.log(location.state.userinfo);
-        navigate("/main", {
+        navigate("/bundling", {
           state: { userinfo: location.state.userinfo },
         });
         if (window.innerWidth < 500) onClose();
       },
-      to: "/main",
+      to: "/bundling",
       manuTitle: " دسته کردن محصولات",
     },
   ];

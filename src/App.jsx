@@ -24,7 +24,7 @@ import ShoppingCartAnalysis from "Components/Products/ShoppingCartAnalysis";
 import ProductPerformanceAnalysis from "Components/Products/ProductPerformanceAnalysis";
 import PredictingCustomerFall from "Components/PredictiveAnalytics/PredictingCustomerFall";
 import PurchaseInterval from "Components/PredictiveAnalytics/PurchaseInterval";
-
+import Bundling from "Components/PredictiveAnalytics/Bundling";
 
 const App = () => {
   return (
@@ -55,6 +55,7 @@ const App = () => {
           <Route path="/productPerformanceAnalysis" element={<ProductPerformanceAnalysis />} />
           <Route path="/predictingCustomerFall" element={<PredictingCustomerFall />} />
           <Route path="/purchaseInterval" element={<PurchaseInterval />} />
+          <Route path="/bundling" element={<Bundling />} />
           <Route path="/users" element={<Users />} />
           <Route path="/analyse" element={<AnalyseData />} />
           <Route path="/importData" element={<ImportData />} />

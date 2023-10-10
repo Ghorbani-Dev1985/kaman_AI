@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import InitObject from "../../Utils/globalvariables";
-import { Card, Typography } from "@material-tailwind/react";
 import DrawTable from "Common/DrawTable";
 import { BiCheckDouble, BiSelection } from "react-icons/bi";
 import "react-select-search/style.css";
@@ -87,9 +86,7 @@ function Bundling() {
               <BiSelection className="ml-2 text-3xl" /> دسته کردن محصولات
             </p>
           </legend>
-
           <p className="my-5">
-            {" "}
             برای افزایش سبد خرید مشتریان چه کالاهایی را باندل کنیم؟
           </p>
 
@@ -110,7 +107,6 @@ function Bundling() {
           </div>
 
           <p className="my-5">
-            {" "}
             تمام باندلهای مطلوب به ترتیب اولویت به همراه شاخص های ارزیابی هر
             باندل در جدول زیر لیست شده است
           </p>

@@ -7,6 +7,7 @@ import { BiCloudUpload, BiError, BiTrash } from "react-icons/bi";
 import { BiCloudDownload } from "react-icons/bi";
 import Line from "../../Common/Line";
 import { Card, Typography } from "@material-tailwind/react";
+import TopInfoBar from "Common/TopInfoBar";
 function ImportData(props) {
   const location = useLocation();
   const inputDataRef = useRef(null);
@@ -19,8 +20,6 @@ function ImportData(props) {
 
   useEffect(() => {
     let formData = new FormData();
-    // formData.append("start_date1", start_time1.format());
-    // formData.append("end_date1", end_time1.format());
     let api_address = InitObject.baseurl + "api/list_imports/";
     axios
       .post(api_address, formData, {
@@ -91,38 +90,11 @@ function ImportData(props) {
       });
   };
 
-  // udate_tables(){
-  //   let formData = new FormData();
-  //   // formData.append("start_date1", start_time1.format());
-  //   // formData.append("end_date1", end_time1.format());
-  //   let api_address = InitObject.baseurl + 'api/sample_file/'
-  //   await axios.post(api_address, formData, {
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //         "Authorization": " Token " + location.state.userinfo.key
-  //       },
-  //     }).then((response) => {
-  //       var link = InitObject.baseurl + response.data.results.link;
-  //       console.log(link);
-  //       let a = document.createElement('a');
-  //       a.href = link;
-  //       a.download = link;
-  //       a.click();
-  //      })
-  //      .catch((error) => {
-  //       console.log(error);
-
-  //       });
-
-  //     retun
-  // }
-
   const handlesubmitFile = (e) => {
     e.preventDefault();
     let formData = new FormData();
     if (selected_file) {
       formData.append("file", selected_file);
-      // formData.append("end_date1", end_time1.format());
       let api_address = InitObject.baseurl + "api/import_excel/";
       console.log(api_address);
       axios
@@ -145,8 +117,6 @@ function ImportData(props) {
   const handleUpdateFile = (e) => {
     e.preventDefault();
     let formData = new FormData();
-
-    // formData.append("end_date1", end_time1.format());
     let api_address = InitObject.baseurl + "api/update_customer_rfm_scores/";
     axios
       .post(api_address, formData, {
@@ -166,8 +136,6 @@ function ImportData(props) {
   const handleSampleFile = (e) => {
     e.preventDefault();
     let formData = new FormData();
-    // formData.append("start_date1", start_time1.format());
-    // formData.append("end_date1", end_time1.format());
     let api_address = InitObject.baseurl + "api/sample_file/";
     axios
       .post(api_address, formData, {
@@ -208,9 +176,16 @@ function ImportData(props) {
     // console.log(fileObj.name);
   };
   console.log(Object.keys(imports_list));
-  const ImportListTableHead = ["شناسه", "تعداد" , "تاریخ و زمان" , "حذف" , "دانلود"]
+  const ImportListTableHead = [
+    "شناسه",
+    "تعداد",
+    "تاریخ و زمان",
+    "حذف",
+    "دانلود",
+  ];
   return (
     <>
+    <TopInfoBar />
       <div className="mb-4 rounded-md bg-white p-4 dark:bg-navy-700 dark:text-white">
         <fieldset className="rounded-md border border-solid border-gray-300 p-3">
           <legend className="float-none w-auto px-2 text-sm">ورود داده</legend>
@@ -258,12 +233,15 @@ function ImportData(props) {
           </div>
           <Line />
           {Object.keys(imports_list).length > 0 ? (
-              <Card className="mx-auto h-full max-w-[16rem] overflow-x-auto md:max-w-lg lg:max-w-2xl xl:max-w-4xl 2xl:max-w-full">
+            <Card className="mx-auto h-full max-w-[16rem] overflow-x-auto md:max-w-lg lg:max-w-2xl xl:max-w-4xl 2xl:max-w-full">
               <table className="w-full min-w-max table-auto text-center">
                 <thead>
                   <tr>
                     {ImportListTableHead.map((head) => (
-                      <th key={head} className="border-b border-navy-500 bg-navy-100 p-4 text-base text-navy-900">
+                      <th
+                        key={head}
+                        className="border-b border-navy-500 bg-navy-100 p-4 text-base text-navy-900"
+                      >
                         <Typography
                           variant="small"
                           color="blue-gray"
@@ -276,7 +254,7 @@ function ImportData(props) {
                   </tr>
                 </thead>
                 <tbody>
-                {Object.keys(imports_list).map((importList) => {
+                  {Object.keys(imports_list).map((importList) => {
                     return (
                       <tr
                         key={importList}
@@ -297,16 +275,16 @@ function ImportData(props) {
                             color="blue-gray"
                             className="text-center font-normal"
                           >
-                           {imports_list[importList]["count"]}
+                            {imports_list[importList]["count"]}
                           </Typography>
-                        </td>  
-                          <td className="p-4">
+                        </td>
+                        <td className="p-4">
                           <Typography
                             variant="small"
                             color="blue-gray"
                             className="text-center font-normal"
                           >
-                          {imports_list[importList]["time"]}
+                            {imports_list[importList]["time"]}
                           </Typography>
                         </td>
                         <td className="p-4">
@@ -315,19 +293,21 @@ function ImportData(props) {
                             color="blue-gray"
                             className="flex items-center justify-center text-center font-normal"
                           >
-                          <BiTrash
-                              onClick={(e) => handleRemoveAllFile(e, importList)}
-                              className="text-red-500 cursor-pointer text-xl"
+                            <BiTrash
+                              onClick={(e) =>
+                                handleRemoveAllFile(e, importList)
+                              }
+                              className="cursor-pointer text-xl text-red-500"
                             />
                           </Typography>
-                        </td> 
-                          <td className="p-4">
+                        </td>
+                        <td className="p-4">
                           <Typography
                             variant="small"
                             color="blue-gray"
                             className="flex items-center justify-center text-center font-normal"
                           >
-                           <BiCloudDownload
+                            <BiCloudDownload
                               onClick={(e) => handleDownloadFile(e, importList)}
                               className="cursor-pointer text-xl text-blue-500"
                             />

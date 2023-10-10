@@ -6,12 +6,10 @@ import InitObject from "../../Utils/globalvariables";
 import { BiChevronsLeft, BiSave } from "react-icons/bi";
 import { toast } from "react-toastify";
 import { Button } from "@material-tailwind/react";
+import TopInfoBar from "Common/TopInfoBar";
 
-function AnalyseData({children}) {
+function AnalyseData({ children }) {
   const location = useLocation();
-  const [currentRoute, setCurrentRoute] = useState("تحلیل داده ");
-
-  // const inputDataRef = useRef(null);
   const [segments, setSegments] = useState(11);
   const [outlayer, setOutlayer] = useState(0);
   const [recency1, setRecency1] = useState(20);
@@ -29,8 +27,6 @@ function AnalyseData({children}) {
 
   useEffect(() => {
     let formData = new FormData();
-    // formData.append("start_date1", start_time1.format());
-    // formData.append("end_date1", end_time1.format());
     let api_address = InitObject.baseurl + "api/get_config/";
     axios
       .post(api_address, formData, {
@@ -60,11 +56,6 @@ function AnalyseData({children}) {
         console.log(error);
       });
   }, []);
-
-  // const location = useLocation();
-  // const inputDataRef = useRef(null);
-  // const [selected_file, SetSelected_file] = useState(null);
-  // const [imports_list, SetImport_list] = useState({});
 
   const handleSegments = (e) => {
     setSegments(e.target.value);
@@ -118,6 +109,7 @@ function AnalyseData({children}) {
 
   return (
     <>
+    <TopInfoBar />
       {/* outlayer section */}
       <div className="mb-4 rounded-md bg-white p-3 text-navy-500 dark:bg-navy-700 dark:text-white">
         <p>
@@ -383,7 +375,6 @@ function AnalyseData({children}) {
       {/* priceShopIndex Section */}
       <div className="mb-4 rounded-md bg-white p-3 text-navy-500 dark:bg-navy-700 dark:text-white">
         <p>
-          {" "}
           در این قسمت می‌توانید بازه تقسیم‌بندی “شاخص مبلغ خرید” مشتریان را به
           دلخواه خود و متناسب با نیاز، تغییر دهید.
         </p>
@@ -476,13 +467,16 @@ function AnalyseData({children}) {
             />
           </div>
         </div>
+      <div className="flex w-full items-center justify-end gap-4">
+        {children}
+        <Button
+          className="btns flex items-center justify-center"
+          onClick={handleUpdateData}
+        >
+          <BiSave className="ml-2 text-2xl" />
+          ذخیره تغییرات
+        </Button>
       </div>
-      <div className="w-full flex justify-end items-center gap-4">
-       {children}
-      <Button className="btns flex justify-center items-center" onClick={handleUpdateData}>
-        <BiSave className="text-2xl ml-2" />
-        ذخیره تغییرات
-      </Button>
       </div>
     </>
   );

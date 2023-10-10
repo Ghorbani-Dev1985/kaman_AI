@@ -1,23 +1,15 @@
 import React, { useEffect, useRef } from "react";
 import "./selectTime.css";
-import DatePicker, { DateObject } from "react-multi-date-picker";
 import { useState } from "react";
-import persian_fa from "react-date-object/locales/persian_fa";
 import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+import DatePicker, { DateObject } from "react-multi-date-picker";
 import Toolbar from "react-multi-date-picker/plugins/toolbar";
-
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import InitObject from "../../../Utils/globalvariables";
-import {
-  BiCalendar,
-  BiCalendarAlt,
-  BiCheckDouble,
-  BiChevronDown,
-} from "react-icons/bi";
-
+import { BiCalendarAlt, BiCheckDouble} from "react-icons/bi";
 import TopFilter from "Common/TopFilter";
-
 import { Checkbox} from "@material-tailwind/react";
 import { useStart_time1 } from "Context/Start_time1Context";
 import { useEnd_time1 } from "Context/End_time1Context";
@@ -69,19 +61,16 @@ function SelectTime({ setResponse, setchartresponse }) {
   const DateRef = useRef(null);
   useOutsideAlerter(DateRef, setOpen);
   const location = useLocation();
-  useEffect(() => {
-    if (localStorage.getItem("start_time1") !== null) {
-      console.log(localStorage.getItem("start_time1"));
-      setStart_time1(new DateObject(localStorage.getItem("start_time1")));
-    }
-  }, []);
-
+  
   const handleSetStart_time1 = (e) => {
     // e.preventDefault();
     setStart_time1(e);
     localStorage.setItem("start_time1", start_time1);
     console.log(e.format());
   };
+  useEffect(() => {
+   setStart_time1(new DateObject(start_time1));
+  }, []);
   const handleFactorInfo = (e) => {
     e.preventDefault();
     let formData = new FormData();
@@ -158,22 +147,25 @@ function SelectTime({ setResponse, setchartresponse }) {
           ref={DateRef}
           className="relative mr-2 h-full border-l border-gray-100 pl-2"
         >
-          <button
-            onClick={() => setOpen(!open)}
-            className="flex h-full items-center justify-center text-base text-navy-500 transition-all duration-300 ease-in-out hover:bg-brand-50/20 "
-          >
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center">
-                <BiCalendarAlt className="ml-1 text-xl" />
-                <p>
-                  {start_time1.format()} تا {end_time1.format()}{" "}
-                </p>
-              </div>
-              <p className="text-sm">
-                مقایسه با {start_time2.format()} تا {end_time2.format()}{" "}
-              </p>
-            </div>
-          </button>
+       
+         <button
+           onClick={() => setOpen(!open)}
+           className="flex h-full items-center justify-center text-base text-navy-500 transition-all duration-300 ease-in-out hover:bg-brand-50/20 "
+         >
+           <div className="flex flex-col gap-4">
+             <div className="flex items-center">
+               <BiCalendarAlt className="ml-1 text-xl" />
+               <p>
+                 {start_time1.format()} تا {end_time1.format()}
+               </p>
+             </div>
+             <p className="text-sm">
+               مقایسه با {start_time2.format()} تا {end_time2.format()}
+             </p>
+           </div>
+         </button>
+         
+          
 
           <div
             className={`${

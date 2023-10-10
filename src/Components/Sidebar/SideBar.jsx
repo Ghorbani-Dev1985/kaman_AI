@@ -38,6 +38,7 @@ import {
   ChevronDownIcon,
   CubeTransparentIcon,
 } from "@heroicons/react/24/outline";
+import { BiBarChartSquare, BiCog } from "react-icons/bi";
 
 const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
   const location = useLocation();
@@ -72,7 +73,6 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       id: 1,
       handler: (e) => {
         e.preventDefault();
-        console.log(location.state.userinfo);
         navigate("/customerSegment", {
           state: { userinfo: location.state.userinfo },
         });
@@ -85,7 +85,6 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       id: 2,
       handler: (e) => {
         e.preventDefault();
-        console.log(location.state.userinfo);
         navigate("/transition", {
           state: { userinfo: location.state.userinfo },
         });
@@ -98,7 +97,6 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       id: 3,
       handler: (e) => {
         e.preventDefault();
-        console.log(location.state.userinfo);
         navigate("/retention", {
           state: { userinfo: location.state.userinfo },
         });
@@ -111,7 +109,6 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       id: 4,
       handler: (e) => {
         e.preventDefault();
-        console.log(location.state.userinfo);
         navigate("/lifeTime", { state: { userinfo: location.state.userinfo } });
         if (window.innerWidth < 500) onClose();
       },
@@ -122,7 +119,6 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       id: 5,
       handler: (e) => {
         e.preventDefault();
-        console.log(location.state.userinfo);
         navigate("/shareShopping", {
           state: { userinfo: location.state.userinfo },
         });
@@ -135,7 +131,6 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       id: 6,
       handler: (e) => {
         e.preventDefault();
-        console.log(location.state.userinfo);
         navigate("/Clustering", {
           state: { userinfo: location.state.userinfo },
         });
@@ -148,7 +143,6 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       id: 7,
       handler: (e) => {
         e.preventDefault();
-        console.log(location.state.userinfo);
         navigate("/groups", {
           state: { userinfo: location.state.userinfo },
         });
@@ -163,7 +157,6 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       id: 1,
       handler: (e) => {
         e.preventDefault();
-        console.log(location.state.userinfo);
         navigate("/productPerformanceAnalysis", {
           state: { userinfo: location.state.userinfo },
         });
@@ -176,7 +169,6 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       id: 2,
       handler: (e) => {
         e.preventDefault();
-        console.log(location.state.userinfo);
         navigate("/shoppingCartAnalysis", {
           state: { userinfo: location.state.userinfo },
         });
@@ -191,7 +183,6 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       id: 1,
       handler: (e) => {
         e.preventDefault();
-        console.log(location.state.userinfo);
         navigate("/predictingCustomerFall", {
           state: { userinfo: location.state.userinfo },
         });
@@ -204,7 +195,6 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       id: 2,
       handler: (e) => {
         e.preventDefault();
-        console.log(location.state.userinfo);
         navigate("/purchaseInterval", {
           state: { userinfo: location.state.userinfo },
         });
@@ -217,7 +207,6 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       id: 3,
       handler: (e) => {
         e.preventDefault();
-        console.log(location.state.userinfo);
         navigate("/bundling", {
           state: { userinfo: location.state.userinfo },
         });
@@ -232,7 +221,6 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       id: 1,
       handler: (e) => {
         e.preventDefault();
-        console.log(location.state.userinfo);
         navigate("/analyse", { state: { userinfo: location.state.userinfo } });
         if (window.innerWidth < 500) onClose();
       },
@@ -243,7 +231,6 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       id: 2,
       handler: (e) => {
         e.preventDefault();
-        console.log(location.state.userinfo);
         navigate("/importData", {
           state: { userinfo: location.state.userinfo },
         });
@@ -256,7 +243,6 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       id: 3,
       handler: (e) => {
         e.preventDefault();
-        console.log(location.state.userinfo);
         navigate("/smsPanel", { state: { userinfo: location.state.userinfo } });
         if (window.innerWidth < 500) onClose();
       },
@@ -267,7 +253,6 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
       id: 4,
       handler: (e) => {
         e.preventDefault();
-        console.log(location.state.userinfo);
         navigate("/main", { state: { userinfo: location.state.userinfo } });
         if (window.innerWidth < 500) onClose();
       },
@@ -277,7 +262,7 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
   ];
   return (
     <Card
-      className={`fixed z-50 col-span-2 flex h-full min-h-max w-85p flex-col justify-between bg-white shadow-2xl shadow-white/5 transition-all duration-700 ease-linear dark:!bg-navy-800 dark:text-white md:static xl:z-0 ${
+      className={`fixed z-50 col-span-2 flex h-full min-h-max w-85p flex-col overflow-x-auto justify-between bg-white shadow-2xl shadow-white/5 transition-all duration-700 ease-linear dark:!bg-navy-800 dark:text-white md:static xl:z-0 ${
         openMenu ? "-translate-x-0" : "translate-x-96"
       }  ${
         showSubMenu.allMenu
@@ -379,7 +364,9 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
               </Typography>
             </AccordionHeader>
           </ListItem>
-          <AccordionBody className="rounded-md bg-gray-100 p-2 py-1">
+          <AccordionBody className={`rounded-md bg-gray-100 p-2 py-1  ${
+                  showSubMenu.allMenu ? "inline-flex" : "hidden"
+                }`}>
             <List className="p-0">
               {CostomersSubMenu.map(({ id, to, handler, manuTitle }) => {
                 return (
@@ -434,7 +421,9 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
               </Typography>
             </AccordionHeader>
           </ListItem>
-          <AccordionBody className="rounded-md bg-gray-100 p-2 py-1">
+          <AccordionBody className={`rounded-md bg-gray-100 p-2 py-1 ${
+                  showSubMenu.allMenu ? "inline-flex" : "hidden"
+                }`} >
             <List className="p-0">
               {ProductsSubMenu.map(({ id, handler, to, manuTitle }) => {
                 return (
@@ -478,7 +467,7 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
               className="border-b-0 p-3"
             >
               <ListItemPrefix>
-                <MdOutlineShoppingCart className="ml-2 text-lg" />
+                <BiBarChartSquare className="ml-2 text-lg" />
               </ListItemPrefix>
               <Typography
                 className={`ml-auto text-right ${
@@ -489,7 +478,9 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
               </Typography>
             </AccordionHeader>
           </ListItem>
-          <AccordionBody className="rounded-md bg-gray-100 p-2 py-1">
+          <AccordionBody   className={`rounded-md bg-gray-100 p-2 py-1 ${
+                  showSubMenu.allMenu ? "inline-flex" : "hidden"
+                }`}>
             <List className="p-0">
               {PredictionSubMenu.map(({ id, to, handler, manuTitle }) => {
                 return (
@@ -556,7 +547,7 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
               className="border-b-0 p-3"
             >
               <ListItemPrefix>
-                <MdOutlineShoppingCart className="ml-2 text-lg" />
+                <BiCog className="ml-2 text-lg" />
               </ListItemPrefix>
               <Typography
                 className={`ml-auto ${
@@ -566,8 +557,10 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
                 تنظیمات سامانه
               </Typography>
             </AccordionHeader>
-          </ListItem>
-          <AccordionBody className="rounded-md bg-gray-100 p-2 py-1">
+          </ListItem >
+          <AccordionBody className={`rounded-md bg-gray-100 p-2 py-1 ${
+                  showSubMenu.allMenu ? "inline-flex" : "hidden"
+                }`}>
             <List className="p-0">
               {SettingsSubMenu.map(({ id, to, handler, manuTitle }) => {
                 return (
@@ -587,7 +580,7 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
                 );
               })}
             </List>
-          </AccordionBody>
+            </AccordionBody>
         </Accordion>
       </List>
 

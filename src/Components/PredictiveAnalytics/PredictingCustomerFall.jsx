@@ -4,12 +4,10 @@ import axios from "axios";
 import InitObject from "../../Utils/globalvariables";
 import "react-select-search/style.css";
 import Select from "react-select";
-import TopFilter from "Common/TopFilter";
 import { BiCheckDouble, BiUserMinus } from "react-icons/bi";
 import DownloadBtn from "Common/DownloadBtn";
-import { IoBulbOutline } from "react-icons/io5";
 import DrawTable from "Common/DrawTable";
-
+import TopInfoBar from "Common/TopInfoBar";
 
 const forcastTypeSelect = [
   { label: " خیلی سخت گیرانه ", value: "1.25" },
@@ -51,7 +49,6 @@ function PredictingCustomerFall() {
     e.preventDefault();
     let formData = new FormData();
     formData.append("data", JSON.stringify(table_data));
-    // formData.append("end_date1", end_time1.format());
     let api_address = InitObject.baseurl + "api/download_dict/";
     axios
       .post(api_address, formData, {
@@ -117,12 +114,7 @@ function PredictingCustomerFall() {
   }
   return (
     <>
-      <section className="mb-4 flex w-full items-center justify-end rounded-lg bg-white lg:h-24">
-        <div className="flex flex-col items-center md:flex-row">
-          <IoBulbOutline className="text-lg text-navy-500" />
-          <p className="ml-2 text-navy-500">راهنما</p>
-        </div>
-      </section>
+      <TopInfoBar />
 
       <div className="mb-4 rounded-md bg-white p-4 dark:bg-navy-700 dark:text-white">
         <fieldset className="rounded-md border border-solid border-gray-300 p-3">

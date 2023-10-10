@@ -5,7 +5,7 @@ import InitObject from "../../Utils/globalvariables";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import Toolbar from "react-multi-date-picker/plugins/toolbar";
-import DatePicker, { DateObject } from "react-multi-date-picker";
+import DatePicker from "react-multi-date-picker";
 import Select from "react-select";
 
 import {
@@ -17,14 +17,11 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
 import { Chart } from "react-chartjs-2";
 import { HiOutlineChartBar } from "react-icons/hi";
 import TopFilter from "Common/TopFilter";
 import { BiCalendarAlt, BiCheckDouble } from "react-icons/bi";
 import FilterDrawer from "Common/FilterDrawer/FilterDrawer";
-import DataGraphSelect from "Common/DataGraphSelect";
-import SeperationDataSelect from "Common/SeperationDataSelect";
 import { Checkbox } from "@material-tailwind/react";
 import DownloadBtn from "Common/DownloadBtn";
 import DrawTable from "Common/DrawTable";
@@ -127,10 +124,10 @@ function useOutsideAlerter(ref, setOpen) {
 function ProductPerformanceAnalysis() {
   const location = useLocation();
   //Context
-  const {start_time1 , setStart_time1} = useStart_time1();
-  const {end_time1 , setEnd_time1} = useEnd_time1();
-  const {start_time2 , setStart_time2} = useStart_time2();
-  const {end_time2 , setEnd_time2} = useEnd_time2();
+  const { start_time1, setStart_time1 } = useStart_time1();
+  const { end_time1, setEnd_time1 } = useEnd_time1();
+  const { start_time2, setStart_time2 } = useStart_time2();
+  const { end_time2, setEnd_time2 } = useEnd_time2();
   const [compare_time, setCompare_time] = useState(0);
   const [seperator, setSeparator] = useState("product_category");
   const [open, setOpen] = useState(false);
@@ -343,10 +340,10 @@ function ProductPerformanceAnalysis() {
   return (
     <>
       <TopFilter>
-        <div className="flex h-full items-center justify-center">
+        <div className="flex h-full flex-col items-center justify-center md:flex-row">
           <div
             ref={DateRef}
-            className="relative mr-2 h-full border-l border-gray-100 pl-2"
+            className="relative mr-2 h-full border-gray-100 pl-2 md:border-l"
           >
             <button
               onClick={() => setOpen(!open)}
@@ -356,11 +353,11 @@ function ProductPerformanceAnalysis() {
                 <div className="flex items-center">
                   <BiCalendarAlt className="ml-1 text-xl" />
                   <p>
-                    {start_time1.format()} تا {end_time1.format()}{" "}
+                    {start_time1.format()} تا {end_time1.format()}
                   </p>
                 </div>
                 <p className="text-sm">
-                  مقایسه با {start_time2.format()} تا {end_time2.format()}{" "}
+                  مقایسه با {start_time2.format()} تا {end_time2.format()}
                 </p>
               </div>
             </button>
@@ -418,7 +415,7 @@ function ProductPerformanceAnalysis() {
             </div>
           </div>
           {/* End Date */}
-          <div className="mr-2 flex items-center justify-start">
+          <div className="mr-2 flex flex-col items-center justify-start md:flex-row">
             <FilterDrawer />
             <div className="ml-2 mb-4 lg:mb-0">
               <Select
@@ -444,8 +441,6 @@ function ProductPerformanceAnalysis() {
           </div>
         </div>
       </TopFilter>
-      <div className="select-time"></div>
-
       <div className="mb-4 rounded-md bg-white p-4 dark:bg-navy-700 dark:text-white">
         <fieldset className="rounded-md border border-solid border-gray-300 p-3">
           <legend className="float-none w-auto px-2 text-sm">
@@ -462,8 +457,8 @@ function ProductPerformanceAnalysis() {
           <div className="chart">
             <DrawChart graph_data={graph_data1} indicator={indicator} />
           </div>
-          <DownloadBtn onClick={(e) => handleDownloadFile(e, { graph_data })}/> 
-          
+          <DownloadBtn onClick={(e) => handleDownloadFile(e, { graph_data })} />
+
           <div className="table1">
             <DrawTable graph_data={graph_data.tabel_data} />
           </div>

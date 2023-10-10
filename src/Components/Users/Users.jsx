@@ -11,9 +11,6 @@ import Textarea from "Common/textArea";
 import Line from "Common/Line";
 import { Card, Typography } from "@material-tailwind/react";
 
-
-
-
 function get_list_of_users(location, setUsers_list) {
   let formData = new FormData();
   let api_address = InitObject.baseurl + "api/list_user/";
@@ -78,7 +75,6 @@ function Users() {
   useEffect(() => {
     get_list_of_users(location, setUsers_list);
     get_list_of_agents(location, setAgents_lists);
-    // console.log(location.state.userinfo);
   }, []);
 
   const handleAdd_agent_visibility = () => {
@@ -213,14 +209,12 @@ function Users() {
                 <thead>
                   <tr>
                     {AgentTableHead.map((head) => (
-                      <th className="border-b border-navy-500 bg-navy-100 p-4 text-base text-navy-900">
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
+                      <th key={head} className="border-b border-navy-500 bg-navy-100 p-4 text-base text-navy-900">
+                        <p
                           className="text-center font-bold leading-none opacity-70"
                         >
                           {head}
-                        </Typography>
+                        </p>
                       </th>
                     ))}
                   </tr>
@@ -233,34 +227,34 @@ function Users() {
                         className="odd:bg-gray-50 even:bg-gray-100"
                       >
                         <td className="p-4">
-                          <Typography
+                          <p
                             variant="small"
                             color="blue-gray"
                             className="text-center font-normal"
                           >
                             {agent_list["title"]}
-                          </Typography>
+                          </p>
                         </td>
                         <td className="p-4">
-                          <Typography
+                          <p
                             variant="small"
                             color="blue-gray"
                             className="text-center font-normal"
                           >
                             {agent_list["description"]}
-                          </Typography>
+                          </p>
                         </td>
                         <td className="p-4">
-                          <Typography
+                          <p
                             variant="small"
                             color="blue-gray"
                             className="text-center font-normal"
                           >
                             {agent_list["created_at"]}
-                          </Typography>
+                          </p>
                         </td>
                         <td className="p-4">
-                          <Typography
+                          <p
                             variant="small"
                             color="blue-gray"
                             className="flex items-center justify-center text-center font-normal"
@@ -271,7 +265,7 @@ function Users() {
                               }
                               className="cursor-pointer text-xl text-red-500"
                             />
-                          </Typography>
+                          </p>
                         </td>
                       </tr>
                     );
@@ -334,14 +328,12 @@ function Users() {
                 <thead>
                   <tr>
                     {UsersListTableHead.map((head) => (
-                      <th className="border-b border-navy-500 bg-navy-100 p-4 text-base text-navy-900">
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
+                      <th key={head} className="border-b border-navy-500 bg-navy-100 p-4 text-base text-navy-900">
+                        <p
                           className="text-center font-bold leading-none opacity-70"
                         >
                           {head}
-                        </Typography>
+                        </p>
                       </th>
                     ))}
                   </tr>
@@ -354,36 +346,28 @@ function Users() {
                         className="odd:bg-gray-50 even:bg-gray-100"
                       >
                         <td className="p-4">
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
+                          <p
                             className="text-center font-normal"
                           >
                             {user_list["username"]}
-                          </Typography>
+                          </p>
                         </td>
                         <td className="p-4">
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
+                          <p
                             className="text-center font-normal"
                           >
                             {user_list["agent"]}
-                          </Typography>
+                          </p>
                         </td>
                         <td className="p-4">
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
+                          <p
                             className="text-center font-normal"
                           >
                             {user_list["last_seen"]}
-                          </Typography>
+                          </p>
                         </td>
                         <td className="p-4">
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
+                          <p                
                             className="flex items-center justify-center text-center font-normal"
                           >
                             <BiTrash
@@ -392,7 +376,7 @@ function Users() {
                               }
                               className="cursor-pointer text-xl text-red-500"
                             />
-                          </Typography>
+                          </p>
                         </td>
                       </tr>
                     );
@@ -409,7 +393,7 @@ function Users() {
           <div className="my-4 flex w-full items-center justify-center">
             <button
               onClick={handleAdd_user_visibility}
-              className="transparentBtns flex w-full items-center justify-center md:w-auto"
+              className="transparentBtns flex items-center justify-center md:w-auto"
             >
               <span className="mr-2">ایجاد کاربر</span>
             </button>
@@ -494,24 +478,25 @@ function Users() {
                     onChange={(e) => setAdd_user_email(e.target.value)}
                   />
                 </div>
-                <div className="flex flex-1">
+                <div className="flex md:flex-1 flex-col md:flex-row">
                   {location.state.userinfo.results.agent === null && (
                     <>
-                      <label for="lname"> نماینده </label>
-                     
+                      <label htmlFor="lname" className="my-2"> نماینده </label>
+
                       <select
-                      variant="outlined"
+                        variant="outlined"
                         name="add_user_agent"
-                        className="form-select appearance-none w-52 mx-3 rounded-lg flex items-center justify-center"
+                        className="form-select mx-3 my-2 md:my-0 flex w-52 appearance-none items-center justify-center rounded-lg"
                         id="add_user_agent"
                         onChange={(e) => setAdd_user_agent(e.target.value)}
                       >
-                        <option value="select" disabled>انتخاب</option>
+                        <option value="select" disabled>
+                          انتخاب
+                        </option>
                         {agents_list.map((item) => (
-                          <option value={item["title"]}>{item["title"]}</option>
+                          <option key={item} value={item["title"]}>{item["title"]}</option>
                         ))}
                       </select>
-            
                     </>
                   )}
                   <div id="checkboxes">
@@ -546,7 +531,7 @@ function Users() {
               <div className="my-6 flex w-full items-center justify-center md:justify-end">
                 <button
                   onClick={habdleAddUser}
-                  className="btns flex w-full items-center justify-center md:w-auto"
+                  className="btns flex items-center justify-center md:w-auto"
                 >
                   <AiOutlineUserAdd className="text-2xl" />
                   <span className="mr-2"> افزودن کاربر جدید </span>

@@ -3,14 +3,10 @@ import {
   Drawer,
   Button,
   Typography,
-  IconButton,
-  Input,
-  Textarea,
 } from "@material-tailwind/react";
-import { BiArrowBack, BiCheckDouble, BiFilterAlt, BiMinusCircle } from "react-icons/bi";
+import { BiArrowBack, BiFilterAlt } from "react-icons/bi";
 import Select from "react-select";
-import 'react-select-search/style.css'
-import Analyse from "../../Components/config/Analyse";
+import "react-select-search/style.css";
 import Line from "Common/Line";
 import FilterDrawerAccordion from "./FilterDrawerAccordion";
 const FilterDrawer = () => {
@@ -82,7 +78,7 @@ const FilterDrawer = () => {
       onChange: "setًٍEmailSelect",
       options: "",
     },
-  ]
+  ];
   return (
     <>
       <Button
@@ -92,60 +88,61 @@ const FilterDrawer = () => {
         <BiFilterAlt className="ml-2 text-2xl" />
         فیلتر
       </Button>
-    
+
       <Drawer
         open={open}
         size={350}
-        overlay= {true}
-        overlayProps= {true}
+        overlay={true}
         onClose={closeDrawer}
         className="top-0 z-50 !max-h-max overflow-y-auto rounded-tr-lg rounded-br-lg shadow-lg"
-      > 
-   
-         <div className="mb-2 flex justify-between border-b border-b-gray-300 p-2">
-          
+      >
+        <div className="mb-2 flex justify-between border-b border-b-gray-300 p-2">
           <section className="flex flex-col ">
-          <Typography variant="h4" className="font-bold mb-3">
-           فیلتر
-          </Typography>
-          <Typography variant="h6" className="mb-3">
-      
-           فیلتر‌های مورد نظر خود را انتخاب نمایید.
-          </Typography>
+            <Typography variant="h4" className="mb-3 font-bold">
+              فیلتر
+            </Typography>
+            <Typography variant="h6" className="mb-3">
+              فیلتر‌های مورد نظر خود را انتخاب نمایید.
+            </Typography>
           </section>
 
-           <BiArrowBack className="text-2xl" onClick={closeDrawer}/> 
-    
+          <BiArrowBack className="text-2xl" onClick={closeDrawer} />
         </div>
         <FilterDrawerAccordion AccordionTitle="گروه مشتری">
-        <Select
-        defaultValue={customerGroup}
-        onChange={setCustomerGroup}
-        // options={}
-        placeholder="جستجو کنید"
-        isMulti
-      />  
-        <p className="my-3">تعداد مشتریان انتخاب شده : <span>0</span></p>
+          <Select
+            defaultValue={customerGroup}
+            onChange={setCustomerGroup}
+            // options={}
+            placeholder="جستجو کنید"
+            isMulti
+          />
+          <p className="my-3">
+            تعداد مشتریان انتخاب شده : <span>0</span>
+          </p>
         </FilterDrawerAccordion>
-        {
-          FilterSelects.map(({id, AccordionTitle , defaultValue , onChange , options}) => {
-            return(
-        <FilterDrawerAccordion AccordionTitle={AccordionTitle}>
-        <Select
-        defaultValue={defaultValue}
-        onChange={onChange}
-        // options={options}
-        placeholder="جستجو کنید"
-        isMulti
-      />  
-        </FilterDrawerAccordion>
-            )
-          })
-        }
+        {FilterSelects.map(
+          ({ id, AccordionTitle, defaultValue, onChange, options }) => {
+            return (
+              <FilterDrawerAccordion key={id} AccordionTitle={AccordionTitle}>
+                <Select
+                  defaultValue={defaultValue}
+                  onChange={onChange}
+                  // options={options}
+                  placeholder="جستجو کنید"
+                  isMulti
+                />
+              </FilterDrawerAccordion>
+            );
+          }
+        )}
         <Line />
-        <div className="flex justify-end items-center gap-2 p-2">
-          <button onClose={closeDrawer} className="transparentBtns !px-8 !py-3">انصراف</button>
-          <button type="submit" className="btns !py-3">اعمال</button>
+        <div className="flex items-center justify-end gap-2 p-2">
+          <button onClick={closeDrawer} className="transparentBtns !px-8 !py-3">
+            انصراف
+          </button>
+          <button type="submit" className="btns !py-3">
+            اعمال
+          </button>
         </div>
         <div className="h-40"></div>
       </Drawer>
@@ -154,4 +151,3 @@ const FilterDrawer = () => {
 };
 
 export default FilterDrawer;
-

@@ -39,7 +39,6 @@ import FilterDrawer from "Common/FilterDrawer/FilterDrawer";
 import { useStart_time1 } from "Context/Start_time1Context";
 import { useEnd_time1 } from "Context/End_time1Context";
 
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -112,8 +111,8 @@ function Retention() {
     table: [],
   });
   //Context
-  const {start_time1 , setStart_time1} = useStart_time1();
-  const {end_time1 , setEnd_time1} = useEnd_time1();
+  const { start_time1, setStart_time1 } = useStart_time1();
+  const { end_time1, setEnd_time1 } = useEnd_time1();
   const [period, setPeriod] = useState("30");
   const [seperation, setSeperation] = useState("None");
 
@@ -188,46 +187,53 @@ function Retention() {
     console.log(graph_data);
     return (
       <>
-        <Card className="h-full max-w-[16rem] md:max-w-lg lg:max-w-2xl xl:max-w-4xl 2xl:max-w-full mx-auto overflow-x-auto">
-      <table className="w-full min-w-max table-auto text-center">
-        <thead>
-          <tr>
-             {["","مشتریان"].concat(graph_data["labels"]).map(function (data) {
-                      return (
-                          <th
-                          key={data} className="border-b border-navy-500 bg-navy-100 text-navy-900 text-base p-4"
+        <Card className="mx-auto h-full max-w-[16rem] overflow-x-auto md:max-w-lg lg:max-w-2xl xl:max-w-4xl 2xl:max-w-full">
+          <table className="w-full min-w-max table-auto text-center">
+            <thead>
+              <tr>
+                {["", "مشتریان"]
+                  .concat(graph_data["labels"])
+                  .map(function (data) {
+                    return (
+                      <th
+                        key={data}
+                        className="border-b border-navy-500 bg-navy-100 p-4 text-base text-navy-900"
+                      >
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="text-center font-bold leading-none opacity-70"
                         >
-                           <Typography
-                  variant="small"
-                  color="blue-gray"
-                  className="font-bold text-center leading-none opacity-70"
-                >
-                  {data}
-                </Typography>
-                        </th>
+                          {data}
+                        </Typography>
+                      </th>
+                    );
+                  })}
+              </tr>
+            </thead>
+            <tbody>
+              {graph_data["table"].map(function (data, index) {
+                return (
+                  <tr key={data} className="odd:bg-gray-50 even:bg-gray-100">
+                    {data.map(function (value) {
+                      return (
+                        <td key={value} className="p-4">
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="text-center font-normal"
+                          >
+                            {value}
+                          </Typography>
+                        </td>
                       );
                     })}
-          </tr>
-        </thead>
-        <tbody>                          
-               {graph_data["table"].map(function (data , index) {
-                return (
-                   <tr key={data} className="even:bg-gray-100 odd:bg-gray-50">
-                     {data.map(function (value) {
-                     return (
-                      <td className="p-4">
-                        <Typography variant="small" color="blue-gray" className="font-normal text-center">
-                     {value}
-                        </Typography>
-                   </td>
-                     ) 
-                     })}       
                   </tr>
                 );
               })}
-        </tbody>
-      </table>
-    </Card>
+            </tbody>
+          </table>
+        </Card>
       </>
     );
   }
@@ -238,21 +244,21 @@ function Retention() {
   return (
     <>
       <TopFilter>
-        <div className="mr-3 flex flex-col lg:flex-row items-center">
-          <div className="ml-2 border-l">
-            <div className="flex justify-center items-center">
+        <div className="mr-3 flex flex-col items-center lg:flex-row">
+          <div className="ml-2 md:border-l">
+            <div className="flex flex-col items-center justify-center gap-3 md:flex-row md:gap-0">
               <BiCalendarAlt className="text-xl" />
               {Date_Picker(start_time1, handleSetStart_time1)}
               <span>تا</span>
               {Date_Picker(end_time1, setEnd_time1)}
             </div>
           </div>
-        <FilterDrawer />
-          <div className="ml-2 mb-4 lg:mb-0 w-28">
-          <DataGraphSelect className="z-0"/>
-         </div>  
-            <SeperationDataSelect className="z-0"/>
-            
+          <FilterDrawer />
+          <div className="ml-2 mb-4 w-28 lg:mb-0">
+            <DataGraphSelect className="z-0" />
+          </div>
+          <SeperationDataSelect className="z-0" />
+
           <button
             onClick={do_action}
             className="btns mr-2 flex w-full items-center justify-center md:w-auto"

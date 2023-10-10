@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import InitObject from "../../Utils/globalvariables";
-
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -14,14 +12,12 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
 import { Chart } from "react-chartjs-2";
 import TopFilter from "Common/TopFilter";
-import {  BiFilterAlt, BiTimeFive } from "react-icons/bi";
+import { BiTimeFive } from "react-icons/bi";
 import DownloadBtn from "Common/DownloadBtn";
 import FilterDrawer from "Common/FilterDrawer/FilterDrawer";
 import DrawTable from "Common/DrawTable";
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -30,7 +26,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
 function DrawChart({ graph_data }) {
   const options = {
     responsive: true,
@@ -65,7 +60,6 @@ function DrawChart({ graph_data }) {
     </>
   );
 }
-
 
 const LifeTime = () => {
   const location = useLocation();
@@ -134,7 +128,7 @@ const LifeTime = () => {
   return (
     <>
       <TopFilter>
-       <FilterDrawer />
+        <FilterDrawer />
       </TopFilter>
       <div className="mb-4 rounded-md bg-white p-4 dark:bg-navy-700 dark:text-white">
         <fieldset className="rounded-md border border-solid border-gray-300 p-3">
@@ -146,7 +140,7 @@ const LifeTime = () => {
           <div className="my-10 max-w-xs overflow-x-auto md:max-w-xl lg:max-w-full">
             <DrawChart graph_data={graph_data} />
           </div>
-       <DownloadBtn onClick={(e) => handleDownloadFile(e, { table_data })}/>
+          <DownloadBtn onClick={(e) => handleDownloadFile(e, { table_data })} />
           <div className="table1">
             <DrawTable graph_data={table_data} />
           </div>

@@ -8,7 +8,7 @@ import { Card, Typography } from "@material-tailwind/react";
 import Select from "react-select";
 import "react-select-search/style.css";
 import DrawTable from "Common/DrawTable";
-
+import TopInfoBar from "Common/TopInfoBar";
 
 function Clustering() {
   const location = useLocation();
@@ -23,7 +23,7 @@ function Clustering() {
   const [feature8, setFeature8] = useState("product_name_count");
   const [clusters, setClusters] = useState({ labels: [], data: [] });
   const [clusterSelect, setClusterSelect] = useState(null);
- const [selectFeatures, setSelectFeatures] = useState(null);
+  const [selectFeatures, setSelectFeatures] = useState(null);
 
   const get_clustering = (e) => {
     e.preventDefault();
@@ -208,6 +208,7 @@ function Clustering() {
 
   return (
     <>
+     <TopInfoBar />
       <div className="mb-4 rounded-md bg-white p-4 dark:bg-navy-700 dark:text-white">
         <fieldset className="rounded-md border border-solid border-gray-300 p-3">
           <legend className="float-none w-auto px-2 text-sm">
@@ -240,10 +241,9 @@ function Clustering() {
               <div>{select_features(setFeature8)}</div>
             </div>
             <div className="my-8 flex w-full items-center justify-center">
-            
               <button
                 type="button"
-                class="btns flex items-center justify-center"
+                className="btns flex items-center justify-center"
                 onClick={get_clustering}
               >
                 <BiCheckDouble className="ml-2 text-2xl" />

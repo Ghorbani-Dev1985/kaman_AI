@@ -4,11 +4,11 @@ import axios from "axios";
 import InitObject from "../../Utils/globalvariables";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
-import DatePicker, { DateObject } from "react-multi-date-picker";
+import DatePicker from "react-multi-date-picker";
 import Toolbar from "react-multi-date-picker/plugins/toolbar";
 import Select from "react-select";
 import { Chart } from "react-chartjs-2";
-import {Checkbox} from "@material-tailwind/react";
+import { Checkbox } from "@material-tailwind/react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -27,7 +27,6 @@ import {
 } from "react-icons/bi";
 import TopFilter from "Common/TopFilter";
 import DataGraphSelect from "Common/DataGraphSelect";
-import Dropdown from "Components/dropdown";
 import { useStart_time1 } from "Context/Start_time1Context";
 import { useEnd_time1 } from "Context/End_time1Context";
 import { useStart_time2 } from "Context/Start_time2Context";
@@ -102,14 +101,13 @@ function ShowValues(
         </div>
 
         <div className="my-10 flex w-full items-center justify-center">
-          {" "}
           <button
             type="button"
             className="btns flex items-center justify-center text-lg"
             onClick={select_item}
           >
-            <BiSelectMultiple className="ml-2 text-2xl" /> انتخاب{" "}
-          </button>{" "}
+            <BiSelectMultiple className="ml-2 text-2xl" /> انتخاب
+          </button>
         </div>
       </div>
       <div className="my-3 flex w-full items-center justify-between">
@@ -163,8 +161,6 @@ function DrawChart({ graph_data, selected_item_graph }) {
     }
   }
 
-  console.log("datasets_list", datasets_list);
-
   const options = {
     responsive: true,
     plugins: {
@@ -208,11 +204,11 @@ function useOutsideAlerter(ref, setOpen) {
 }
 function Trends() {
   const location = useLocation();
-    //Context
-    const {start_time1 , setStart_time1} = useStart_time1();
-    const {end_time1 , setEnd_time1} = useEnd_time1();
-    const {start_time2 , setStart_time2} = useStart_time2();
-    const {end_time2 , setEnd_time2} = useEnd_time2();
+  //Context
+  const { start_time1, setStart_time1 } = useStart_time1();
+  const { end_time1, setEnd_time1 } = useEnd_time1();
+  const { start_time2, setStart_time2 } = useStart_time2();
+  const { end_time2, setEnd_time2 } = useEnd_time2();
   const [compare_time, setCompare_time] = useState(0);
   const [open, setOpen] = useState(false);
   const DateRef = useRef(null);
@@ -513,11 +509,11 @@ function Trends() {
               <div className="flex items-center">
                 <BiCalendarAlt className="ml-1 text-xl" />
                 <p>
-                  {start_time1.format()} تا {end_time1.format()}{" "}
+                  {start_time1.format()} تا {end_time1.format()}
                 </p>
               </div>
               <p className="text-sm">
-                مقایسه با {start_time2.format()} تا {end_time2.format()}{" "}
+                مقایسه با {start_time2.format()} تا {end_time2.format()}
               </p>
             </div>
           </button>
@@ -527,7 +523,7 @@ function Trends() {
               open ? "flex" : "hidden"
             } absolute top-20 z-50 flex-col justify-start rounded-lg border border-navy-500 bg-white bg-cover bg-no-repeat p-5 shadow-xl dark:!bg-navy-700 dark:text-white dark:shadow-none`}
           >
-            <div className="flex flex-col md:flex-row items-center justify-center border-r-4 border-navy-500 px-2">
+            <div className="flex flex-col items-center justify-center border-r-4 border-navy-500 px-2 md:flex-row">
               <span className="w-20"> زمان شروع :</span>
               <p className="py-2 hover:border-navy-500">
                 {Date_Picker(start_time1, handleSetStart_time1)}
@@ -548,7 +544,7 @@ function Trends() {
               <label htmlFor="handleCompare"> مقایسه با ...</label>
             </div>
 
-            <div className="flex flex-col md:flex-row items-center justify-center border-r-4 border-amber-500 px-2">
+            <div className="flex flex-col items-center justify-center border-r-4 border-amber-500 px-2 md:flex-row">
               <span className="w-20"> زمان شروع :</span>
               <p className="py-2 hover:border-navy-500">
                 {Date_Picker(start_time2, setStart_time2)}
@@ -642,16 +638,15 @@ function Trends() {
             </div>
           </div>
 
-          <div className="my-5 flex items-center justify-end rounded-lg border border-gray-300 p-4">
+          <div className="my-5 flex flex-col items-center justify-end rounded-lg border border-gray-300 p-4 md:flex-row">
             <DataGraphSelect />
             <button
               type="button"
               className="btns mr-2 flex w-full items-center justify-center md:w-auto"
               onClick={do_action}
             >
-              {" "}
               <BiCheckDouble className="ml-2 text-2xl" />
-              <span>اعمال</span>{" "}
+              <span>اعمال</span>
             </button>
           </div>
           <div className="overflow-scroll">

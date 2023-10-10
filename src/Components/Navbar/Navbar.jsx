@@ -41,7 +41,7 @@ const Navbar = (props) => {
       });
   };
   return (
-    <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-3xl dark:bg-[#0b14374d]">
+    <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-sm dark:bg-[#0b14374d]">
       <div className="ms-[6px]">
         <div className="flex h-6 w-[224px] items-center pt-1">
           <a
@@ -50,15 +50,13 @@ const Navbar = (props) => {
           >
             <BiMenuAltRight className="text-xl" />
             <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white">
-              {" "}
-              /{" "}
             </span>
           </a>
           <Link
             className="text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white"
             to="#"
           >
-            {brandText}
+          اتوماسیون دیجیتال
           </Link>
         </div>
         <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">

@@ -1,16 +1,10 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import InitObject from "../../Utils/globalvariables";
 import { IoDownloadOutline } from "react-icons/io5";
-import { FaSms } from "react-icons/fa";
 import FilterDrawer from "Common/FilterDrawer/FilterDrawer";
-// import Dropdown from 'react-bootstrap/Dropdown';
-
-// import DropdownButton from 'react-bootstrap/DropdownButton';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -20,13 +14,11 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { color } from "chart.js/helpers";
 import { TreemapController, TreemapElement } from "chartjs-chart-treemap";
 import { Chart } from "react-chartjs-2";
 import {
   BiCloudDownload,
   BiDownload,
-  BiFilterAlt,
   BiLayer,
   BiMessageRoundedDetail,
   BiMessageRoundedDots,
@@ -282,7 +274,6 @@ function Segment() {
                       >
                         <MenuHandler>
                           <Button className="transparentBtns">
-                           
                             <IoDownloadOutline className="text-xl dark:text-navy-500" />
                           </Button>
                         </MenuHandler>
@@ -324,7 +315,7 @@ function Segment() {
           <button
             type="button"
             onClick={(e) => handleDownloadFile(e, "data")}
-            class="btns flex items-center justify-center text-lg"
+            className="btns flex items-center justify-center text-lg"
           >
             <BiCloudDownload className="ml-2 text-2xl" /> دانلود
           </button>
@@ -351,7 +342,7 @@ function Segment() {
             <DrawChart data={graph_data} />
           </div>
 
-          <DownloadBtn onClick={(e) => handleDownloadFile(e, 'table')} />
+          <DownloadBtn onClick={(e) => handleDownloadFile(e, "table")} />
           <DrawTable graph_data={graph_data} summery_data={summery_data} />
         </fieldset>
       </div>

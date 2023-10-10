@@ -5,7 +5,7 @@ import axios from "axios";
 import InitObject from "../../Utils/globalvariables";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
-import DatePicker, { DateObject } from "react-multi-date-picker";
+import DatePicker from "react-multi-date-picker";
 import Toolbar from "react-multi-date-picker/plugins/toolbar";
 
 import {
@@ -22,7 +22,7 @@ import {
 import { Chart } from "react-chartjs-2";
 import { HiShoppingCart } from "react-icons/hi";
 import TopFilter from "Common/TopFilter";
-import { BiCalendarAlt, BiCheckDouble, BiFilterAlt } from "react-icons/bi";
+import { BiCalendarAlt, BiCheckDouble } from "react-icons/bi";
 import DataGraphSelect from "Common/DataGraphSelect";
 import DownloadBtn from "Common/DownloadBtn";
 import FilterDrawer from "Common/FilterDrawer/FilterDrawer";
@@ -143,23 +143,20 @@ function DrawChart1({ graph_data }) {
   );
 }
 
-
 function ShareShoping() {
   const location = useLocation();
 
   const [graph_data, setGraph_data] = useState({});
   const [table_data, setTable_data] = useState({ labels: [], data: [[]] });
   //Context
-  const {start_time1 , setStart_time1} = useStart_time1();
-  const {end_time1 , setEnd_time1} = useEnd_time1();
+  const { start_time1, setStart_time1 } = useStart_time1();
+  const { end_time1, setEnd_time1 } = useEnd_time1();
   const [period, setPeriod] = useState("30");
 
   function get_graph_data(location, setGraph_data, setTable_data) {
     let formData = new FormData();
     formData.append("start_time1", start_time1.format());
     formData.append("end_time1", end_time1.format());
-    // console.log(start_time1.format());
-    // console.log(end_time1.format());
     formData.append("period", period);
     let api_address = InitObject.baseurl + "api/share_shoping/";
     axios
@@ -172,8 +169,6 @@ function ShareShoping() {
       .then((response) => {
         setGraph_data(response.data.results[0]);
         setTable_data(response.data.results[1]);
-
-        console.log(response.data.results);
       })
       .catch((error) => {
         console.log(error);
@@ -227,33 +222,33 @@ function ShareShoping() {
 
   return (
     <>
-        <TopFilter>
-        <div className="mr-3 flex flex-col lg:flex-row items-center">
-          <div className="ml-2 border-l">
-            <div className="flex justify-center">
+      <TopFilter>
+        <div className="mr-3 flex flex-col items-center lg:flex-row">
+          <div className="ml-2 md:border-l">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-3 md:gap-0">
               <BiCalendarAlt className="text-xl" />
               {Date_Picker(start_time1, handleSetStart_time1)}
               <span>تا</span>
               {Date_Picker(end_time1, setEnd_time1)}
             </div>
           </div>
-         <FilterDrawer />
-          <div className="ml-2 mb-4 lg:mb-0 flex">
-           <DataGraphSelect />
-          <button
-            onClick={do_action}
-            className="btns mr-2 flex w-full items-center justify-center md:w-auto"
-          >
-            <BiCheckDouble className="ml-2 text-2xl" /> <span>اعمال</span>
-          </button>
+          <FilterDrawer />
+          <div className="ml-2 mb-4 flex flex-col md:flex-row gap-3 md:gap-0 lg:mb-0">
+            <DataGraphSelect />
+            <button
+              onClick={do_action}
+              className="btns mr-2 flex w-full items-center justify-center md:w-auto"
+            >
+              <BiCheckDouble className="ml-2 text-2xl" /> <span>اعمال</span>
+            </button>
+          </div>
         </div>
-        </div>
-        </TopFilter>
-        <div className="mb-4 rounded-md bg-white p-4 dark:bg-navy-700 dark:text-white">
+      </TopFilter>
+      <div className="mb-4 rounded-md bg-white p-4 dark:bg-navy-700 dark:text-white">
         <fieldset className="rounded-md border border-solid border-gray-300 p-3">
           <legend className="float-none w-auto px-2 text-sm">
             <p className="flex items-center text-lg font-bold">
-              <HiShoppingCart className="ml-2 text-3xl" /> سهم سبد مشتریان  
+              <HiShoppingCart className="ml-2 text-3xl" /> سهم سبد مشتریان
             </p>
           </legend>
           <div className="my-16">
@@ -263,13 +258,13 @@ function ShareShoping() {
           <div className="my-16">
             <DrawChart1 graph_data={graph_data} />
           </div>
-            <DownloadBtn onClick={(e) => handleDownloadFile(e, {table_data})}/>
+          <DownloadBtn onClick={(e) => handleDownloadFile(e, { table_data })} />
 
           <div className="table1">
             <DrawTable graph_data={table_data} />
           </div>
         </fieldset>
-        </div>
+      </div>
     </>
   );
 }

@@ -42,8 +42,8 @@ function Groups() {
   const [groupname, setGroupname] = useState("name");
   const [groupdescription, setGroupdescription] = useState("");
   //Context
-  const {start_time1 , setStart_time1} = useStart_time1();
-  const {end_time1 , setEnd_time1} = useEnd_time1();
+  const { start_time1, setStart_time1 } = useStart_time1();
+  const { end_time1, setEnd_time1 } = useEnd_time1();
 
   const [product_names, setProduct_names] = useState([]);
   const [product_names_equal, setProduct_names_equal] = useState(1);
@@ -370,16 +370,13 @@ function Groups() {
             <div className="flex items-center justify-center">
               <button
                 type="button"
-                class="btns flex items-center justify-center"
+                className="btns flex items-center justify-center"
                 onClick={add_group_service}
               >
-                <BiPlus className="ml-2 text-2xl" /> ساخت گروه مشتری{" "}
+                <BiPlus className="ml-2 text-2xl" /> ساخت گروه مشتری
               </button>
             </div>
           </div>
-
-          <br />
-
           <DownloadBtn onClick={(e) => handleDownloadFile(e, { graph_data })} />
           <DrawTable graph_data={graph_data} />
         </fieldset>
@@ -394,8 +391,7 @@ const SelectFeaturesBox = ({ children, title }) => {
   return (
     <div className="flex w-full flex-col items-start rounded-lg border border-navy-100">
       <p className="w-full rounded-tr-lg rounded-tl-lg border border-navy-100 bg-navy-500 p-3 text-center font-extrabold text-white">
-        {" "}
-        {title}{" "}
+        {title}
       </p>
       <div className="w-full p-4">{children}</div>
     </div>

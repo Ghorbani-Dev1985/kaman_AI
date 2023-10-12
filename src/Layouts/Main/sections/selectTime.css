@@ -22,7 +22,7 @@
    color: #3b3b3b !important; 
 }
 .rmdp-input{
-   width: 8rem;
+   width: 11rem;
    background-color: transparent;
    color: #2851A2;
    cursor: pointer;
@@ -32,6 +32,9 @@
    padding: 20px 20px !important;
    margin: 0 20px !important;
  }
+ .rmdp-analog-clock {
+   display: none;
+}
  .main-container .select-time .time1{
     width:20vw;
     height: 12vh;

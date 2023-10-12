@@ -27,10 +27,6 @@ import TopFilter from "Common/TopFilter";
 import {
   BiCalendarAlt,
   BiCheckDouble,
-  BiChevronDown,
-  BiCloudDownload,
-  BiFilterAlt,
-  BiLayer,
   BiLineChart,
 } from "react-icons/bi";
 import DataGraphSelect from "Common/DataGraphSelect";
@@ -54,14 +50,14 @@ function Date_Picker(v, setter) {
     <>
       <DatePicker
         className="date-picker"
-        format="YYYY-MM-DD"
+        format="YYYY-MM-DDTHH:mm:ss"
         onChange={setter}
         calendar={persian}
         locale={persian_fa}
         value={v}
-        formattingIgnoreList={["Date"]}
+        formattingIgnoreList={["Date" , "Time"]}
         calendarPosition="bottom-center"
-        plugins={[<Toolbar position="bottom" />]}
+        plugins={[ <TimePicker position="bottom" /> , <Toolbar position="bottom" />]}
       />
     </>
   );

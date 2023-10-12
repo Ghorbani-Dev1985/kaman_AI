@@ -365,7 +365,7 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
             </AccordionHeader>
           </ListItem>
           <AccordionBody className={`rounded-md bg-gray-100 p-2 py-1  ${
-                  showSubMenu.allMenu ? "inline-flex" : "hidden"
+                  showSubMenu.allMenu ? "block" : "hidden"
                 }`}>
             <List className="p-0">
               {CostomersSubMenu.map(({ id, to, handler, manuTitle }) => {
@@ -422,7 +422,7 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
             </AccordionHeader>
           </ListItem>
           <AccordionBody className={`rounded-md bg-gray-100 p-2 py-1 ${
-                  showSubMenu.allMenu ? "inline-flex" : "hidden"
+                  showSubMenu.allMenu ? "block" : "hidden"
                 }`} >
             <List className="p-0">
               {ProductsSubMenu.map(({ id, handler, to, manuTitle }) => {
@@ -479,7 +479,7 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
             </AccordionHeader>
           </ListItem>
           <AccordionBody   className={`rounded-md bg-gray-100 p-2 py-1 ${
-                  showSubMenu.allMenu ? "inline-flex" : "hidden"
+                  showSubMenu.allMenu ? "block" : "hidden"
                 }`}>
             <List className="p-0">
               {PredictionSubMenu.map(({ id, to, handler, manuTitle }) => {
@@ -559,7 +559,7 @@ const Sidebar = ({ openMenu, onClose, showSubMenu, setShowSubMenu }) => {
             </AccordionHeader>
           </ListItem >
           <AccordionBody className={`rounded-md bg-gray-100 p-2 py-1 ${
-                  showSubMenu.allMenu ? "inline-flex" : "hidden"
+                  showSubMenu.allMenu ? "block" : "hidden"
                 }`}>
             <List className="p-0">
               {SettingsSubMenu.map(({ id, to, handler, manuTitle }) => {

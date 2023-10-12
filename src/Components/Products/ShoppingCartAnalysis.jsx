@@ -32,6 +32,7 @@ import { useStart_time1 } from "Context/Start_time1Context";
 import { useEnd_time1 } from "Context/End_time1Context";
 import { useStart_time2 } from "Context/Start_time2Context";
 import { useEnd_time2 } from "Context/End_time2Context";
+import TimePicker from "react-multi-date-picker/plugins/time_picker";
 
 ChartJS.register(
   CategoryScale,
@@ -47,14 +48,14 @@ function Date_Picker(v, setter) {
     <>
       <DatePicker
         className="date-picker"
-        format="YYYY/MM/DD"
+        format="YYYY-MM-DDTHH:mm:ss"
         onChange={setter}
         calendar={persian}
         locale={persian_fa}
         value={v}
-        formattingIgnoreList={["Date"]}
+        formattingIgnoreList={["Date" , "Time"]}
         calendarPosition="bottom-center"
-        plugins={[<Toolbar position="bottom" />]}
+        plugins={[<TimePicker position="bottom" /> , <Toolbar position="bottom" />]}
       />
     </>
   );
@@ -236,7 +237,6 @@ function ShoppingCartAnalysis() {
     localStorage.setItem("start_time1", start_time1);
     console.log(e.format());
   };
-
   const handleCompare_time = (event) => {
     if (compare_time === 1) {
       setCompare_time(0);
@@ -356,11 +356,11 @@ function ShoppingCartAnalysis() {
                 <div className="flex items-center">
                   <BiCalendarAlt className="ml-1 text-xl" />
                   <p>
-                    {start_time1.format()} تا {end_time1.format()}
+                    {start_time1.format("YYYY/MM/DD")} تا {end_time1.format("YYYY/MM/DD")}
                   </p>
                 </div>
                 <p className="text-sm">
-                  مقایسه با {start_time2.format()} تا {end_time2.format()}
+                  مقایسه با {start_time2.format("YYYY/MM/DD")} تا {end_time2.format("YYYY/MM/DD")}
                 </p>
               </div>
             </button>

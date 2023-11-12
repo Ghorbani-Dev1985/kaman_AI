@@ -1,5 +1,10 @@
-import { Spinner } from "@material-tailwind/react";
- 
-export function Loading() {
-  return <Spinner className="h-16 w-16 text-navy-500" />;
+
+import loadingGif from "../assets/img/loading.gif";
+
+const Loading = () => {
+  return ( 
+     <img src={loadingGif} alt="loading" />
+   );
 }
+ 
+export default Loading;

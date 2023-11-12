@@ -20,6 +20,7 @@
     "react-apexcharts": "1.4.0",
     "react-calendar": "^3.9.0",
     "react-chartjs-2": "^5.2.0",
+    "react-customizable-progressbar": "^1.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-multi-date-picker": "^4.1.2",

@@ -6,14 +6,21 @@ import InitObject from "../../Utils/globalvariables";
 import { BiCloudUpload, BiError, BiTrash } from "react-icons/bi";
 import { BiCloudDownload } from "react-icons/bi";
 import Line from "../../Common/Line";
-import { Card, Typography } from "@material-tailwind/react";
+import { Card, Spinner, Typography } from "@material-tailwind/react";
 import TopInfoBar from "Common/TopInfoBar";
-function ImportData(props) {
+import LoadingGif from "../../assets/img/loading.gif";
+import { HiDownload } from "react-icons/hi";
+import ProgressBar from "react-customizable-progressbar";
+
+function ImportData({ precentage, progress }) {
   const location = useLocation();
   const inputDataRef = useRef(null);
   const [selected_file, SetSelected_file] = useState(null);
+  const [filesUploaded, setFilesUploaded] = useState(0);
   const [imports_list, SetImport_list] = useState({});
-
+  const [showLoadingImport, setShowLoadingImport] = useState(false);
+  const [showLoadingUpdate, setShowLoadingUpdate] = useState(false);
+  const [showLoadingDeleteFile, setShowLoadingDeleteFile] = useState(false);
   const handleInputDataClick = () => {
     inputDataRef.current.click();
   };
@@ -44,6 +51,7 @@ function ImportData(props) {
     formData.append("excel_id", key);
     // formData.append("end_date1", end_time1.format());
     let api_address = InitObject.baseurl + "api/remove_excel/";
+    setShowLoadingDeleteFile(true);
     axios
       .post(api_address, formData, {
         headers: {
@@ -53,9 +61,11 @@ function ImportData(props) {
       })
       .then((response) => {
         console.log(response.data.results);
+        setShowLoadingDeleteFile(false);
         window.location.reload();
       })
       .catch((error) => {
+        setShowLoadingDeleteFile(false);
         console.log(error);
       });
   };
@@ -90,25 +100,47 @@ function ImportData(props) {
       });
   };
 
-  const handlesubmitFile = (e) => {
-    e.preventDefault();
+  const handlesubmitFile = (selected_file) => {
+    //  e.preventDefault();
+     console.log(selected_file);
     let formData = new FormData();
+    formData.append("file", selected_file);
     if (selected_file) {
-      formData.append("file", selected_file);
       let api_address = InitObject.baseurl + "api/import_excel/";
-      console.log(api_address);
+      setShowLoadingImport(true);
       axios
-        .post(api_address, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: " Token " + location.state.userinfo.key,
-          },
-        })
+        .post(
+          api_address,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: " Token " + location.state.userinfo.key,
+            },
+            onUploadProgress: progressEvent => {
+              const { loaded, total } = progressEvent;
+              console.log(loaded , total);
+              let percent = Math.floor((loaded * 100) / total);
+              console.log(percent);
+              if (percent < 100) {
+                console.log(percent);
+                setFilesUploaded(percent);
+              }
+            },
+          }
+        )
         .then((response) => {
+          setShowLoadingImport(false);
+          setFilesUploaded(100);
+          setTimeout(() => {
+            setFilesUploaded(0);
+          }, 1000);
           console.log(response);
           SetSelected_file(null);
         })
         .catch((error) => {
+          setShowLoadingImport(false);
+          setFilesUploaded(0);
           console.log(error);
         });
     }
@@ -118,6 +150,7 @@ function ImportData(props) {
     e.preventDefault();
     let formData = new FormData();
     let api_address = InitObject.baseurl + "api/update_customer_rfm_scores/";
+    setShowLoadingUpdate(true);
     axios
       .post(api_address, formData, {
         headers: {
@@ -126,9 +159,11 @@ function ImportData(props) {
         },
       })
       .then((response) => {
+        setShowLoadingUpdate(false);
         console.log(response);
       })
       .catch((error) => {
+        setShowLoadingUpdate(false);
         console.log(error);
       });
   };
@@ -175,7 +210,6 @@ function ImportData(props) {
     // console.log(fileObj);
     // console.log(fileObj.name);
   };
-  console.log(Object.keys(imports_list));
   const ImportListTableHead = [
     "شناسه",
     "تعداد",
@@ -185,7 +219,7 @@ function ImportData(props) {
   ];
   return (
     <>
-    <TopInfoBar />
+      <TopInfoBar />
       <div className="mb-4 rounded-md bg-white p-4 dark:bg-navy-700 dark:text-white">
         <fieldset className="rounded-md border border-solid border-gray-300 p-3">
           <legend className="float-none w-auto px-2 text-sm">ورود داده</legend>
@@ -209,29 +243,62 @@ function ImportData(props) {
               انتخاب فایل
             </button>
             <div className="bg-slate-100 flex h-11 w-full items-center justify-center rounded-md md:flex-1">
-              {selected_file ? <>{selected_file.name}</> : <></>}
+              {selected_file && <>{selected_file.name}</>}
             </div>
             <button
-              className="secondBtns submit-file w-full md:mx-2 md:w-auto"
-              onClick={handlesubmitFile}
-            >
-              ورود داده
-            </button>
-            <button
-              className="transparentBtns sample-file w-full md:mx-2 md:w-auto"
+              className="transparentBtns sample-file flex w-full items-center justify-center md:mx-2 md:w-auto"
               onClick={handleSampleFile}
             >
-              فایل نمونه
+              <HiDownload className="ml-2 text-xl" />
+              دانلود قالب نمونه
             </button>
-            <button
-              className="btns submit-file flex w-full items-center  justify-center md:mx-2 md:w-auto"
-              onClick={handleUpdateFile}
-            >
-              <BiCloudUpload className="ml-2 text-xl" />
-              <span> به روز رسانی </span>
-            </button>
+            {showLoadingImport ? (
+              <ProgressBar
+                radius={50}
+                progress={filesUploaded}
+                strokeWidth={14}
+                strokeColor="#ffce54"
+                strokeLinecap="butt"
+                trackStrokeWidth={7}
+                trackStrokeLinecap="butt"
+                cut={120}
+                rotate={-210}
+                className="relative"
+              >
+                <div className="absolute top-16 right-0 left-0 mx-auto flex items-center justify-center text-xl">
+                  <div>{filesUploaded}%</div>
+                </div>
+              </ProgressBar>
+            ) : (
+              <button
+                className="btns submit-file flex w-full items-center justify-center md:mx-2 md:w-auto"
+                onClick={() => handlesubmitFile(selected_file)}
+              >
+                <BiCloudUpload className="ml-2 text-xl" />
+                آپلود فایل داده ها
+              </button>
+            )}
+
+            {/* {
+                showLoadingUpdate ? <img src={LoadingGif} alt="loadingGif" className="w-10 h-10 object-cover " /> :  <button
+                className="btns submit-file flex w-full items-center  justify-center md:mx-2 md:w-auto"
+                onClick={handleUpdateFile}
+              >
+               <BiCloudUpload className="ml-2 text-xl" />
+                <span> به روز رسانی </span>
+              </button>
+              } */}
           </div>
           <Line />
+          <div className="my-2 flex w-full items-center justify-center">
+            {showLoadingDeleteFile && (
+              <img
+                src={LoadingGif}
+                alt="loadingGif"
+                className="h-10 w-10 object-cover"
+              />
+            )}
+          </div>
           {Object.keys(imports_list).length > 0 ? (
             <Card className="mx-auto h-full max-w-[16rem] overflow-x-auto md:max-w-lg lg:max-w-2xl xl:max-w-4xl 2xl:max-w-full">
               <table className="w-full min-w-max table-auto text-center">

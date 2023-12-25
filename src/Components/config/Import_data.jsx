@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useRef, useState } from "react";
+import {ChangeGregorianDateToPersian} from "../../Utils/globalvariables";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import InitObject from "../../Utils/globalvariables";
@@ -11,6 +12,8 @@ import TopInfoBar from "Common/TopInfoBar";
 import LoadingGif from "../../assets/img/loading.gif";
 import { HiDownload } from "react-icons/hi";
 import ProgressBar from "react-customizable-progressbar";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 function ImportData({ precentage, progress }) {
   const location = useLocation();
@@ -24,6 +27,27 @@ function ImportData({ precentage, progress }) {
   const handleInputDataClick = () => {
     inputDataRef.current.click();
   };
+
+  const handleImportList = (e) => {
+    e.preventDefault();
+    let formData = new FormData();
+    let api_address = InitObject.baseurl + "api/list_imports/";
+    axios
+      .post(api_address, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: " Token " + location.state.userinfo.key,
+        },
+      })
+      .then((response) => {
+        SetImport_list(response.data.results);
+        console.log(response.data.results);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+};
 
   useEffect(() => {
     let formData = new FormData();
@@ -46,29 +70,46 @@ function ImportData({ precentage, progress }) {
 
   const handleRemoveAllFile = (e, key) => {
     e.preventDefault();
-
+    
     let formData = new FormData();
     formData.append("excel_id", key);
     // formData.append("end_date1", end_time1.format());
-    let api_address = InitObject.baseurl + "api/remove_excel/";
-    setShowLoadingDeleteFile(true);
-    axios
-      .post(api_address, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: " Token " + location.state.userinfo.key,
-        },
-      })
-      .then((response) => {
-        console.log(response.data.results);
-        setShowLoadingDeleteFile(false);
-        window.location.reload();
-      })
-      .catch((error) => {
-        setShowLoadingDeleteFile(false);
-        console.log(error);
-      });
-  };
+    let api_address = InitObject.baseurl + 'api/remove_excel/'
+    Swal.fire({
+      title: "برای حذف فایل مطمعن هستید؟",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "بله",
+      cancelButtonText: "انصراف"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .post(api_address, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: " Token " + location.state.userinfo.key,
+            },
+          })
+          .then((response) => {
+            console.log(response.data.results);
+            setShowLoadingDeleteFile(false);
+            window.location.reload();
+          })
+          .catch((error) => {
+            setShowLoadingDeleteFile(false);
+            console.log(error);
+          });
+        Swal.fire({
+          title: "فایل مورد نظر با موفقیت حذف گردید.",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  }
 
   const handleDownloadFile = (e, key) => {
     e.preventDefault();
@@ -100,51 +141,33 @@ function ImportData({ precentage, progress }) {
       });
   };
 
-  const handlesubmitFile = (selected_file) => {
-    //  e.preventDefault();
-     console.log(selected_file);
-    let formData = new FormData();
-    formData.append("file", selected_file);
-    if (selected_file) {
-      let api_address = InitObject.baseurl + "api/import_excel/";
-      setShowLoadingImport(true);
-      axios
-        .post(
-          api_address,
-          formData,
-          {
+  const handlesubmitFile = (e) => {
+    e.preventDefault();
+    let formData = new FormData()
+        formData.append("file", selected_file);
+        // formData.append("end_date1", end_time1.format());
+        let api_address = InitObject.baseurl + 'api/import_excel/'
+        console.log(api_address);
+        setShowLoadingImport(true);
+        axios.post(api_address, formData, {
             headers: {
               "Content-Type": "multipart/form-data",
-              Authorization: " Token " + location.state.userinfo.key,
+              "Authorization": " Token " + location.state.userinfo.key
             },
-            onUploadProgress: progressEvent => {
-              const { loaded, total } = progressEvent;
-              console.log(loaded , total);
-              let percent = Math.floor((loaded * 100) / total);
-              console.log(percent);
-              if (percent < 100) {
-                console.log(percent);
-                setFilesUploaded(percent);
-              }
-            },
-          }
-        )
-        .then((response) => {
-          setShowLoadingImport(false);
-          setFilesUploaded(100);
-          setTimeout(() => {
-            setFilesUploaded(0);
-          }, 1000);
-          console.log(response);
-          SetSelected_file(null);
-        })
-        .catch((error) => {
-          setShowLoadingImport(false);
-          setFilesUploaded(0);
-          console.log(error);
-        });
-    }
-  };
+          }).then((response) => {
+            setShowLoadingImport(false);
+                console.log(response);
+                SetSelected_file(null);
+                 handleImportList(e);
+                handleUpdateFile(e);
+           })
+           .catch((error) => {
+            setShowLoadingImport(false);
+            console.log(error);
+           
+            });
+
+};
 
   const handleUpdateFile = (e) => {
     e.preventDefault();
@@ -252,33 +275,16 @@ function ImportData({ precentage, progress }) {
               <HiDownload className="ml-2 text-xl" />
               دانلود قالب نمونه
             </button>
-            {showLoadingImport ? (
-              <ProgressBar
-                radius={50}
-                progress={filesUploaded}
-                strokeWidth={14}
-                strokeColor="#ffce54"
-                strokeLinecap="butt"
-                trackStrokeWidth={7}
-                trackStrokeLinecap="butt"
-                cut={120}
-                rotate={-210}
-                className="relative"
-              >
-                <div className="absolute top-16 right-0 left-0 mx-auto flex items-center justify-center text-xl">
-                  <div>{filesUploaded}%</div>
-                </div>
-              </ProgressBar>
-            ) : (
-              <button
+               {
+                showLoadingImport ? <img src={LoadingGif} alt="loading" className="w-10 h-10"/> : <button
                 className="btns submit-file flex w-full items-center justify-center md:mx-2 md:w-auto"
-                onClick={() => handlesubmitFile(selected_file)}
+                onClick={handlesubmitFile}
               >
                 <BiCloudUpload className="ml-2 text-xl" />
                 آپلود فایل داده ها
               </button>
-            )}
-
+               }
+             
             {/* {
                 showLoadingUpdate ? <img src={LoadingGif} alt="loadingGif" className="w-10 h-10 object-cover " /> :  <button
                 className="btns submit-file flex w-full items-center  justify-center md:mx-2 md:w-auto"
@@ -290,15 +296,6 @@ function ImportData({ precentage, progress }) {
               } */}
           </div>
           <Line />
-          <div className="my-2 flex w-full items-center justify-center">
-            {showLoadingDeleteFile && (
-              <img
-                src={LoadingGif}
-                alt="loadingGif"
-                className="h-10 w-10 object-cover"
-              />
-            )}
-          </div>
           {Object.keys(imports_list).length > 0 ? (
             <Card className="mx-auto h-full max-w-[16rem] overflow-x-auto md:max-w-lg lg:max-w-2xl xl:max-w-4xl 2xl:max-w-full">
               <table className="w-full min-w-max table-auto text-center">
@@ -322,6 +319,10 @@ function ImportData({ precentage, progress }) {
                 </thead>
                 <tbody>
                   {Object.keys(imports_list).map((importList) => {
+                    let year = imports_list[importList]["time"].slice(0 , 4) 
+                    let month = imports_list[importList]["time"].slice(5 , 7) 
+                    let day = imports_list[importList]["time"].slice(8 , 10) 
+                     console.log(day)
                     return (
                       <tr
                         key={importList}
@@ -351,7 +352,8 @@ function ImportData({ precentage, progress }) {
                             color="blue-gray"
                             className="text-center font-normal"
                           >
-                            {imports_list[importList]["time"]}
+                            {imports_list[importList]["time"].slice(11 , 19)}<span className="mx-1">-</span>
+                         { ChangeGregorianDateToPersian(+year, +month , +day)}                         
                           </Typography>
                         </td>
                         <td className="p-4">

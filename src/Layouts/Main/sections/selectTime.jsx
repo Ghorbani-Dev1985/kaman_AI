@@ -16,6 +16,16 @@ import { useEnd_time1 } from "Context/End_time1Context";
 import { useStart_time2 } from "Context/Start_time2Context";
 import { useEnd_time2 } from "Context/End_time2Context";
 import TimePicker from "react-multi-date-picker/plugins/time_picker";
+//mui
+import { AdapterDateFnsJalali } from '@mui/x-date-pickers/AdapterDateFnsJalali';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import useTheme from '@mui/system/useTheme';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import RtlProvider from "Common/RtlProvider";
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+
+
 
 function Date_Picker(v, setter) {
   return (
@@ -54,13 +64,15 @@ function useOutsideAlerter(ref, setOpen) {
 function SelectTime({ setResponse, setchartresponse }) {
   //Context
   const {start_time1 , setStart_time1} = useStart_time1();
+  console.log(start_time1)
   const {end_time1 , setEnd_time1} = useEnd_time1();
   const {start_time2 , setStart_time2} = useStart_time2();
   const {end_time2 , setEnd_time2} = useEnd_time2();
-  const [values, setValues] = useState([
-    new DateObject({ calendar: persian })
-  ])
-  console.log( setValues)
+  const existingTheme = useTheme();
+  const theme = React.useMemo(
+    () => createTheme({ direction: 'rtl' }, existingTheme),
+    [existingTheme],
+  );
   const [compare_time, setCompare_time] = useState(0);
   const [open, setOpen] = useState(false);
   const DateRef = useRef(null);
@@ -177,16 +189,30 @@ function SelectTime({ setResponse, setchartresponse }) {
             } absolute top-20 z-50 flex-col justify-start rounded-lg border border-navy-500 bg-white bg-cover bg-no-repeat p-5 shadow-xl dark:!bg-navy-700 dark:text-white dark:shadow-none`}
           >
             <div className="flex flex-col md:flex-row items-center justify-center border-r-4 border-navy-500 px-2">
-              <span className="w-20"> زمان شروع :</span>
+            {/*   <span className="w-20"> زمان شروع :</span>
               <p className="py-2 hover:border-navy-500">
                 {Date_Picker(start_time1, handleSetStart_time1)}
               </p>
               <span className="w-20">زمان پایان :</span>
               <p className="py-2 hover:border-navy-500">
                 {Date_Picker(end_time1, setEnd_time1)}
-              </p>
-            </div>
+              </p>*/}
+               <RtlProvider>
+               <ThemeProvider theme={theme}>
+      <div dir="rtl">
+        <LocalizationProvider dateAdapter={AdapterDateFnsJalali}>
 
+        <DemoContainer components={['DatePicker', 'DatePicker']}>
+          <DateTimePicker label="تاریخ شروع" value={start_time1} onChange={handleSetStart_time1} defaultValue={new Date()} />
+          <DateTimePicker label="تاریخ پایان" defaultValue={new Date()} />
+      </DemoContainer>
+
+        </LocalizationProvider>
+      </div>
+    </ThemeProvider>
+            </RtlProvider>
+            </div>
+         
             <div className="my-7 flex w-full items-center justify-center">
               <Checkbox
                 name="handleCompare"
@@ -207,17 +233,7 @@ function SelectTime({ setResponse, setchartresponse }) {
                 {Date_Picker(end_time2, setEnd_time2)}
               </p>
             </div>
-            <Calendar
-  value={values}
-  onChange={setValues}
-  format="YYYY-MM-DDTHH:mm:ss"
-  range
-  rangeHover
-  numberOfMonths={2}
-  calendar={persian}
-  locale={persian_fa}
-  calendarPosition="bottom-right"
-/>
+
             <div className="mt-4 flex w-full items-center justify-end border-t border-gray-300 py-5">
               <button
                 onClick={() => setOpen(false)}

@@ -25,6 +25,9 @@
   [button] {
     @apply w-full rounded-lg bg-navy-800 px-5 py-2 text-center text-sm font-medium text-white transition-all duration-700 ease-in-out hover:border hover:border-navy-800 hover:bg-white hover:text-navy-800 dark:bg-navy-800 dark:hover:bg-navy-800 dark:focus:ring-navy-800;
   }
+  [type='text']:focus{
+    @apply ring-0
+  }
 }
 
 @layer components {

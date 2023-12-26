@@ -3,7 +3,7 @@ import "./selectTime.css";
 import { useState } from "react";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
-import DatePicker, { DateObject } from "react-multi-date-picker";
+import DatePicker, { Calendar, DateObject } from "react-multi-date-picker";
 import Toolbar from "react-multi-date-picker/plugins/toolbar";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
@@ -24,6 +24,7 @@ function Date_Picker(v, setter) {
         className="date-picker"
         format="YYYY-MM-DDTHH:mm:ss"
         onChange={setter}
+        editable = {true}
         calendar={persian}
         locale={persian_fa}
         value={v}
@@ -56,7 +57,10 @@ function SelectTime({ setResponse, setchartresponse }) {
   const {end_time1 , setEnd_time1} = useEnd_time1();
   const {start_time2 , setStart_time2} = useStart_time2();
   const {end_time2 , setEnd_time2} = useEnd_time2();
-
+  const [values, setValues] = useState([
+    new DateObject({ calendar: persian })
+  ])
+  console.log( setValues)
   const [compare_time, setCompare_time] = useState(0);
   const [open, setOpen] = useState(false);
   const DateRef = useRef(null);
@@ -67,7 +71,6 @@ function SelectTime({ setResponse, setchartresponse }) {
     // e.preventDefault();
     setStart_time1(e);
     localStorage.setItem("start_time1", start_time1);
-    console.log(e.format());
   };
   useEffect(() => {
    setStart_time1(new DateObject(start_time1));
@@ -152,18 +155,18 @@ function SelectTime({ setResponse, setchartresponse }) {
          <button
            onClick={() => setOpen(!open)}
            className="flex h-full items-center justify-center text-base text-navy-500 transition-all duration-300 ease-in-out hover:bg-brand-50/20 "
-         >
-           <div className="flex flex-col gap-4">
+         >j
+           {/* <div className="flex flex-col gap-4">
              <div className="flex items-center">
                <BiCalendarAlt className="ml-1 text-xl" />
                <p>
-                 {start_time1.format("YYYY/MM/DD")} تا {end_time1.format("YYYY/MM/DD")}
+                 {start_time1.format()} تا {end_time1.format()}
                </p>
              </div>
              <p className="text-sm">
-               مقایسه با {start_time2.format("YYYY/MM/DD")} تا {end_time2.format("YYYY/MM/DD")}
+               مقایسه با {start_time2.format()} تا {end_time2.format()}
              </p>
-           </div>
+           </div> */}
          </button>
          
           
@@ -204,7 +207,17 @@ function SelectTime({ setResponse, setchartresponse }) {
                 {Date_Picker(end_time2, setEnd_time2)}
               </p>
             </div>
-
+            <Calendar
+  value={values}
+  onChange={setValues}
+  format="YYYY-MM-DDTHH:mm:ss"
+  range
+  rangeHover
+  numberOfMonths={2}
+  calendar={persian}
+  locale={persian_fa}
+  calendarPosition="bottom-right"
+/>
             <div className="mt-4 flex w-full items-center justify-end border-t border-gray-300 py-5">
               <button
                 onClick={() => setOpen(false)}

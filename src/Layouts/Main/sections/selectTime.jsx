@@ -7,7 +7,7 @@ import DatePicker, { Calendar, DateObject } from "react-multi-date-picker";
 import Toolbar from "react-multi-date-picker/plugins/toolbar";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import InitObject from "../../../Utils/globalvariables";
+import InitObject , {ChangeGregorianDateToPersian} from "../../../Utils/globalvariables";
 import { BiCalendarAlt, BiCheckDouble} from "react-icons/bi";
 import TopFilter from "Common/TopFilter";
 import { Checkbox} from "@material-tailwind/react";
@@ -16,6 +16,7 @@ import { useEnd_time1 } from "Context/End_time1Context";
 import { useStart_time2 } from "Context/Start_time2Context";
 import { useEnd_time2 } from "Context/End_time2Context";
 import TimePicker from "react-multi-date-picker/plugins/time_picker";
+import Input from "Common/Input";
 //mui
 
 
@@ -27,7 +28,7 @@ function Date_Picker(v, setter) {
     <>
       <DatePicker
         className="date-picker"
-        format="YYYY-MM-DDTHH:mm:ss"
+        format="YYYY/MM/DD"
         onChange={setter}
         editable = {true}
         calendar={persian}
@@ -59,11 +60,10 @@ function useOutsideAlerter(ref, setOpen) {
 function SelectTime({ setResponse, setchartresponse }) {
   //Context
   const {start_time1 , setStart_time1} = useStart_time1();
-  console.log(start_time1)
   const {end_time1 , setEnd_time1} = useEnd_time1();
   const {start_time2 , setStart_time2} = useStart_time2();
   const {end_time2 , setEnd_time2} = useEnd_time2();
-
+ console.log(start_time1)
   const [compare_time, setCompare_time] = useState(0);
   const [open, setOpen] = useState(false);
   const DateRef = useRef(null);
@@ -81,11 +81,11 @@ function SelectTime({ setResponse, setchartresponse }) {
   const handleFactorInfo = (e) => {
     e.preventDefault();
     let formData = new FormData();
-    formData.append("start_date1", start_time1.format());
-    formData.append("end_date1", end_time2.format());
+    formData.append("start_date1", start_time1.format("YYYY-MM-DDTHH:mm:ss"));
+    formData.append("end_date1", end_time2.format("YYYY-MM-DDTHH:mm:ss"));
     if (compare_time === 1) {
-      formData.append("start_date2", start_time2.format());
-      formData.append("end_date2", end_time2.format());
+      formData.append("start_date2", start_time2.format("YYYY-MM-DDTHH:mm:ss"));
+      formData.append("end_date2", end_time2.format("YYYY-MM-DDTHH:mm:ss"));
     }
 
     let api_address = InitObject.baseurl + "api/factors_info/";
@@ -107,8 +107,8 @@ function SelectTime({ setResponse, setchartresponse }) {
   const handleProductInfo = (e) => {
     e.preventDefault();
     let formData = new FormData();
-    formData.append("start_date1", start_time1.format());
-    formData.append("end_date1", end_time1.format());
+    formData.append("start_date1", start_time1.format("YYYY-MM-DDTHH:mm:ss"));
+    formData.append("end_date1", end_time1.format("YYYY-MM-DDTHH:mm:ss"));
     formData.append("export", 0);
     let api_address = InitObject.baseurl + "api/products_info/";
     axios
@@ -158,8 +158,8 @@ function SelectTime({ setResponse, setchartresponse }) {
          <button
            onClick={() => setOpen(!open)}
            className="flex h-full items-center justify-center text-base text-navy-500 transition-all duration-300 ease-in-out hover:bg-brand-50/20 "
-         >j
-           {/* <div className="flex flex-col gap-4">
+         >
+           <div className="flex flex-col gap-4">
              <div className="flex items-center">
                <BiCalendarAlt className="ml-1 text-xl" />
                <p>
@@ -169,7 +169,7 @@ function SelectTime({ setResponse, setchartresponse }) {
              <p className="text-sm">
                مقایسه با {start_time2.format()} تا {end_time2.format()}
              </p>
-           </div> */}
+           </div>
          </button>
          
           
@@ -188,7 +188,6 @@ function SelectTime({ setResponse, setchartresponse }) {
               <p className="py-2 hover:border-navy-500">
                 {Date_Picker(end_time1, setEnd_time1)}
               </p>
-              
             </div>
          
             <div className="my-7 flex w-full items-center justify-center">

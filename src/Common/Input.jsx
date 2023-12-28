@@ -1,9 +1,10 @@
-const Input = ({ inputType ,  Label , value , onChange , id , InputName }) => {
+const Input = ({ inputType = "text" ,  Label , value , onChange , id , InputName , format}) => {
   return (
 
 <div className="relative w-full mb-3">
 <input type={inputType}
         value={value}
+        form={format}
         onChange={onChange}
         id={id}
         name={InputName}

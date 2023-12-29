@@ -6,7 +6,7 @@ const End_time1Context = createContext();
 export function End_time1Provider({ children }) {
   const [end_time1, setEnd_time1] = useState(new DateObject());
   return (
-    <End_time1Context.Provider value={{ end_time1, setEnd_time1 }}>
+    <End_time1Context.Provider value={{ end_time1, setEnd_time1}}>
       {children}
     </End_time1Context.Provider>
   );

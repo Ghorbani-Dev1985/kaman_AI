@@ -12,6 +12,9 @@
     background-color: var(--box-color)
     
  }
+ .rmdp-wrapper{
+   z-index: 0 !important;
+ }
  .rmdp-shadow{
    box-shadow: none !important;
  }
@@ -22,7 +25,7 @@
    color: #3b3b3b !important; 
 }
 .rmdp-input{
-   width: 11rem;
+   width: 7rem;
    background-color: transparent;
    color: #2851A2;
    cursor: pointer;
@@ -30,7 +33,7 @@
    border : 1px solid #e7e7e7;
    border-radius: 10px;
    padding: 20px 20px !important;
-   margin: 0 20px !important;
+   margin: 0 10px !important;
  }
  .rmdp-analog-clock {
    display: none;

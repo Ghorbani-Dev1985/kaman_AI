@@ -1,45 +1,56 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import "react-select-search/style.css";
 
-function ShowValues(
-  results,
-  options,
-  selectedOption,
-  selectedOption_value,
-  setSelectedOption,
-  setSelectedOptionValue,
-  setSelectedOptionImprove,
-  selectedOption_improve
-) {
-  const ChangeValue = (e) => {
-    setSelectedOptionValue(results.date1[e.value]);
-    setSelectedOption(e.label);
-    setSelectedOptionImprove(results.percentage[e.value]);
-  };
 
-  return (
-    <>
-      <div className="flex flex-col justify-between h-full p-3">
+function ShowInfo({ results , showLoading , setShowLoading}) {
+  function ShowValues(
+    results,
+    options,
+    selectedOption,
+    selectedOption_value,
+    setSelectedOption,
+    setSelectedOptionValue,
+    setSelectedOptionImprove,
+    selectedOption_improve,
+  ) {
+    const ChangeValue = (e) => {
+      setSelectedOptionValue(results.date1[e.value]);
+      setSelectedOption(e.label);
+      setSelectedOptionImprove(results.percentage[e.value]);
+      
+    };
+   console.log(showLoading)
+    return (
+      <>
+
+   {
+        showLoading ? <div role="status" className="max-w-sm animate-pulse flex flex-col justify-between h-full p-3">
+      <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-52 mb-4"></div>
+      <div className="w-full flex justify-between items-center">
+      <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-20"></div>
+      <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-20"></div>
+      </div>
+  </div> : <div className="flex h-full flex-col justify-between p-3">
           <Select
             onChange={ChangeValue}
             options={options}
             placeholder={selectedOption}
             className="select-search text-navy-500"
             theme="neutral50"
-          />  
-      <div className="my-3 flex w-full items-center justify-between">
-        <div className="number">{selectedOption_value}</div>
-        <div className="rounded-md bg-gray-100 px-3 py-1 dark:bg-navy-500 dark:text-white">
-          {selectedOption_improve}
+          />
+          <div className="my-3 flex w-full items-center justify-between">
+            <div className="number">{selectedOption_value}</div>
+            <div className="rounded-md bg-gray-100 px-3 py-1 dark:bg-navy-500 dark:text-white">
+              {selectedOption_improve}
+            </div>
+          </div>
         </div>
-      </div>
-      </div>
-    </>
-  );
-}
-
-function ShowInfo({ results }) {
+   }
+        
+      </>
+    );
+  }
   const options = [
     // {label: 'میانگین تعداد محصول در فاکتور', value: 'factor_product_average'},
     // {label: 'میانگین تعداد سطر در فاکتور', value: 'factor_rows_average'},
@@ -198,12 +209,14 @@ function ShowInfo({ results }) {
       setSelectedOptionImprove6(0);
     }
   });
-
+ 
   return (
     <>
-      <div className="grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12">
+     
+      <div className="my-12 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
         {/* {response} */}
-        <div className="cursor-pointer rounded-md bg-white min-h-[13rem] shadow-lg p-2 dark:bg-navy-700 dark:text-white">
+        
+          <div className="min-h-[13rem] cursor-pointer rounded-md bg-white p-2 shadow-lg dark:bg-navy-700 dark:text-white">
           {ShowValues(
             results,
             options,
@@ -213,9 +226,10 @@ function ShowInfo({ results }) {
             setSelectedOptionValue1,
             setSelectedOptionImprove1,
             selectedOption1_improve
-          )}
-        </div>
-        <div className="cursor-pointer rounded-md bg-white min-h-[13rem] shadow-lg p-2 dark:bg-navy-700 dark:text-white">
+          )    
+        }
+       </div>
+        <div className="min-h-[13rem] cursor-pointer rounded-md bg-white p-2 shadow-lg dark:bg-navy-700 dark:text-white">
           {ShowValues(
             results,
             options,
@@ -227,7 +241,7 @@ function ShowInfo({ results }) {
             selectedOption2_improve
           )}
         </div>
-        <div className="cursor-pointer rounded-md bg-white min-h-[13rem] shadow-lg p-2 dark:bg-navy-700 dark:text-white">
+        <div className="min-h-[13rem] cursor-pointer rounded-md bg-white p-2 shadow-lg dark:bg-navy-700 dark:text-white">
           {ShowValues(
             results,
             options,
@@ -239,7 +253,7 @@ function ShowInfo({ results }) {
             selectedOption3_improve
           )}
         </div>
-        <div className="cursor-pointer rounded-md bg-white min-h-[13rem] shadow-lg p-2 dark:bg-navy-700 dark:text-white">
+        <div className="min-h-[13rem] cursor-pointer rounded-md bg-white p-2 shadow-lg dark:bg-navy-700 dark:text-white">
           {ShowValues(
             results,
             options,
@@ -251,7 +265,7 @@ function ShowInfo({ results }) {
             selectedOption4_improve
           )}
         </div>
-        <div className="cursor-pointer rounded-md bg-white min-h-[13rem] shadow-lg p-2 dark:bg-navy-700 dark:text-white">
+        <div className="min-h-[13rem] cursor-pointer rounded-md bg-white p-2 shadow-lg dark:bg-navy-700 dark:text-white">
           {ShowValues(
             results,
             options,
@@ -263,7 +277,7 @@ function ShowInfo({ results }) {
             selectedOption5_improve
           )}
         </div>
-        <div className="cursor-pointer rounded-md bg-white min-h-[13rem] shadow-lg p-2 dark:bg-navy-700 dark:text-white">
+        <div className="min-h-[13rem] cursor-pointer rounded-md bg-white p-2 shadow-lg dark:bg-navy-700 dark:text-white">
           {ShowValues(
             results,
             options,

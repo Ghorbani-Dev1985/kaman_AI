@@ -70,15 +70,16 @@ const Main = () => {
 
 
   const [chartresponse, setChartResponse] = useState({});
-
+  const [showLoading, setShowLoading] = useState(false);
 
   return (
     <>
       <SelectTime
         setResponse={setResponse}
-        setchartresponse={setChartResponse}
+        setchartresponse={setChartResponse} 
+        setShowLoading={setShowLoading}
       />
-      <ShowInfo results={response} />
+      <ShowInfo results={response} showLoading={showLoading} setShowLoading={setShowLoading}/>
       <BestSel results={response} />
       <Proceed chartresponse={chartresponse} />
     </>

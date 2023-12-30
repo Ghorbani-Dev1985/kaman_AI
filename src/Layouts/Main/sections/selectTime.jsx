@@ -39,14 +39,6 @@ function Date_Picker(v, setter) {
         value={v}
         formattingIgnoreList={["Date" , 'Time']}
         calendarPosition="bottom-center"
-        plugins={[
-          <TimePicker hideSeconds />,
-          <DatePickerHeader
-            position="left"
-            size="small"
-            style={{ backgroundColor: "#3b82f6" }}
-          />,
-        ]}
       />
     </>
   );
@@ -68,14 +60,6 @@ function Date_Picker2(v, setter , disabled) {
         value={v}
         formattingIgnoreList={["Date" , 'Time']}
         calendarPosition="bottom-center"
-        plugins={[
-          <TimePicker hideSeconds />,
-          <DatePickerHeader
-            position="left"
-            size="small"
-            style={{ backgroundColor: "#3b82f6" }}
-          />,
-        ]}
       />
     </>
   );
@@ -113,7 +97,7 @@ function useOutsideAlerter(ref, setOpen) {
   }, [ref, setOpen]);
 }
 
-function SelectTime({ setResponse, setchartresponse }) {
+function SelectTime({ setResponse, setchartresponse , setShowLoading}) {
   //Context
   const {start_time1 , setStart_time1} = useStart_time1();
   const {end_time1 , setEnd_time1} = useEnd_time1();
@@ -121,6 +105,7 @@ function SelectTime({ setResponse, setchartresponse }) {
   const {end_time2 , setEnd_time2} = useEnd_time2();
   const [compare_time, setCompare_time] = useState(0);
   const [open, setOpen] = useState(false);
+
   const DateRef = useRef(null);
   useOutsideAlerter(DateRef, setOpen);
   const location = useLocation();
@@ -142,8 +127,8 @@ function SelectTime({ setResponse, setchartresponse }) {
       formData.append("start_date2", start_time2.format("YYYY-MM-DDTHH:mm:ss"));
       formData.append("end_date2", end_time2.format("YYYY-MM-DDTHH:mm:ss"));
     }
-
     let api_address = InitObject.baseurl + "api/factors_info/";
+    setShowLoading(true)
     axios
       .post(api_address, formData, {
         headers: {
@@ -153,9 +138,11 @@ function SelectTime({ setResponse, setchartresponse }) {
       })
       .then((response) => {
         setResponse(response.data.results);
+        setShowLoading(false)
       })
       .catch((error) => {
         console.log(error);
+        setShowLoading(false)
       });
   };
 
@@ -166,6 +153,7 @@ function SelectTime({ setResponse, setchartresponse }) {
     formData.append("end_date1", end_time1.format("YYYY-MM-DDTHH:mm:ss"));
     formData.append("export", 0);
     let api_address = InitObject.baseurl + "api/products_info/";
+    setShowLoading(true)
     axios
       .post(api_address, formData, {
         headers: {
@@ -175,9 +163,11 @@ function SelectTime({ setResponse, setchartresponse }) {
       })
       .then((response) => {
         setchartresponse(response.data.results);
+        setShowLoading(false)
       })
       .catch((error) => {
         console.log(error);
+        setShowLoading(false)
       });
   };
 

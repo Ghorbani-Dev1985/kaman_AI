@@ -20,7 +20,6 @@ function ShowInfo({ results , showLoading , setShowLoading}) {
       setSelectedOptionImprove(results.percentage[e.value]);
       
     };
-   console.log(showLoading)
     return (
       <>
 
